@@ -26,7 +26,32 @@ Habit Coach AI é uma plataforma de coaching personalizado para construção de 
 - **next-safe-action** (type-safe server actions with Zod validation)
 
 ### Authentication & Authorization
-- **Better Auth** (sessions, OAuth, magic links, 2FA - https://www.better-auth.com/docs)
+- **Better Auth** (sessio -ns, OAuth, magic links, 2FA - https://www.better-auth.com/docs) - IMPORTANT: usar actions nativas do Better Auth ex: Sign In
+To sign a user in, you can use the signIn.email function provided by the client.
+
+sign-in
+
+const { data, error } = await authClient.signIn.email({
+        /**
+         * The user email
+         */
+        email,
+        /**
+         * The user password
+         */
+        password,
+        /**
+         * A URL to redirect to after the user verifies their email (optional)
+         */
+        callbackURL: "/dashboard",
+        /**
+         * remember the user session after the browser is closed. 
+         * @default true
+         */
+        rememberMe: false
+}, {
+    //callbacks
+})
 - **Zod** (schema validation, used with Better Auth)
 
 ### Frontend & UI
@@ -276,11 +301,3 @@ NODE_ENV=production
 - `DESIGN-GUIDELINES.md` - Visual identity, color palette, typography, components
 - `LANDING-PAGE-SPEC.md` - Landing page structure
 
-**OpenSpec specs** (`@/openspec/specs/`):
-- `tech-stack.md` - Stack técnico detalhado e decisões arquiteturais
-- `authentication.md` - Padrões de autenticação e autorização
-- `ai-integration.md` - Integração com OpenAI e MCP
-- `database-schema.md` - Schema PostgreSQL com Drizzle
-- `features-habits.md` - Sistema de hábitos (design & implementation)
-- `features-goals.md` - Sistema de metas com decomposição automática
-- `ui-components.md` - Componentes shadcn/ui e padrões de uso
