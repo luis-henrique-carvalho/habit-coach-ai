@@ -26,14 +26,15 @@ Habit Coach AI é uma plataforma de coaching personalizado para construção de 
 - **next-safe-action** (type-safe server actions with Zod validation)
 
 ### Authentication & Authorization
-- **Better Auth** (sessions, OAuth, magic links, 2FA)
+- **Better Auth** (sessions, OAuth, magic links, 2FA - https://www.better-auth.com/docs)
 - **Zod** (schema validation, used with Better Auth)
 
 ### Frontend & UI
 - **React 19** (via Next.js)
-- **shadcn/ui** (design system components)
+- **shadcn/ui** (design system components - https://ui.shadcn.com/docs)
 - **Tailwind CSS** (utility-first CSS)
 - **TailwindCSS Plugins**: animations, forms
+- **React Hook Form** (formulários obrigatório - https://react-hook-form.com/docs)
 
 ### AI & Integrations
 - **OpenAI GPT-4** (fine-tuned for character personalities)
@@ -50,6 +51,14 @@ Habit Coach AI é uma plataforma de coaching personalizado para construção de 
 **Referência:** Ver `@/docs/PRD.md` seção 1.4 para stack técnico detalhado.
 
 ## Project Conventions
+
+### Resolução de Dúvidas
+Em caso de qualquer dúvida técnica ou de implementação, consultar prioritariamente a documentação oficial das tecnologias adotadas:
+- **Better Auth:** https://www.better-auth.com/docs/basic-usage
+- **shadcn/ui:** https://ui.shadcn.com/docs/components
+- **Next.js:** https://nextjs.org/docs
+- **Drizzle ORM:** https://orm.drizzle.team/docs/overview
+- **React Hook Form:** https://react-hook-form.com/docs
 
 ### Code Style
 - **Language:** TypeScript (strict mode)

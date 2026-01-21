@@ -5,6 +5,8 @@ Complete specification for the Habits system - core feature of Habit Coach AI.
 
 **Related:** `@/docs/PRD.md` seção 3.1 Sistema de Hábitos, `@/docs/MVP-SCOPE.md` seção 2.1 Sistema de Hábitos, `@/openspec/specs/database-schema.md` Habits Table
 
+**Importante:** Todos os formulários devem usar React Hook Form (https://react-hook-form.com/docs) integrado com shadcn/ui Form (https://ui.shadcn.com/docs/components/form)
+
 ---
 
 ## Feature Scope
@@ -67,12 +69,14 @@ app/(private)/habits/
 ├── components/
 │   ├── create-habit-modal.tsx
 │   ├── habit-card.tsx
-│   ├── habit-form.tsx
+│   ├── habit-form.tsx  // React Hook Form + shadcn/ui Form
 │   └── habit-heatmap.tsx
 ├── schemas/
-│   └── habit-schema.ts
+│   └── habit-schema.ts  // Zod schemas
 └── page.tsx
 ```
+- **Form:** Usar React Hook Form com shadcn/ui Form component
+- **Validação:** Zod schema com @hookform/resolvers/zod
 - Server Action: `actionCreateHabit`
 - Zod Schema: `createHabitSchema`
 - Database: Insert into `habits` table
@@ -330,9 +334,15 @@ If habit.frequency == 'per_week':
 
 ## UI Components
 
-### Habit Card
+### Habit Card (shadcn/ui)
 ```tsx
 // app/(private)/habits/components/habit-card.tsx
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Button } from '@/components/ui/button'
+
 <Card>
   <CardContent>
     <div className="flex justify-between items-start">
@@ -348,7 +358,7 @@ If habit.frequency == 'per_week':
     <div className="flex gap-2 mt-4">
       <Checkbox 
         checked={completedToday}
-        onChange={toggleComplete}
+        onCheckedChange={toggleComplete}
       />
       <Button variant="ghost" size="sm">
         Ver Detalhes
@@ -366,17 +376,87 @@ If habit.frequency == 'per_week':
 // Tooltip on hover: "5 of 7 days this week"
 ```
 
-### Create Habit Modal
+### Create Habit Form (React Hook Form + shadcn/ui)
 ```tsx
-// app/(private)/habits/components/create-habit-modal.tsx
-// Form with:
-// - name input
-// - description textarea
-// - frequency radio group
-// - time picker
-// - reminder toggle
-// - create/cancel buttons
+// app/(private)/habits/components/habit-form.tsx
+'use client'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { createHabitSchema } from '../schemas/habit-schema'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Switch } from '@/components/ui/switch'
+
+export function HabitForm() {
+  const form = useForm({
+    resolver: zodResolver(createHabitSchema),
+    defaultValues: {
+      name: '',
+      description: '',
+      frequency: 'daily',
+      reminderEnabled: false,
+    },
+  })
+  
+  async function onSubmit(data: z.infer<typeof createHabitSchema>) {
+    // Call Server Action
+    await actionCreateHabit(data)
+  }
+  
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nome do Hábito</FormLabel>
+              <FormControl>
+                <Input placeholder="Ex: Meditar" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="frequency"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Frequência</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <RadioGroupItem value="daily" />
+                    </FormControl>
+                    <FormLabel>Diário</FormLabel>
+                  </FormItem>
+                  {/* Adicionar outras opções */}
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <Button type="submit">Criar Hábito</Button>
+      </form>
+    </Form>
+  )
+}
 ```
+
+**Referências importantes:**
+- React Hook Form: https://react-hook-form.com/docs
+- shadcn/ui Form: https://ui.shadcn.com/docs/components/form
+- Zod Resolver: https://github.com/react-hook-form/resolvers#zod
 
 ---
 

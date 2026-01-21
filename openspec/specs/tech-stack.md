@@ -82,16 +82,18 @@ Complete technical stack for Habit Coach AI with architectural decisions and rat
   ```
 
 ### Authentication & Sessions
-- **Library:** Better Auth (via `@auth/better-auth`)
-- **Session Storage:** Database-backed sessions
-- **Cookies:** httpOnly, Secure, SameSite=Lax
-- **Expiration:** 7 days inactivity
+- **Library:** Better Auth (https://www.better-auth.com/docs/basic-usage)
+- **Package:** `better-auth` (não `@auth/better-auth`)
+- **Session Storage:** Database-backed sessions (via Drizzle adapter)
+- **Cookies:** httpOnly, Secure, SameSite=Lax (configuração automática)
+- **Expiration:** 7 days inactivity (configurável)
 - **Providers:** 
-  - Email + Password (with bcrypt)
-  - Google OAuth
+  - Email + Password (bcrypt automático via Better Auth)
+  - Google OAuth (https://www.better-auth.com/docs/authentication/oauth)
   - GitHub OAuth
   - Magic Links (future)
-- **2FA:** Support built-in (future priority)
+- **2FA:** Suporte nativo (https://www.better-auth.com/docs/authentication/two-factor)
+- **Referência oficial:** Consultar sempre a documentação do Better Auth para implementações
 
 ---
 
@@ -140,10 +142,11 @@ Complete technical stack for Habit Coach AI with architectural decisions and rat
 - **Utility-First:** Primary styling method (no component library CSS conflicts)
 
 ### Form Handling
-- **Library:** React Hook Form
-- **Integration:** Via shadcn/ui Form component
-- **Validation:** Zod + React Hook Form integration
-- **Pattern:** Controlled components with validation feedback
+- **Library:** React Hook Form (obrigatório para todos os formulários)
+- **Integration:** Via shadcn/ui Form component (https://ui.shadcn.com/docs/components/form)
+- **Validation:** Zod + React Hook Form integration (@hookform/resolvers/zod)
+- **Pattern:** Controlled components com validação em tempo real
+- **Referência:** https://react-hook-form.com/docs
 
 ---
 

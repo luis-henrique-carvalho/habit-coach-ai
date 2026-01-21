@@ -9,6 +9,8 @@ Complete authentication and authorization patterns for Habit Coach AI using Bett
 
 ## Authentication Flow
 
+**Referência oficial:** https://www.better-auth.com/docs/basic-usage
+
 ### User Registration (Email + Password)
 ```
 1. User submits email + password on /auth/register
@@ -111,15 +113,17 @@ function canCreateHabit(user: User): boolean {
 ### Method 1: Email + Password
 - **Signup Page:** `/auth/register`
 - **Login Page:** `/auth/login`
+- **Implementation:** Better Auth (https://www.better-auth.com/docs/authentication/email-password)
 - **Password Requirements:**
   - Minimum 8 characters
   - At least one uppercase letter
   - At least one number
 - **Password Reset:** (Future) Via email link
-- **Storage:** bcrypt hash (never plaintext)
+- **Storage:** bcrypt hash automático (Better Auth handled)
 
 ### Method 2: OAuth (Google)
 - **Signup:** "Sign in with Google" button
+- **Implementation:** Better Auth OAuth (https://www.better-auth.com/docs/authentication/oauth)
 - **Credentials:** 
   - `GOOGLE_CLIENT_ID` from Google Cloud
   - `GOOGLE_CLIENT_SECRET` from Google Cloud
@@ -141,7 +145,7 @@ function canCreateHabit(user: User): boolean {
 
 ### Method 5: 2FA (Future)
 - **Type:** TOTP (Time-based One-Time Password)
-- **Implementation:** `speakeasy` or similar library
+- **Implementation:** Better Auth 2FA (https://www.better-auth.com/docs/authentication/two-factor)
 - **Backup Codes:** User can generate backup codes
 
 ---
@@ -175,21 +179,26 @@ function canCreateHabit(user: User): boolean {
 ### Session Middleware
 ```typescript
 // middleware.ts
-import { auth } from '@/auth'
+// Referência: https://www.better-auth.com/docs/integrations/next-js#middleware
+import { betterAuth } from 'better-auth'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export default auth(async (req) => {
-  const session = req.auth
+export async function middleware(request: NextRequest) {
+  const session = await betterAuth.api.getSession({
+    headers: request.headers,
+  })
   
   // If no session and accessing protected route
-  if (!session && isProtectedRoute(req.nextUrl.pathname)) {
-    return Response.redirect('/auth/login')
+  if (!session && isProtectedRoute(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL('/auth/login', request.url))
   }
   
   // If session exists but accessing /auth/login
-  if (session && req.nextUrl.pathname === '/auth/login') {
-    return Response.redirect('/dashboard')
+  if (session && request.nextUrl.pathname === '/auth/login') {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
   }
-})
+}
 
 export const config = {
   matcher: ['/((?!_next|favicon|public).*)'],
@@ -203,17 +212,21 @@ export const config = {
 ### Route Protection
 ```typescript
 // app/(dashboard)/dashboard/page.tsx
+// Referência: https://www.better-auth.com/docs/integrations/next-js
 import { redirect } from 'next/navigation'
-import { getSession } from '@/auth'
+import { auth } from '@/lib/auth' // Better Auth instance
+import { headers } from 'next/headers'
 
 export default async function DashboardPage() {
-  const session = await getSession()
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
   
   if (!session) {
     redirect('/auth/login')
   }
   
-  return <Dashboard userId={session.user.id} />
+  return <Dashboard user={session.user} />
 }
 ```
 
@@ -222,13 +235,16 @@ export default async function DashboardPage() {
 // actions/createHabit.ts
 'use server'
 
-import { getSession } from '@/auth'
+import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
 import { createAction } from '@/lib/safe-action'
 
 export const actionCreateHabit = createAction()
   .schema(createHabitSchema)
   .action(async ({ parsedInput }) => {
-    const session = await getSession()
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    })
     
     if (!session) {
       throw new Error('Unauthorized')
@@ -325,18 +341,24 @@ export const actionCreateHabit = createAction()
 
 ## Logout & Session Termination
 
+**Referência:** https://www.better-auth.com/docs/concepts/session-management
+
 ### Logout Flow
 ```typescript
 // actions/logout.ts
 'use server'
 
-import { signOut } from '@/auth'
+import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-export const actionLogout = createAction().action(async () => {
-  await signOut({
-    redirectTo: '/auth/login',
+export async function actionLogout() {
+  await auth.api.signOut({
+    headers: await headers(),
   })
-})
+  
+  redirect('/auth/login')
+}
 ```
 
 ### Session Deletion
