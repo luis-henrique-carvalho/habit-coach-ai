@@ -13,7 +13,7 @@ export function OAuthButtons() {
   async function handleOAuthSignIn(provider: "google" | "github") {
     setIsLoading(true);
     setError("");
-    
+
     try {
       await authClient.signIn.social({
         provider,
