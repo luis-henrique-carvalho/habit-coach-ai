@@ -1,18 +1,8 @@
-# Authentication Flow - Requirements Specification
+# authentication Specification
 
-## Capability: Authentication
-
-**ID:** auth  
-**Status:** New  
-**Priority:** Critical  
-**Version:** 1.0
-
-## Overview
-
-The Authentication capability enables users to create accounts and securely sign into the Habit Coach AI platform using email+password and social login (OAuth). It provides session management, email verification, and protected route access.
-
-## ADDED Requirements
-
+## Purpose
+TBD - created by archiving change add-auth-flow. Update Purpose after archive.
+## Requirements
 ### Requirement: Email and Password Registration
 
 - The system SHALL allow users to create a new account with email, password, and name.
@@ -113,7 +103,6 @@ When: User attempts to sign in with correct credentials
 Then: Sign-in succeeds, session created
 And: User redirected to /dashboard
 ```
-
 
 ### Requirement: OAuth Sign-In (Google & GitHub)
 
@@ -394,116 +383,3 @@ And: Session created immediately
 
 ---
 
-## MODIFIED Requirements
-
-*(None at this time. This is a new capability.)*
-
----
-
-## REMOVED Requirements
-
-*(None at this time.)*
-
----
-
-## Related Capabilities
-
-- **Session Management** - Uses Better Auth sessions for credential verification
-- **Authorization** - Middleware checks session before allowing access to protected routes
-- **User Profile** - Future: User profile page, account settings (separate capability)
-- **Password Reset** - Future: Forgot password flow (separate capability)
-
----
-
-## Testing Scenarios
-
-### Sign-Up E2E
-- [ ] Register with email, password, name
-- [ ] Validation prevents weak passwords
-- [ ] Duplicate email rejected
-- [ ] Verification email sent
-- [ ] Click verification link
-- [ ] Email verified, user redirected to dashboard
-
-### Sign-In E2E
-- [ ] Login with correct credentials
-- [ ] Invalid password rejected
-- [ ] Invalid email rejected
-- [ ] Unverified user redirected to verification page
-- [ ] Session established, dashboard accessible
-
-### OAuth E2E
-- [ ] Click Google sign-in button
-- [ ] Authorize app in Google
-- [ ] New account created if needed
-- [ ] Existing account linked if email matches
-- [ ] Dashboard accessible immediately
-- [ ] No email verification required
-
-### Protected Routes
-- [ ] Unauthenticated user redirected from /dashboard to /login
-- [ ] Authenticated user redirected from /login to /dashboard
-- [ ] Session expiry redirects to /login
-- [ ] Invalid session cookie ignored
-
-### Sign-Out
-- [ ] Sign-out clears session and cookie
-- [ ] Redirect to /login
-- [ ] Protected routes inaccessible after sign-out
-
----
-
-## Form Implementation Pattern (shadcn/ui)
-
-All form fields MUST follow the shadcn/ui + React Hook Form pattern for consistency and accessibility:
-
-### Required Components
-- **Controller** - From `react-hook-form` for controlled inputs
-- **Field** - From `@/components/ui/field` wraps each field with `data-invalid` prop
-- **FieldLabel** - For accessible labels with `htmlFor` attribute
-- **FieldError** - Displays validation errors inline under input
-- **FieldDescription** - Optional helper text (e.g., password requirements)
-- **Input/Textarea/Select** - From `@/components/ui/` with `aria-invalid` prop
-
-### Pattern
-```tsx
-<Controller
-  name="fieldName"
-  control={form.control}
-  render={({ field, fieldState }) => (
-    <Field data-invalid={fieldState.invalid}>
-      <FieldLabel htmlFor={field.name}>Label</FieldLabel>
-      <Input
-        {...field}
-        id={field.name}
-        aria-invalid={fieldState.invalid}
-        placeholder="..."
-      />
-      {fieldState.invalid && (
-        <FieldError errors={[fieldState.error]} />
-      )}
-      <FieldDescription>Optional helper text</FieldDescription>
-    </Field>
-  )}
-/>
-```
-
-### Key Rules
-1. **data-invalid** on `<Field>` - Enables CSS for invalid state styling
-2. **aria-invalid** on input - Screen reader support
-3. **Spread field props** with `{...field}` - Connects input to React Hook Form
-4. **Conditional FieldError** - Only show when `fieldState.invalid` is true
-5. **Form-level errors** - Display via `<Alert>` component for server errors from Better Auth
-
----
-
-## Acceptance Criteria
-
-- [x] Requirements documented with scenarios
-- [ ] Implementation complete
-- [ ] All tests passing
-- [ ] Error messages in Portuguese
-- [ ] Form pattern follows shadcn/ui guidelines (Controller + Field)
-- [ ] Accessibility: data-invalid + aria-invalid on all fields
-- [ ] Accessible (WCAG 2.1 AA)
-- [ ] Performance: Auth flows < 2s on 4G

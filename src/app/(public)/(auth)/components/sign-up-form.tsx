@@ -28,7 +28,7 @@ export function SignUpForm() {
 
   async function onSubmit(data: SignUpFormData) {
     setFormError("");
-    
+
     try {
       await authClient.signUp.email(
         {
