@@ -67,13 +67,13 @@ See `specs/authentication/spec.md` for detailed requirements and scenarios.
 
 ## Acceptance Criteria
 
-- [ ] Users can sign up with email and password
-- [ ] Users can log in with existing credentials
-- [ ] Users can sign in with Google and GitHub
+- [x] Users can sign up with email and password
+- [x] Users can log in with existing credentials
+- [x] Users can sign in with Google and GitHub
 - [ ] Email verification required before access to dashboard
 - [ ] Unverified users redirected to verification page
-- [ ] Authenticated users cannot access login/signup pages
-- [ ] Dashboard routes protected via middleware
-- [ ] Users can sign out and return to login page
-- [ ] Form validation shows clear error messages
-- [ ] All auth operations properly typed with TypeScript
+- [x] Authenticated users cannot access login/signup pages
+- [x] Dashboard routes protected via middleware
+- [x] Users can sign out and return to login page
+- [x] Form validation shows clear error messages
+- [x] All auth operations properly typed with TypeScript

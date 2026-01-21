@@ -36,7 +36,7 @@ Then: authClient.signUp.email() is called
 And: Better Auth creates user with emailVerified=false
 And: Verification token is generated and stored
 And: Email sent to joao@example.com with verification link
-And: onSuccess callback redirects to /verify-email?step=check-email
+And: onSuccess callback redirects to /dashboard
 ```
 
 #### Scenario: Validation Error - Email Already Exists
@@ -96,57 +96,9 @@ And: No session created
 Given: User "joao@example.com" exists but emailVerified=false
 When: User attempts to sign in with correct credentials
 Then: Sign-in succeeds, session created
-And: User redirected to /verify-email instead of /dashboard
-```
-
----
-
-### R3: Email Verification
-
-Users must verify their email address before accessing the dashboard.
-
-#### Requirement Details
-- Email verification required after sign-up
-- Better Auth generates secure verification token
-- Token stored in `verification` table with expiry (24 hours default)
-- Verification link in email format: `{NEXT_PUBLIC_APP_URL}/verify-email?token={TOKEN}`
-- Clicking link validates token and marks user as verified
-- Expired tokens: Show message and option to resend
-- After verification: Redirect to /dashboard and start session
-
-#### Scenario: User Verifies Email with Valid Token
-```
-Given: User registered with email="joao@example.com"
-And: Verification token sent via email (valid for 24h)
-When: User clicks verification link with valid token
-Then: Token validated against `verification` table
-And: user.emailVerified set to true
-And: Verification record deleted (one-time use)
 And: User redirected to /dashboard
-And: Session established, user can access protected routes
 ```
 
-#### Scenario: Token Expired
-```
-Given: User has a verification token older than 24 hours
-When: User clicks expired verification link
-Then: Page shows "Link de verificação expirado"
-And: Option provided to resend verification email
-When: User clicks "Resend Email"
-Then: New token generated, email resent
-And: User redirected to /verify-email?step=check-email
-```
-
-#### Scenario: Invalid Token
-```
-Given: User clicks verification link with invalid/tampered token
-When: Token validation fails
-Then: Page shows "Link de verificação inválido"
-And: User redirected to /verify-email
-And: Option to request new verification email
-```
-
----
 
 ### R4: OAuth Sign-In (Google & GitHub)
 
@@ -196,7 +148,7 @@ And: User redirected to /dashboard
 #### Scenario: OAuth User Accesses Unverified Email Path
 ```
 Given: User signed up with Google (emailVerified=true)
-When: User accesses /verify-email page directly
+When: User accesses /login page directly
 Then: Middleware detects user verified via OAuth
 And: Redirect to /dashboard
 ```
@@ -263,7 +215,7 @@ Unauthenticated users cannot access protected routes.
 - If no valid session: Redirect to `/login?next={original-path}`
 - Public routes excluded from middleware check:
   - `/` (home page)
-  - `/login`, `/register`, `/verify-email` (auth pages)
+  - `/login`, `/register` (auth pages)
   - `/api/auth/*` (OAuth callbacks)
   - `/pricing` (public)
 - Authenticated users redirected from `/login` and `/register` to `/dashboard`
@@ -300,7 +252,6 @@ All form submissions validated with clear, user-friendly error messages.
 - Validation schemas (client-side UX only):
   - `sign-in-schema`: email (required, valid format), password (required)
   - `sign-up-schema`: name (required), email (required), password (8+ chars, 1 upper, 1 num), confirmPassword (matches)
-  - `verify-email-schema`: token (required, valid format)
 - Error messages in Portuguese (pt-BR)
 - Field-level errors show inline under input
 - Form-level errors from Better Auth shown in Alert component (via onError callback)
@@ -435,11 +386,57 @@ And: Session created immediately
 
 ---
 
+## Form Implementation Pattern (shadcn/ui)
+
+All form fields MUST follow the shadcn/ui + React Hook Form pattern for consistency and accessibility:
+
+### Required Components
+- **Controller** - From `react-hook-form` for controlled inputs
+- **Field** - From `@/components/ui/field` wraps each field with `data-invalid` prop
+- **FieldLabel** - For accessible labels with `htmlFor` attribute
+- **FieldError** - Displays validation errors inline under input
+- **FieldDescription** - Optional helper text (e.g., password requirements)
+- **Input/Textarea/Select** - From `@/components/ui/` with `aria-invalid` prop
+
+### Pattern
+```tsx
+<Controller
+  name="fieldName"
+  control={form.control}
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel htmlFor={field.name}>Label</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="..."
+      />
+      {fieldState.invalid && (
+        <FieldError errors={[fieldState.error]} />
+      )}
+      <FieldDescription>Optional helper text</FieldDescription>
+    </Field>
+  )}
+/>
+```
+
+### Key Rules
+1. **data-invalid** on `<Field>` - Enables CSS for invalid state styling
+2. **aria-invalid** on input - Screen reader support
+3. **Spread field props** with `{...field}` - Connects input to React Hook Form
+4. **Conditional FieldError** - Only show when `fieldState.invalid` is true
+5. **Form-level errors** - Display via `<Alert>` component for server errors from Better Auth
+
+---
+
 ## Acceptance Criteria
 
 - [x] Requirements documented with scenarios
 - [ ] Implementation complete
 - [ ] All tests passing
 - [ ] Error messages in Portuguese
+- [ ] Form pattern follows shadcn/ui guidelines (Controller + Field)
+- [ ] Accessibility: data-invalid + aria-invalid on all fields
 - [ ] Accessible (WCAG 2.1 AA)
 - [ ] Performance: Auth flows < 2s on 4G

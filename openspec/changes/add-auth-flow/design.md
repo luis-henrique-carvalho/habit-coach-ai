@@ -8,13 +8,11 @@ src/lib/auth.ts (Better Auth config)
 src/app/(public)/(auth)/
     ├── login/page.tsx
     ├── register/page.tsx
-    └── verify-email/page.tsx
          ↓
     components/
         ├── login-form.tsx (shadcn/ui + React Hook Form)
         ├── register-form.tsx (shadcn/ui + React Hook Form)
         ├── oauth-buttons.tsx (shadcn/ui)
-        └── verify-email-form.tsx
     ↓
 src/middleware.ts (session check)
     ↓
@@ -40,22 +38,73 @@ src/app/(private)/* (protected)
 - Located at `src/app/api/auth/[...all]/route.ts`
 - Handles OAuth callbacks, session management, and all auth API calls
 
-### 2. Form Validation
+### 2. Form Validation & Components
 
-**Decision:** React Hook Form + Zod schemas (client-side only)  
+**Decision:** React Hook Form + Zod schemas + shadcn/ui Field components  
 **Rationale:**
-- Lightweight form state management
+- Lightweight form state management with React Hook Form
 - Client-side validation for UX (before submitting to Better Auth)
 - Better Auth handles server-side validation internally
 - Schema reusability for client validation
+- shadcn/ui `<Field>` components for accessibility (data-invalid, aria-invalid)
+- `<Controller>` pattern for controlled inputs
 
 **Schema Structure:**
 ```
 src/app/(public)/(auth)/schemas/
-├── sign-in-schema.ts   // email, password
-├── sign-up-schema.ts   // name, email, password, confirmPassword
-└── verify-email-schema.ts // token
+├── sign-in-schema.ts       // email, password
+├── sign-up-schema.ts       // name, email, password, confirmPassword
 ```
+
+**Form Component Pattern (shadcn/ui):**
+```tsx
+"use client";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Field, FieldLabel, FieldError, FieldDescription } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+export function SignInForm() {
+  const form = useForm({
+    resolver: zodResolver(signInSchema),
+    defaultValues: { email: "", password: "" },
+  });
+
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      <Controller
+        name="email"
+        control={form.control}
+        render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+            <Input
+              {...field}
+              id={field.name}
+              type="email"
+              aria-invalid={fieldState.invalid}
+            />
+            {fieldState.invalid && (
+              <FieldError errors={[fieldState.error]} />
+            )}
+          </Field>
+        )}
+      />
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? "Entrando..." : "Entrar"}
+      </Button>
+    </form>
+  );
+}
+```
+
+**Key Components:**
+- `<Field>` wrapper with `data-invalid` prop for styling
+- `<FieldLabel>` for accessible labels
+- `<FieldError>` for inline error messages
+- `aria-invalid` on input for screen readers
+- `<FieldDescription>` for helper text (optional)
 
 **Note:** These schemas are for client-side UX validation only. Better Auth performs its own server-side validation.
 
@@ -86,29 +135,6 @@ src/app/(public)/(auth)/schemas/
 - Returns user data or redirects to login
 - Uses Better Auth's built-in session API
 
-### 5. Email Verification Flow
-
-**Decision:** Token-based verification with expiry  
-**Rationale:**
-- Better Auth generates verification tokens automatically
-- Verification table stores token + expiry
-- Email contains verification link with token
-- Verified status stored in user.emailVerified
-
-**Flow:**
-```
-User signs up
-  ↓
-Verification token created (Better Auth)
-  ↓
-Email sent with verification link
-  ↓
-User clicks link → /verify-email?token=XXX
-  ↓
-Token validated and emailVerified set to true
-  ↓
-User redirected to dashboard
-```
 
 ### 6. Protected Routes Strategy
 
@@ -122,7 +148,7 @@ User redirected to dashboard
 **Implementation:**
 ```
 middleware.ts
-├── Allow: /login, /register, /verify-email, /api/auth
+├── Allow: /login, /register, /api/auth
 ├── Protect: /dashboard/*, /habits/*, /goals/*
 └── Redirect unauthenticated to /login
 ```
@@ -198,7 +224,7 @@ SessionError → Invalid/expired tokens
 3. Submit → authClient.signUp.email() (client-side)
 4. Better Auth validates and creates user + verification token
 5. Better Auth sends verification email (if configured)
-6. onSuccess callback: Redirect to verify-email page
+6. onSuccess callback: Redirect to dashboard page
 7. User clicks email link with token
 8. Better Auth API verifies token
 9. emailVerified set to true
