@@ -56,7 +56,23 @@ Complete specification for the Habits system - core feature of Habit Coach AI.
 - ✅ If pro user: no limit
 
 **Implementation Notes:**
-- Location: `app/(dashboard)/habits/create` (modal or separate page)
+- Location: `app/(private)/habits/` with following structure:
+```
+app/(private)/habits/
+├── actions/
+│   ├── create-habit.ts
+│   ├── get-habits.ts
+│   ├── update-habit.ts
+│   └── index.ts
+├── components/
+│   ├── create-habit-modal.tsx
+│   ├── habit-card.tsx
+│   ├── habit-form.tsx
+│   └── habit-heatmap.tsx
+├── schemas/
+│   └── habit-schema.ts
+└── page.tsx
+```
 - Server Action: `actionCreateHabit`
 - Zod Schema: `createHabitSchema`
 - Database: Insert into `habits` table
@@ -88,7 +104,26 @@ Complete specification for the Habits system - core feature of Habit Coach AI.
 - ✅ User can uncheck to remove completion
 
 **Implementation Notes:**
-- Location: `app/(dashboard)/dashboard` or `/habits/today`
+- Location: `app/(private)/dashboard/` or `app/(private)/habits/` components
+- File structure:
+```
+app/(private)/
+├── dashboard/
+│   ├── actions/
+│   │   ├── get-dashboard.ts
+│   │   └── mark-habit-complete.ts
+│   ├── components/
+│   │   ├── dashboard-content.tsx
+│   │   ├── today-checklist.tsx
+│   │   └── habit-quick-actions.tsx
+│   └── page.tsx
+├── habits/
+│   ├── actions/
+│   │   ├── mark-complete.ts
+│   │   └── index.ts
+│   └── components/
+│       └── habit-completion-card.tsx
+```
 - Server Action: `actionMarkHabitComplete`
 - Optimistic Update: Show checked immediately, confirm in background
 - Zod: `markHabitCompleteSchema`
@@ -134,7 +169,23 @@ Yesterday completed: No, Today completed: Yes → Streak = 1
 - ✅ Quick action: Mark today complete from detail
 
 **Implementation Notes:**
-- Location: `app/(dashboard)/habits/[id]`
+- Location: `app/(private)/habits/[id]/`
+- File structure:
+```
+app/(private)/habits/
+├── [id]/
+│   ├── actions/
+│   │   ├── get-habit-details.ts
+│   │   └── calculate-streaks.ts
+│   ├── components/
+│   │   ├── habit-detail-card.tsx
+│   │   ├── habit-heatmap.tsx
+│   │   ├── habit-stats.tsx
+│   │   └── habit-chart.tsx
+│   └── page.tsx
+├── components/
+│   └── habit-navigation.tsx
+```
 - Query: Join habits + habitCompletions + calculate streaks
 - Heatmap library: `recharts` or custom with Tailwind
 - Performance: Cache streak/stats for 1 hour (optional)
@@ -281,7 +332,7 @@ If habit.frequency == 'per_week':
 
 ### Habit Card
 ```tsx
-// Components/HabitCard.tsx
+// app/(private)/habits/components/habit-card.tsx
 <Card>
   <CardContent>
     <div className="flex justify-between items-start">
@@ -309,7 +360,7 @@ If habit.frequency == 'per_week':
 
 ### Habit Heatmap
 ```tsx
-// Components/HabitHeatmap.tsx
+// app/(private)/habits/components/habit-heatmap.tsx
 // Show 90-day calendar with completion status
 // Green for complete, gray for incomplete
 // Tooltip on hover: "5 of 7 days this week"
@@ -317,7 +368,7 @@ If habit.frequency == 'per_week':
 
 ### Create Habit Modal
 ```tsx
-// Components/CreateHabitModal.tsx
+// app/(private)/habits/components/create-habit-modal.tsx
 // Form with:
 // - name input
 // - description textarea
@@ -333,6 +384,7 @@ If habit.frequency == 'per_week':
 
 ### `actionCreateHabit`
 ```typescript
+// app/(private)/habits/actions/create-habit.ts
 export const actionCreateHabit = createAction()
   .schema(createHabitSchema)
   .action(async ({ parsedInput }) => {
@@ -360,6 +412,7 @@ export const actionCreateHabit = createAction()
 
 ### `actionMarkHabitComplete`
 ```typescript
+// app/(private)/habits/actions/mark-complete.ts
 export const actionMarkHabitComplete = createAction()
   .schema(markHabitCompleteSchema)
   .action(async ({ parsedInput }) => {

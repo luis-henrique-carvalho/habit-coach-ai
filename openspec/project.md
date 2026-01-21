@@ -70,6 +70,74 @@ Habit Coach AI é uma plataforma de coaching personalizado para construção de 
 - **Type Safety:** Drizzle for database types, Zod for runtime validation
 - **Middleware:** Better Auth middleware for session management
 
+**Folder Organization Example:**
+```
+src/app/
+├── (private)
+│   ├── dashboard/
+│   │   ├── actions/
+│   │   │   ├── get-dashboard.ts
+│   │   │   └── index.ts
+│   │   ├── components/
+│   │   │   ├── dashboard-content.tsx
+│   │   │   ├── dashboard-loading.tsx
+│   │   │   ├── status-card.tsx
+│   │   │   └── habit-streak-chart.tsx
+│   │   └── page.tsx
+│   ├── habits/
+│   │   ├── actions/
+│   │   │   ├── get-habits.ts
+│   │   │   ├── create-habit.ts
+│   │   │   └── index.ts
+│   │   ├── components/
+│   │   │   ├── habit-form.tsx
+│   │   │   ├── habit-list.tsx
+│   │   │   └── table/
+│   │   │       ├── table-actions.tsx
+│   │   │       └── table-columns.tsx
+│   │   ├── page.tsx
+│   │   └── schemas/
+│   │       └── habit-schema.ts
+│   ├── goals/
+│   │   ├── actions/
+│   │   │   ├── get-goals.ts
+│   │   │   ├── create-goal.ts
+│   │   │   └── decompose-goal.ts
+│   │   ├── components/
+│   │   │   ├── goal-form.tsx
+│   │   │   ├── goal-progress.tsx
+│   │   │   └── ai-decomposition.tsx
+│   │   └── page.tsx
+│   └── layout.tsx
+├── (public)
+│   ├── (auth)
+│   │   ├── components/
+│   │   │   ├── login-form.tsx
+│   │   │   ├── register-form.tsx
+│   │   │   └── social-login-buttons.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── register/
+│   │   │   └── page.tsx
+│   │   └── schemas/
+│   │       ├── sign-in-schema.ts
+│   │       └── sign-up-schema.ts
+│   ├── (home)/
+│   │   ├── components/
+│   │   │   ├── hero-section.tsx
+│   │   │   ├── features-section.tsx
+│   │   │   ├── pricing-section.tsx
+│   │   │   └── footer.tsx
+│   │   └── page.tsx
+│   ├── pricing/
+│   │   └── page.tsx
+│   └── layout.tsx
+└── api/
+    ├── auth/
+    ├── habits/
+    └── goals/
+```
+
 **Database Schema:** Ver `@/openspec/specs/database-schema.md` (a ser criado).
 
 ### Testing Strategy

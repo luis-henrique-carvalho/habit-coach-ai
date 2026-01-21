@@ -140,6 +140,29 @@ openspec/
 │   └── archive/            # Completed changes
 ```
 
+### Recommended Project Structure Pattern
+
+When creating new capabilities or features, follow this pattern:
+
+```
+src/app/(private)/[feature]/
+├── actions/                # Server Actions
+│   ├── get-[feature].ts    # Data fetching
+│   ├── create-[feature].ts # Creation logic
+│   ├── update-[feature].ts # Update logic
+│   └── index.ts           # Re-exports
+├── components/             # Feature components
+│   ├── [feature]-form.tsx  # Forms
+│   ├── [feature]-list.tsx  # Lists/tables
+│   ├── [feature]-modal.tsx # Modals
+│   └── table/             # Table-specific components
+│       ├── table-actions.tsx
+│       └── table-columns.tsx
+├── schemas/               # Zod schemas
+│   └── [feature]-schema.ts
+└── page.tsx              # Route component
+```
+
 ## Creating Change Proposals
 
 ### Decision Tree
