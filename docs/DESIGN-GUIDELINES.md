@@ -4,15 +4,15 @@
 
 ### 1.1 Filosofia de Design
 Habit Coach AI deve transmitir:
-- **Modernidade**: Clean, minimalista, atual
-- **Confiabilidade**: Profissional sem ser corporativo
-- **Acessibilidade**: Amigável e não intimidador
-- **Motivação**: Energético sem ser excessivo
+- **Acolhimento**: Amigável, caloroso, "humano"
+- **Simplicidade**: Fácil de entender, sem fricção
+- **Energia**: Cores vibrantes, ilustrações lúdicas
+- **Confiança**: Profissional, mas acessível
 
 ### 1.2 Inspirações Visuais
-- **Linear** (linear.app): Interface limpa, hierarquia clara, animações sutis
-- **Resend** (resend.com): Minimalismo, tipografia excelente, espaços em branco generosos
-- **Vercel** (vercel.com): Uso de gradientes sutis, contraste eficaz, modernidade
+- **Petpeeps** (referência visual): Uso de formas arredondadas, cores vibrantes, ilustrações amigáveis
+- **Headspace**: Design calmo, formas orgânicas, cores suaves
+- **Duolingo**: Gamificação visual, botões arredondados, personalidade forte
 
 ### 1.3 Princípios de Design
 1. **Clareza > Criatividade**: Função antes de forma
@@ -27,76 +27,73 @@ Habit Coach AI deve transmitir:
 
 ### 2.1 Cores Primárias
 
-#### Primary (Azul)
-Usado para CTAs principais, links, elementos interativos.
+#### Primary (Azul Vibrante)
+Usado para elementos de destaque, hero sections e backgrounds de marca.
+Baseado no tom "Electric Blue" da referência.
 
 ```
-primary-50:  #eff6ff
-primary-100: #dbeafe
-primary-200: #bfdbfe
-primary-300: #93c5fd
-primary-400: #60a5fa
-primary-500: #3b82f6  ← Base
-primary-600: #2563eb
-primary-700: #1d4ed8
-primary-800: #1e40af
-primary-900: #1e3a8a
+primary-50:  #f0f7ff
+primary-100: #e0f0ff
+primary-200: #b9ddfe
+primary-300: #7cc2fd
+primary-400: #36a4fa
+primary-500: #0080f5  ← Base (Vibrante)
+primary-600: #0066d6
+primary-700: #0052ad
+primary-800: #00458d
+primary-900: #063971
 ```
 
 **Uso:**
-- primary-500: Botões primários, links ativos
-- primary-600: Hover em botões primários
-- primary-100: Backgrounds sutis de badges, notifications
+- primary-500: Backgrounds de seções principais, ícones ativos
+- primary-600: Hover em elementos interativos
+- primary-50: Backgrounds de seções alternadas (substituindo branco puro)
 
 ---
 
-#### Secondary (Roxo/Violeta)
-Usado para acentos, elementos secundários, gradientes.
+#### Secondary (Laranja/Amarelo Solar)
+Usado para acentos de calor, ilustrações, e CTAs secundários que precisam de atenção.
+Substitui o roxo para trazer mais "vida" e "calor".
 
 ```
-secondary-50:  #faf5ff
-secondary-100: #f3e8ff
-secondary-200: #e9d5ff
-secondary-300: #d8b4fe
-secondary-400: #c084fc
-secondary-500: #a855f7  ← Base
-secondary-600: #9333ea
-secondary-700: #7e22ce
-secondary-800: #6b21a8
-secondary-900: #581c87
+secondary-50:  #fffbeb
+secondary-100: #fef3c7
+secondary-200: #fde68a
+secondary-300: #fcd34d
+secondary-400: #fbbf24
+secondary-500: #f59e0b  ← Base (Solar)
+secondary-600: #d97706
+secondary-700: #b45309
+secondary-800: #92400e
+secondary-900: #78350f
 ```
 
 **Uso:**
-- secondary-500: Ícones de destaque, badges premium
-- secondary-100: Backgrounds de cards especiais
-- Gradientes: primary-500 → secondary-500
+- secondary-400/500: Elementos decorativos (estrelas, corações), highlights
+- secondary-100: Backgrounds de cards de destaque
 
 ---
 
-### 2.2 Cores Neutras
+### 2.2 Cores Neutras & Escuras
 
-#### Grayscale
-Usado para textos, backgrounds, borders.
+#### Dark (Preto Suave)
+Usado para textos principais e botões primários de alto contraste.
 
 ```
-gray-50:  #fafafa
-gray-100: #f5f5f5
-gray-200: #e5e5e5
-gray-300: #d4d4d4
-gray-400: #a3a3a3
-gray-500: #737373
-gray-600: #525252
-gray-700: #404040
-gray-800: #262626
-gray-900: #171717
+dark-900: #111827 (Gray-900 / Black)
 ```
 
 **Uso:**
-- gray-900: Texto principal (headings)
-- gray-700: Texto secundário (body)
-- gray-500: Texto terciário (labels, hints)
-- gray-100: Background de cards, inputs
-- gray-200: Borders sutis
+- Background de botões primários (CTAs tipo "Schedule Now")
+- Headings principais
+
+#### Grayscale & Surface
+Usado para textos secundários e superfícies.
+
+```
+surface-white: #ffffff
+surface-soft:  #f8fafc (Slate-50) or #f0f7ff (Primary-50 tint)
+```
 
 ---
 
@@ -178,41 +175,27 @@ Todas as combinações de cores devem passar WCAG AA:
 ### 3.1 Famílias de Fonte
 
 #### Fonte Principal: Inter
-```css
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-```
+### 3.1 Famílias de Fonte
 
-**Por quê Inter:**
-- Excelente legibilidade em telas
-- Ampla variedade de pesos
-- Open source (Google Fonts)
-- Modern e profissional
-
-**Como Carregar:**
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-```
-
-**Pesos Usados:**
-- 400 (Regular): Texto body, parágrafos
-- 500 (Medium): Labels, navegação
-- 600 (Semibold): Subtítulos, buttons
-- 700 (Bold): Headlines, títulos principais
-
----
-
-#### Fonte Alternativa: Geist Sans (Opcional)
-Se preferir estilo mais moderno (inspirado em Vercel).
+#### Fonte Principal: Plus Jakarta Sans ou Nunito (Headings)
+Para trazer a personalidade amigável e moderna vista na referência.
+Se não disponível, usar **Inter** com peso Bold e tracking levemente negativo.
 
 ```css
-font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 ```
 
-**Nota:** Geist Sans requer self-hosting ou import do Next.js 16.
+#### Fonte de Corpo: Inter
+Mantém a legibilidade agnóstica e limpa.
 
----
+```css
+font-family: 'Inter', sans-serif;
+```
 
+**Estilos de Texto:**
+- **Headings:** Bold (700) ou ExtraBold (800), cor escura (Gray-900).
+- **Body:** Regular (400) ou Medium (500), cor suave (Gray-600).
+- **Botoes:** Semibold (600), case title ou uppercase suave.
 #### Fonte Monospace (Código/Dados)
 ```css
 font-family: 'Fira Code', 'Courier New', monospace;
@@ -359,57 +342,50 @@ Baseada em múltiplos de 4px (sistema de 8pt grid).
 | `rounded-full` | 9999px | Avatares, pills, badges circulares |
 
 ---
+## 5. Border Radius
+
+### 5.1 Escala (Super Rounded)
+
+A identidade visual da referência é fortemente baseada em formas arredondadas e amigáveis.
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `rounded-md` | 8px | Inputs, elementos internos pequenos |
+| `rounded-lg` | 12px | Cards pequenos |
+| `rounded-xl` | 16px | Cards padrão |
+| `rounded-2xl` | 24px | Cards de destaque, Seções, Modals |
+| `rounded-3xl` | 32px | Containers grandes |
+| `rounded-full` | 9999px | **Botões**, Badges, Pills |
+
+---
 
 ### 5.2 Uso por Componente
 
 | Componente | Border Radius |
 |------------|---------------|
-| Button | `rounded` (8px) |
-| Input | `rounded` (8px) |
-| Card | `rounded-lg` (12px) |
-| Modal | `rounded-xl` (16px) |
-| Avatar | `rounded-full` |
-| Badge | `rounded` (8px) ou `rounded-full` (pill) |
-| Imagens | `rounded-lg` (12px) |
+| Button | **`rounded-full`** (Pill shape) |
+| Input | `rounded-full` ou `rounded-xl` |
+| Card | `rounded-2xl` (24px) ou `rounded-3xl` |
+| Modal | `rounded-3xl` |
+| Badge | `rounded-full` |
+| Imagens | `rounded-2xl` |
 
 ---
 
-## 6. Sombras (Shadows)
+## 6. Sombras e Bordas
 
-### 6.1 Escala de Sombras
-
-Sombras sutis, nunca exageradas.
+### 6.1 Estilo
+Menos sombras "drop shadow" clássicas, mais definição por **cor de fundo** e contornos suaves.
+Cartões brancos sobre fundo colorido (azul ou cinza claro).
 
 ```css
-/* Elevação 1: Sutil (cards, inputs em hover) */
---shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
-/* Elevação 2: Padrão (cards, dropdowns) */
---shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-
-/* Elevação 3: Média (modals, popovers) */
---shadow-md: 0 4px 16px 0 rgba(0, 0, 0, 0.12);
-
-/* Elevação 4: Alta (tooltips, alerts importantes) */
---shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.16);
-
-/* Elevação 5: Muito alta (modals fullscreen) */
---shadow-xl: 0 16px 48px 0 rgba(0, 0, 0, 0.20);
+/* Card Clean */
+.card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05); /* Borda sutil */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Sombra difusa muito leve */
+}
 ```
-
----
-
-### 6.2 Uso por Componente
-
-| Componente | Shadow |
-|------------|--------|
-| Card (estático) | `shadow-sm` |
-| Card (hover) | `shadow` |
-| Dropdown | `shadow-md` |
-| Modal | `shadow-lg` |
-| Tooltip | `shadow-md` |
-| Button (hover) | `shadow-sm` |
-
 ---
 
 ### 6.3 Sombras Coloridas (Opcional)
@@ -565,41 +541,39 @@ shadcn/ui permite customização via CSS variables.
 // Primário (ação principal)
 <Button variant="default">Criar Hábito</Button>
 
-// Secundário (ação secundária)
-<Button variant="outline">Cancelar</Button>
+### 8.3 Diretrizes de Uso
 
-// Destrutivo (deletar, arquivar)
-<Button variant="destructive">Deletar</Button>
+#### Button
+Todos os botões devem ser **Pill Shaped** (`rounded-full`).
 
-// Ghost (ações sutis)
-<Button variant="ghost">Ver Mais</Button>
+```jsx
+// Primário (Dark/Black - Alto contraste)
+// Usado em fundos claros ou brancos
+<Button className="rounded-full bg-gray-900 text-white hover:bg-gray-800">
+  Schedule now
+</Button>
 
-// Link
-<Button variant="link">Saiba Mais</Button>
+// Primário (Brand Blue)
+// Usado quando se quer destacar a marca
+<Button className="rounded-full bg-primary-500 text-white hover:bg-primary-600">
+  Get Started
+</Button>
+
+// Outline
+// Ações secundárias
+<Button variant="outline" className="rounded-full border-gray-200">
+  Saiba Mais
+</Button>
 ```
 
 #### Card
-```jsx
-<Card>
-  <CardHeader>
-    <CardTitle>Meditar</CardTitle>
-    <CardDescription>Hábito diário</CardDescription>
-  </CardHeader>
-  <CardContent>
-    {/* Conteúdo */}
-  </CardContent>
-  <CardFooter>
-    {/* Footer */}
-  </CardFooter>
-</Card>
-```
+Cards devem ter bastante padding (espaço interno) e bordas bem arredondadas.
 
-#### Dialog (Modal)
 ```jsx
-<Dialog>
-  <DialogTrigger asChild>
-    <Button>Abrir Modal</Button>
-  </DialogTrigger>
+<Card className="rounded-3xl border-none shadow-sm p-6 sm:p-8">
+  {/* Conteúdo centralizado ou com ilustrações */}
+</Card>
+```/DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Título</DialogTitle>
