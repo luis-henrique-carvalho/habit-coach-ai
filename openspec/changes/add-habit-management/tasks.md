@@ -72,7 +72,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
 
 ## Phase 3: Core Business Logic (Utils)
 
-- [ ] **Task 3.1: Create recurrence utils**
+- [x] **Task 3.1: Create recurrence utils**
   - Create `src/lib/utils/recurrence.ts`
   - Implement `isActiveDay(date: Date, recurrence: Recurrence): boolean`
     - Handle all 4 recurrence types
@@ -80,7 +80,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Add unit tests for each recurrence type
   - Test edge cases (leap years, month boundaries, etc.)
 
-- [ ] **Task 3.2: Create streak calculation utils**
+- [x] **Task 3.2: Create streak calculation utils**
   - Create `src/lib/utils/streak.ts`
   - Implement `calculateCurrentStreak(habit: Habit, executions: Execution[], recurrence: Recurrence): number`
     - Iterate backwards from today
@@ -89,7 +89,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Implement `shouldUpdateLongestStreak(current: number, longest: number): number`
   - Add comprehensive unit tests with various scenarios
 
-- [ ] **Task 3.3: Create date utils**
+- [x] **Task 3.3: Create date utils**
   - Create `src/lib/utils/date.ts`
   - Implement `isSameDate(date1: Date, date2: Date): boolean`
   - Implement `subtractDays(date: Date, days: number): Date`
@@ -103,7 +103,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
 
 ## Phase 4: Server Actions (Queries)
 
-- [ ] **Task 4.1: Create get-habits action**
+- [x] **Task 4.1: Create get-habits action**
   - Create `src/app/(private)/habits/actions/get-habits.ts`
   - Implement `getHabits` Server Action
   - Verify user session with Better Auth
@@ -113,7 +113,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Return typed array of habits
   - Add error handling
 
-- [ ] **Task 4.2: Create get-habit-by-id action**
+- [x] **Task 4.2: Create get-habit-by-id action**
   - Create `src/app/(private)/habits/actions/get-habit-by-id.ts`
   - Implement `getHabitById` Server Action
   - Accept habitId parameter
@@ -124,14 +124,14 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Return habit with full details or null
   - Add error handling
 
-- [ ] **Task 4.3: Create get-habit-count action**
+- [x] **Task 4.3: Create get-habit-count action**
   - Create `src/app/(private)/habits/actions/get-habit-count.ts`
   - Implement `getHabitCount` Server Action
   - Count active habits for current user
   - Used for free tier limit check
   - Return count as number
 
-- [ ] **Task 4.4: Export all query actions**
+- [x] **Task 4.4: Export all query actions**
   - Create `src/app/(private)/habits/actions/index.ts`
   - Export all actions
   - Verify TypeScript types are exported
@@ -142,7 +142,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
 
 ## Phase 5: Server Actions (Mutations)
 
-- [ ] **Task 5.1: Create create-habit action**
+- [x] **Task 5.1: Create create-habit action**
   - Create `src/app/(private)/habits/actions/create-habit.ts`
   - Use `next-safe-action` with `createHabitSchema`
   - Verify user session
@@ -154,7 +154,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Return created habit
   - Add comprehensive error handling
 
-- [ ] **Task 5.2: Create update-habit action**
+- [x] **Task 5.2: Create update-habit action**
   - Create `src/app/(private)/habits/actions/update-habit.ts`
   - Use `next-safe-action` with `updateHabitSchema`
   - Verify user session and ownership
@@ -164,7 +164,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Revalidate paths
   - Return updated habit
 
-- [ ] **Task 5.3: Create delete-habit action**
+- [x] **Task 5.3: Create delete-habit action**
   - Create `src/app/(private)/habits/actions/delete-habit.ts`
   - Use `next-safe-action`
   - Verify user session and ownership
@@ -172,7 +172,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Revalidate `/habits` path
   - Return success boolean
 
-- [ ] **Task 5.4: Create complete-habit action**
+- [x] **Task 5.4: Create complete-habit action**
   - Create `src/app/(private)/habits/actions/complete-habit.ts`
   - Use `next-safe-action` with `completeHabitSchema`
   - Verify user session and ownership
@@ -184,7 +184,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Revalidate paths
   - Return updated streaks
 
-- [ ] **Task 5.5: Create uncomplete-habit action**
+- [x] **Task 5.5: Create uncomplete-habit action**
   - Create `src/app/(private)/habits/actions/uncomplete-habit.ts`
   - Use `next-safe-action` with `uncompleteHabitSchema`
   - Verify user session and ownership
@@ -193,7 +193,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Revalidate paths
   - Return updated streaks
 
-- [ ] **Task 5.6: Export all mutation actions**
+- [x] **Task 5.6: Export all mutation actions**
   - Update `src/app/(private)/habits/actions/index.ts`
   - Export all mutation actions
 
