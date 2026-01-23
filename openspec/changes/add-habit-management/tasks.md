@@ -4,21 +4,21 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
 
 ## Phase 1: Database Foundation
 
-- [ ] **Task 1.1: Create database schema file**
+- [x] **Task 1.1: Create database schema file**
   - Create `src/db/schema/habit-schema.ts`
   - Define `habit` table with all fields (id, userId, name, description, isActive, currentStreak, longestStreak, timestamps)
   - Add indexes on `userId` and `isActive`
   - Add foreign key to `user` table with cascade delete
   - Export table and relations
 
-- [ ] **Task 1.2: Create recurrence table**
+- [x] **Task 1.2: Create recurrence table**
   - In `src/db/schema/habit-schema.ts`, define `habitRecurrence` table
   - Add fields: id, habitId, type (enum), intervalDays, weekdays (integer array), intervalMonths, intervalYears
   - Add unique constraint on `habitId`
   - Add foreign key to `habit` table with cascade delete
   - Define Drizzle relations (one-to-one)
 
-- [ ] **Task 1.3: Create execution table**
+- [x] **Task 1.3: Create execution table**
   - In `src/db/schema/habit-schema.ts`, define `habitExecution` table
   - Add fields: id, habitId, completedAt (timestamp), completedDate (date), createdAt
   - Add composite unique constraint on `(habitId, completedDate)`
@@ -26,11 +26,11 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Add foreign key to `habit` table with cascade delete
   - Define Drizzle relations (one-to-many)
 
-- [ ] **Task 1.4: Export schema from index**
+- [x] **Task 1.4: Export schema from index**
   - Update `src/db/schema/index.ts` to export habit schema
   - Verify types are exported correctly
 
-- [ ] **Task 1.5: Generate and run migration**
+- [x] **Task 1.5: Generate and run migration**
   - Run `pnpm drizzle-kit generate` to create migration
   - Review generated SQL
   - Run `pnpm drizzle-kit push` to apply migration
@@ -43,7 +43,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
 
 ## Phase 2: Zod Validation Schemas
 
-- [ ] **Task 2.1: Create base Zod schemas**
+- [x] **Task 2.1: Create base Zod schemas**
   - Create `src/app/(private)/habits/schemas/habit-schema.ts`
   - Define `recurrenceTypeEnum` (daily, weekly, monthly, annual)
   - Create `recurrenceSchema` with discriminated union based on type:
@@ -54,7 +54,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
   - Create `createHabitSchema` with name (min 1, max 100), description (max 500, optional), recurrence
   - Create `updateHabitSchema` with partial fields
 
-- [ ] **Task 2.2: Create execution schemas**
+- [x] **Task 2.2: Create execution schemas**
   - In same file, create `completeHabitSchema`:
     - habitId (uuid string)
     - completedDate (date string, parsed to Date)
@@ -62,7 +62,7 @@ Implementation checklist for the Habit Management module. Complete tasks in orde
     - Validation: completedDate not older than 7 days
   - Create `uncompleteHabitSchema` with habitId and completedDate
 
-- [ ] **Task 2.3: Export all schemas**
+- [x] **Task 2.3: Export all schemas**
   - Export schemas and their TypeScript types
   - Add JSDoc comments for clarity
 
