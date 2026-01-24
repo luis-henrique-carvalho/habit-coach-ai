@@ -6,45 +6,45 @@ import { Zap, Target, BarChart3, Bell, BrainCircuit, Split } from "lucide-react"
 const features = [
   {
     icon: BrainCircuit,
-    title: "Insights Impulsionados por IA",
-    description: "Nossa IA analisa seus padrões para prever quando você vai fracassar e ajuda você a prevenir antes que aconteça.",
-    colorBg: "bg-primary/8",
-    colorIcon: "bg-primary/15",
+    title: "PREDIÇÃO DE FRACASSO",
+    description: "IA analisa seus padrões e avisa: 'Você vai desistir na 3ª feira'. Evite antes que aconteça.",
+    className: "lg:col-span-2 bg-primary text-primary-foreground",
+    iconColor: "text-primary-foreground",
   },
   {
     icon: Split,
-    title: "Divisão Inteligente de Metas",
-    description: "Sobrecarregado com grandes metas? Nossa IA as divide automaticamente em pequenas tarefas diárias gerenciáveis.",
-    colorBg: "bg-accent/8",
-    colorIcon: "bg-accent/15",
+    title: "DIVISÃO ATÔMICA",
+    description: "Metas grandes paralisam. A IA as tritura em passos ridículos de tão fáceis.",
+    className: "lg:col-span-1 bg-card",
+    iconColor: "text-primary",
   },
   {
     icon: BarChart3,
-    title: "Análise Preditiva",
-    description: "Não apenas veja onde você esteve. Veja para onde você está indo com previsões de probabilidade de sucesso.",
-    colorBg: "bg-primary/5",
-    colorIcon: "bg-primary/12",
+    title: "DADOS REAIS",
+    description: "Sem gráficos de vaidade. Apenas a probabilidade bruta do seu sucesso futuro.",
+    className: "lg:col-span-1 bg-card",
+    iconColor: "text-primary",
   },
   {
     icon: Target,
-    title: "Pilhas de Hábitos Personalizadas",
-    description: "Construa rotinas poderosas encadeando hábitos. A IA sugere horários ideais para cada pilha.",
-    colorBg: "bg-secondary/8",
-    colorIcon: "bg-secondary/15",
+    title: "PILHAS DE HÁBITOS",
+    description: "A IA sugere: 'Depois do café (hábito âncora), faça 5 flexões'. Automação humana.",
+    className: "lg:col-span-2 bg-secondary/50",
+    iconColor: "text-foreground",
   },
   {
     icon: Bell,
-    title: "Incentivos Contextuais",
-    description: "Receba lembretes que realmente importam, baseados em sua localização, hora e nível de energia atual.",
-    colorBg: "bg-accent/6",
-    colorIcon: "bg-accent/12",
+    title: "CHUTES NO TIGRE",
+    description: "Lembretes baseados no seu nível de energia, não apenas no horário.",
+    className: "lg:col-span-1 bg-card",
+    iconColor: "text-primary",
   },
   {
     icon: Zap,
-    title: "Streaks Gamificados",
-    description: "Ganhe XP e suba de nível seu personagem. Desbloqueie novas aparências para seu técnico de IA conforme progride.",
-    colorBg: "bg-primary/6",
-    colorIcon: "bg-primary/14",
+    title: "GAMIFICAÇÃO RPG",
+    description: "Seu técnico sobe de nível. Desbloqueie skins do 'General' ou 'Yoda' conforme progride.",
+    className: "lg:col-span-2 bg-accent text-accent-foreground",
+    iconColor: "text-accent-foreground",
   },
 ];
 
@@ -53,94 +53,88 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as const,
+      type: "spring" as const,
+      stiffness: 120,
+      damping: 20,
     },
   },
 };
 
 export function Features() {
   return (
-    <section id="features" className="py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-linear-to-b from-primary/3 via-transparent to-accent/3 pointer-events-none" />
-
+    <section id="features" className="py-24 md:py-32 bg-background relative overflow-hidden text-foreground">
       <div className="container px-4 mx-auto relative z-10">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-semibold mb-6 border border-primary/20">
-            <span className="size-1.5 rounded-full bg-primary animate-glow-pulse" />
-            Recursos Poderosos
-          </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            Mais que apenas{" "}
-            <span className="text-primary">
-              caixas de seleção
-            </span>
+          <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+            Sistema <span className="text-transparent bg-clip-text bg-linear-to-b from-primary to-primary/60">Operacional</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Um sistema completo projetado para reformular seu cérebro para o sucesso, alimentado por ciência comportamental avançada e IA.
+          <p className="text-xl md:text-2xl font-medium text-muted-foreground max-w-2xl mx-auto">
+            Não é motivação. É engenharia comportamental.
           </p>
         </motion.div>
 
+        {/* Bento Grid Layout - Feature Fragments */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto"
         >
           {features.map((feature, i) => {
             const Icon = feature.icon;
+
             return (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="group relative h-full"
+                className={`
+                  group relative p-8 rounded-none border-2 border-border
+                  hover:scale-[1.01] hover:shadow-xl hover:shadow-primary/5 hover:border-primary
+                  transition-all duration-300 flex flex-col justify-between overflow-hidden
+                  ${feature.className}
+                `}
               >
-                <div className="relative p-8 rounded-xl h-full bg-card border border-border/50 hover:border-primary/20 transition-all duration-300 overflow-hidden">
-                  {/* Subtle background */}
-                  <div className={`absolute inset-0 ${feature.colorBg} pointer-events-none`} />
-
-                  {/* Icon Container */}
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className={`relative z-10 size-14 rounded-lg ${feature.colorIcon} flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300`}
-                  >
-                    <Icon className="size-7 text-foreground" strokeWidth={1.5} />
-                  </motion.div>
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {feature.description}
-                    </p>
-                  </div>
-
-                  {/* Subtle accent line on top */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Tech Decoration */}
+                <div className="absolute top-2 right-2 opacity-20 font-mono text-xs">
+                  {`F-0${i + 1}`}
                 </div>
+
+                <div className="mb-8">
+                  <div className={`p-3 w-fit rounded-none border-2 border-current mb-4 ${feature.iconColor}`}>
+                    <Icon className="size-8 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-2">
+                    {feature.title}
+                  </h3>
+                </div>
+
+                <p className="text-lg font-medium leading-relaxed opacity-90">
+                  {feature.description}
+                </p>
+
+                {/* Hover Reveal Line */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </motion.div>
             );
           })}

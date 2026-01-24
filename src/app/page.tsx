@@ -8,7 +8,6 @@ import { HowItWorks } from "@/components/landing/how-it-works";
 import { SocialProof } from "@/components/landing/social-proof";
 import { FAQ } from "@/components/landing/faq";
 import { FinalCTA } from "@/components/landing/final-cta";
-import { Footer } from "@/components/landing/footer";
 
 export default function Home() {
   return (
@@ -25,7 +24,6 @@ export default function Home() {
         <FAQ />
         <FinalCTA />
       </main>
-      <Footer />
     </div>
   );
 }

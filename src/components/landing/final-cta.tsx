@@ -2,103 +2,67 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function FinalCTA() {
   return (
-    <section id="final-cta" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background with animated gradient */}
-      <div className="absolute inset-0 bg-linear-to-r from-primary/90 to-primary" />
+    <section id="final-cta" className="relative py-32 md:py-48 overflow-hidden bg-foreground text-background">
+      {/* Texture Background */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-neutral-500 to-transparent" />
+      <div className="absolute inset-0 bg-black/20" /> {/* Darken slightly for contrast */}
 
-      {/* Animated background decorations */}
-      <motion.div
-        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"
-        suppressHydrationWarning
-      />
-      <motion.div
-        animate={{ rotate: -360, scale: [1.1, 1, 1.1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"
-        suppressHydrationWarning
-      />
+      <div className="container px-4 mx-auto relative z-10 flex flex-col items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          {/* Decorative 'START' behind text */}
+          <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-[15vw] md:text-[20vw] font-black opacity-5 text-white/20 whitespace-nowrap pointer-events-none select-none">
+            START
+          </span>
 
-      <div className="container px-4 mx-auto relative">
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Animated heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-3xl md:text-6xl font-bold mb-6 text-primary-foreground"
+          <h2 className="text-6xl md:text-9xl font-black text-center tracking-tighter leading-[0.85] mb-12 mix-blend-overlay opacity-90">
+            CHEGA DE <br />
+            <span className="text-primary">DESCULPAS</span>
+          </h2>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-xl md:text-3xl font-medium text-center max-w-2xl mx-auto mb-16 text-white/70"
+        >
+          Seu "eu futuro" está implorando para você começar hoje. Não o deixe esperando.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="relative group"
+        >
+          {/* Button Glow */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary via-orange-500 to-primary rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500 animate-tilt"></div>
+
+          <Button
+            size="lg"
+            className="relative h-20 md:h-24 px-12 md:px-20 text-xl md:text-3xl font-black bg-white text-black hover:bg-white/90 rounded-full shadow-2xl transition-all"
           >
-            Ready to Build{" "}
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative inline-block"
-            >
-              <span className="text-white">Unstoppable Habits?</span>
-              <motion.div
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-white/40 blur-sm"
-                suppressHydrationWarning
-              />
-            </motion.span>
-          </motion.h2>
+            CRIAR CONTA GRÁTIS <ArrowRight className="ml-4 size-6 md:size-8" />
+          </Button>
+        </motion.div>
 
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg md:text-xl mb-12 opacity-90 text-primary-foreground/90"
-          >
-            Join hundreds of people building better habits with AI coaching. Start free, no credit card required.
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              size="lg"
-              className="h-14 px-10 text-base bg-white text-primary hover:bg-white/90 rounded-full shadow-2xl shadow-black/30 font-semibold"
-            >
-              Start Coaching Now <ArrowRight className="ml-2 size-5" />
-            </Button>
-          </motion.div>
-
-          {/* Trust signals */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
-          >
-            <div className="flex items-center gap-2 text-sm opacity-90 text-primary-foreground">
-              <CheckCircle2 className="size-4" />
-              Free forever plan
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-white/20" />
-            <div className="flex items-center gap-2 text-sm opacity-90 text-primary-foreground">
-              <CheckCircle2 className="size-4" />
-              Upgrade anytime
-            </div>
-          </motion.div>
-        </div>
+        <p className="mt-8 text-sm text-white/40 font-mono tracking-widest uppercase">
+          Sem cartão de crédito necessário • Acesso Imediato
+        </p>
       </div>
     </section>
   );

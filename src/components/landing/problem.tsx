@@ -1,36 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertCircle, TrendingDown, Clock, Users } from "lucide-react";
+import { AlertCircle, TrendingDown, Clock, Users, X } from "lucide-react";
 
 const problems = [
   {
     icon: AlertCircle,
-    title: "Falta de Consistência e Motivação",
-    description: "Você começa com entusiasmo, mas a motivação desaparece. Sem suporte personalizado, manter hábitos se torna uma batalha árdua.",
-    colorBg: "bg-primary/6",
-    colorIcon: "bg-primary/12",
+    title: "MOTIVAÇÃO FANTASMA",
+    description: "Você começa com fogo, mas apaga em 3 dias. Sem um sargento te cobrando, a chama morre.",
+    rotation: "rotate-1",
   },
   {
     icon: TrendingDown,
-    title: "Sem Feedback Personalizado",
-    description: "Rastreadores genéricos não o entendem. Você precisa de um coaching que se adapte à sua personalidade.",
-    colorBg: "bg-accent/6",
-    colorIcon: "bg-accent/12",
+    title: "RASTREADORES BURROS",
+    description: "Apps genéricos não sabem quem você é. Você precisa de um coach que entenda sua psique.",
+    rotation: "-rotate-1",
   },
   {
     icon: Clock,
-    title: "Definição de Metas Esmagadora",
-    description: "Grandes metas parecem impossíveis. Dividi-las em etapas acionáveis é cansativo e confuso.",
-    colorBg: "bg-secondary/6",
-    colorIcon: "bg-secondary/12",
+    title: "PARALISIA POR ANÁLISE",
+    description: "Dividir grandes metas em micro-tarefas é chato. Nossa IA faz o trabalho sujo para você.",
+    rotation: "rotate-2",
   },
   {
     icon: Users,
-    title: "Falta de Responsabilidade",
-    description: "Ir sozinho é difícil. Sem alguém verificando seu progresso, é fácil perder o foco.",
-    colorBg: "bg-primary/5",
-    colorIcon: "bg-primary/10",
+    title: "SOLIDÃO TÓXICA",
+    description: "Tentar mudar sozinho é pedir para falhar. A responsabilidade compartilhada é a chave.",
+    rotation: "-rotate-2",
   },
 ];
 
@@ -39,93 +35,108 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as const,
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
     },
   },
 };
 
 export function Problem() {
   return (
-    <section id="problem" className="py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-linear-to-b from-primary/3 via-transparent to-secondary/3 pointer-events-none" />
+    <section id="problem" className="py-24 md:py-32 bg-background/50 relative overflow-hidden">
+
+      {/* Background Noise/Texture could go here */}
+      <div className="absolute top-0 right-0 p-20 opacity-10 pointer-events-none">
+        <X className="w-96 h-96 text-destructive" strokeWidth={1} />
+      </div>
 
       <div className="container px-4 mx-auto relative z-10">
+
+        {/* Header - Typographic Bold */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          transition={{ duration: 0.7 }}
+          className="mb-20 max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-semibold mb-6 border border-primary/20">
-            <span className="size-1.5 rounded-full bg-primary animate-glow-pulse" />
-            Os Verdadeiros Obstáculos
+          <div className="inline-flex items-center gap-3 px-4 py-1 bg-destructive/10 text-destructive text-sm font-bold uppercase tracking-widest mb-6 border border-destructive/20 rounded-none">
+            <AlertCircle className="size-4" />
+            O Problema Real
           </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            O que está{" "}
-            <span className="text-primary">
-              te impedindo?
+          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-foreground">
+            POR QUE VOCÊ <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-destructive to-destructive/60">
+              CONTINUA FALHANDO?
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Construir hábitos é difícil. Você não está sozinho nessa luta.
+          <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl border-l-4 border-destructive/30 pl-6">
+            Não é culpa sua (totalmente). O sistema tradicional de hábitos está quebrado.
           </p>
         </motion.div>
 
+        {/* Grid Betrayal - Asymmetric Layout */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+          className="grid md:grid-cols-2 gap-8 lg:gap-12"
         >
           {problems.map((problem, i) => {
             const Icon = problem.icon;
+            // Stagger layout manually for asymmetry
+            const offsetClass = i % 2 === 0 ? "md:translate-y-0" : "md:translate-y-12";
+
             return (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="group relative h-full"
+                className={`${offsetClass} group`}
               >
-                <div className="relative p-8 rounded-xl h-full bg-card border border-border/50 hover:border-primary/15 transition-all duration-300 overflow-hidden">
-                  {/* Subtle background */}
-                  <div className={`absolute inset-0 ${problem.colorBg} pointer-events-none`} />
+                <div
+                  className={`
+                    relative p-8 h-full bg-card hover:bg-accent/5
+                    border-2 border-border hover:border-primary/50
+                    transition-all duration-300
+                    ${problem.rotation} hover:rotate-0 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10
+                    rounded-none
+                  `}
+                >
+                  {/* Technical Corner Markers */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary/30" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/30" />
 
-                  {/* Icon Container */}
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className={`relative z-10 size-12 rounded-lg ${problem.colorIcon} flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300`}
-                  >
-                    <Icon className="size-6 text-foreground" strokeWidth={1.5} />
-                  </motion.div>
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <h3 className="text-base font-bold mb-2 group-hover:text-primary transition-colors duration-300">
-                      {problem.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {problem.description}
-                    </p>
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="p-3 bg-background border-2 border-foreground/10 shadow-sm rounded-none group-hover:border-primary group-hover:text-primary transition-colors">
+                      <Icon className="size-8 stroke-[2.5]" />
+                    </div>
+                    <span className="text-4xl font-black text-muted-foreground/20 group-hover:text-primary/20 transition-colors">
+                      0{i + 1}
+                    </span>
                   </div>
 
-                  {/* Subtle accent line on top */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Content */}
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-3 text-foreground group-hover:text-primary transition-colors">
+                    {problem.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground font-medium leading-relaxed group-hover:text-foreground transition-colors">
+                    {problem.description}
+                  </p>
                 </div>
               </motion.div>
             );
