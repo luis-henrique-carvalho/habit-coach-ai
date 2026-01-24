@@ -24,7 +24,9 @@ export async function middleware(request: NextRequest) {
   );
 
   // Allow static assets and public APIs
-  if (isPublicApi || pathname.startsWith("/_next") || pathname.startsWith("/favicon")) {
+  // Permitir imagens, ícones e outros arquivos estáticos
+  const staticFileExtensions = /\.(png|jpg|jpeg|gif|webp|svg|ico|css|js|woff|woff2|ttf|eot)$/i;
+  if (isPublicApi || pathname.startsWith("/_next") || pathname.startsWith("/favicon") || staticFileExtensions.test(pathname)) {
     return NextResponse.next();
   }
 

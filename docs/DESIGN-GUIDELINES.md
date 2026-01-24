@@ -1,347 +1,263 @@
 # DESIGN GUIDELINES - Habit Coach AI
 
-## 1. Visão Geral do Design
+## Stack Técnico
 
-### 1.1 Filosofia de Design
-Habit Coach AI deve transmitir:
-- **Acolhimento**: Amigável, caloroso, "humano"
-- **Simplicidade**: Fácil de entender, sem fricção
-- **Energia**: Cores vibrantes, ilustrações lúdicas
-- **Confiança**: Profissional, mas acessível
+**Obrigatório usar:**
+- ⚛️ **React** + **Next.js**
+- 🎨 **Tailwind CSS v4** (classes utilitárias)
+- 🧩 **shadcn/ui** (componentes base)
+- 🎨 **Variáveis CSS** do `globals.css` (cores, espaçamento, radius)
 
-### 1.2 Inspirações Visuais
-- **Petpeeps** (referência visual): Uso de formas arredondadas, cores vibrantes, ilustrações amigáveis
-- **Headspace**: Design calmo, formas orgânicas, cores suaves
-- **Duolingo**: Gamificação visual, botões arredondados, personalidade forte
+**Regra de Ouro:** Sempre use componentes do shadcn/ui como base. Se não estiver instalado, instale via CLI:
+```bash
+npx shadcn@latest add [component-name]
+```
 
-### 1.3 Princípios de Design
+---
+
+## 1. Filosofia de Design
+
+### Princípios
 1. **Clareza > Criatividade**: Função antes de forma
-2. **Consistência**: Padrões repetidos em toda a interface
-3. **Hierarquia Visual**: Guiar o olhar do usuário naturalmente
-4. **Espaço em Branco**: Respiração visual, não sobrecarregar
-5. **Feedback**: Toda ação do usuário tem resposta visual
+2. **Consistência**: Use as variáveis CSS do projeto
+3. **Acolhedor e Vibrante**: Cores OKLCH vibrantes, formas arredondadas
+4. **Feedback Visual**: Toda ação do usuário tem resposta visual
+
+### Inspirações
+- **Linear**: Minimalismo, boa hierarquia visual
+- **Vercel**: Tipografia limpa, espaçamento generoso
+- **Duolingo**: Gamificação, personalidade forte
 
 ---
 
-## 2. Paleta de Cores
+## 2. Paleta de Cores (OKLCH)
 
-### 2.1 Cores Primárias
+**⚠️ SEMPRE usar as variáveis CSS do `globals.css`**
 
-#### Primary (Azul Vibrante)
-Usado para elementos de destaque, hero sections e backgrounds de marca.
-Baseado no tom "Electric Blue" da referência.
+### Cores de Marca
 
-```
-primary-50:  #f0f7ff
-primary-100: #e0f0ff
-primary-200: #b9ddfe
-primary-300: #7cc2fd
-primary-400: #36a4fa
-primary-500: #0080f5  ← Base (Vibrante)
-primary-600: #0066d6
-primary-700: #0052ad
-primary-800: #00458d
-primary-900: #063971
-```
-
-**Uso:**
-- primary-500: Backgrounds de seções principais, ícones ativos
-- primary-600: Hover em elementos interativos
-- primary-50: Backgrounds de seções alternadas (substituindo branco puro)
-
----
-
-#### Secondary (Laranja/Amarelo Solar)
-Usado para acentos de calor, ilustrações, e CTAs secundários que precisam de atenção.
-Substitui o roxo para trazer mais "vida" e "calor".
-
-```
-secondary-50:  #fffbeb
-secondary-100: #fef3c7
-secondary-200: #fde68a
-secondary-300: #fcd34d
-secondary-400: #fbbf24
-secondary-500: #f59e0b  ← Base (Solar)
-secondary-600: #d97706
-secondary-700: #b45309
-secondary-800: #92400e
-secondary-900: #78350f
-```
-
-**Uso:**
-- secondary-400/500: Elementos decorativos (estrelas, corações), highlights
-- secondary-100: Backgrounds de cards de destaque
-
----
-
-### 2.2 Cores Neutras & Escuras
-
-#### Dark (Preto Suave)
-Usado para textos principais e botões primários de alto contraste.
-
-```
-dark-900: #111827 (Gray-900 / Black)
-```
-
-**Uso:**
-- Background de botões primários (CTAs tipo "Schedule Now")
-- Headings principais
-
-#### Grayscale & Surface
-Usado para textos secundários e superfícies.
-
-```
-surface-white: #ffffff
-surface-soft:  #f8fafc (Slate-50) or #f0f7ff (Primary-50 tint)
-```
-
----
-
-### 2.3 Cores Funcionais
-
-#### Success (Verde)
-```
-success-50:  #f0fdf4
-success-500: #22c55e  ← Base
-success-600: #16a34a
-```
-**Uso:** Hábitos completos, feedback positivo, checkmarks
-
-#### Warning (Amarelo/Laranja)
-```
-warning-50:  #fffbeb
-warning-500: #f59e0b  ← Base
-warning-600: #d97706
-```
-**Uso:** Metas próximas do prazo, avisos não-críticos
-
-#### Error (Vermelho)
-```
-error-50:  #fef2f2
-error-500: #ef4444  ← Base
-error-600: #dc2626
-```
-**Uso:** Erros, validação, ações destrutivas
-
-#### Info (Azul Claro)
-```
-info-50:  #eff6ff
-info-500: #3b82f6  ← Base (mesmo que primary)
-info-600: #2563eb
-```
-**Uso:** Tooltips, mensagens informativas
-
----
-
-### 2.4 Gradientes
-
-#### Gradient 1: Hero/Backgrounds
 ```css
-background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+/* Use via Tailwind */
+className="bg-brand-orange"   /* Laranja vibrante - CTAs principais */
+className="bg-brand-beige"    /* Bege suave - Backgrounds alternados */
+className="bg-brand-green"    /* Verde menta - Sucesso/Feedback positivo */
 ```
-**Uso:** Backgrounds de hero sections, CTAs especiais
 
-#### Gradient 2: Sutil (Cards Premium)
-```css
-background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+### Cores Semânticas (shadcn/ui)
+
+**Sempre use estas variáveis ao invés de valores hardcoded:**
+
+```jsx
+// ✅ CORRETO - Usa variáveis CSS
+<div className="bg-background text-foreground" />
+<Button variant="default" /> {/* Usa --primary internamente */}
+<Card /> {/* Usa --card e --card-foreground */}
+
+// ❌ ERRADO - Valores hardcoded
+<div className="bg-white text-black" />
+<button style={{ background: '#FF6B35' }} />
 ```
-**Uso:** Cards de features premium, destaque sutil
 
-#### Gradient 3: Overlay (Imagens)
-```css
-background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
-```
-**Uso:** Overlay em imagens com texto
+### Mapeamento de Cores
 
----
+| Variável CSS | Uso | Classe Tailwind |
+|--------------|-----|-----------------|
+| `--background` | Fundo principal | `bg-background` |
+| `--foreground` | Texto principal | `text-foreground` |
+| `--primary` | Ações principais (laranja) | `bg-primary`, `text-primary` |
+| `--secondary` | Ações secundárias (beige) | `bg-secondary` |
+| `--accent` | Destaques (verde) | `bg-accent` |
+| `--muted` | Texto secundário/disabled | `text-muted-foreground` |
+| `--border` | Bordas | `border-border` |
+| `--ring` | Focus ring | `ring-ring` |
+| `--destructive` | Ações destrutivas | `bg-destructive` |
 
-### 2.5 Acessibilidade (Contraste)
-
-Todas as combinações de cores devem passar WCAG AA:
-- Texto normal (16px+): Contraste mínimo 4.5:1
-- Texto grande (24px+): Contraste mínimo 3:1
-
-**Combinações Aprovadas:**
-- ✅ gray-900 em white (contraste ~16:1)
-- ✅ gray-700 em white (contraste ~8:1)
-- ✅ gray-500 em white (contraste ~4.6:1)
-- ✅ white em primary-600 (contraste ~4.7:1)
-- ❌ gray-400 em white (contraste insuficiente para texto normal)
+### Acessibilidade (Contraste WCAG AA)
+Todas as combinações de cores já foram testadas e aprovadas:
+- `foreground` + `background`: ~15.8:1 ✅ AAA
+- `primary-foreground` + `primary`: ~8.5:1 ✅ AAA
 
 ---
 
 ## 3. Tipografia
 
-### 3.1 Famílias de Fonte
+**Fontes do Projeto:** Geist Sans (UI) + Geist Mono (código)
 
-#### Fonte Principal: Inter
-### 3.1 Famílias de Fonte
+### Como Usar
 
-#### Fonte Principal: Plus Jakarta Sans ou Nunito (Headings)
-Para trazer a personalidade amigável e moderna vista na referência.
-Se não disponível, usar **Inter** com peso Bold e tracking levemente negativo.
+```jsx
+// ✅ Usa automaticamente Geist Sans (via font-sans)
+<p className="font-sans">Texto normal</p>
 
-```css
-font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+// Para código/dados técnicos
+<code className="font-mono">const x = 42;</code>
+
+// Não é necessário importar - já está no layout root
 ```
 
-#### Fonte de Corpo: Inter
-Mantém a legibilidade agnóstica e limpa.
+### Escala Tipográfica
 
-```css
-font-family: 'Inter', sans-serif;
-```
+| Elemento | Tailwind Class | Uso |
+|----------|----------------|-----|
+| Display | `text-6xl font-bold` | Hero headings |
+| H1 | `text-4xl font-bold` | Page titles |
+| H2 | `text-3xl font-semibold` | Section titles |
+| H3 | `text-2xl font-semibold` | Subsections |
+| Body | `text-base` | Texto padrão (16px) |
+| Small | `text-sm` | Captions, labels |
+| Tiny | `text-xs` | Hints, metadata |
 
-**Estilos de Texto:**
-- **Headings:** Bold (700) ou ExtraBold (800), cor escura (Gray-900).
-- **Body:** Regular (400) ou Medium (500), cor suave (Gray-600).
-- **Botoes:** Semibold (600), case title ou uppercase suave.
-#### Fonte Monospace (Código/Dados)
-```css
-font-family: 'Fira Code', 'Courier New', monospace;
-```
+### Letter Spacing & Line Height
 
-**Uso:** Exibir dados técnicos, IDs, timestamps (se necessário)
+```jsx
+// Headings: tracking negativo, line-height apertado
+<h1 className="text-4xl font-bold tracking-tight leading-tight">
 
----
+// Body: line-height confortável
+<p className="text-base leading-relaxed">
 
-### 3.2 Escala Tipográfica
-
-Baseada em escala modular (1.25 - Major Third).
-
-| Elemento | Desktop | Mobile | Weight | Usage |
-|----------|---------|--------|--------|-------|
-| **Display** | 64px / 4rem | 40px / 2.5rem | 700 | Hero headlines |
-| **H1** | 48px / 3rem | 32px / 2rem | 700 | Page titles |
-| **H2** | 36px / 2.25rem | 28px / 1.75rem | 700 | Section headers |
-| **H3** | 28px / 1.75rem | 24px / 1.5rem | 600 | Subsection headers |
-| **H4** | 24px / 1.5rem | 20px / 1.25rem | 600 | Card titles |
-| **H5** | 20px / 1.25rem | 18px / 1.125rem | 600 | Small headings |
-| **Body Large** | 18px / 1.125rem | 16px / 1rem | 400 | Important body text |
-| **Body** | 16px / 1rem | 16px / 1rem | 400 | Default body text |
-| **Body Small** | 14px / 0.875rem | 14px / 0.875rem | 400 | Captions, labels |
-| **Caption** | 12px / 0.75rem | 12px / 0.75rem | 500 | Hints, metadata |
-
----
-
-### 3.3 Line Height
-
-| Size | Line Height |
-|------|-------------|
-| Display, H1, H2 | 1.2 (tight) |
-| H3, H4, H5 | 1.4 |
-| Body | 1.6 (comfortable) |
-| Caption | 1.5 |
-
----
-
-### 3.4 Letter Spacing
-
-| Element | Letter Spacing |
-|---------|----------------|
-| Display, Headlines | -0.02em (tight) |
-| Body | 0 (normal) |
-| Captions, Labels (uppercase) | 0.05em (loose) |
-
----
-
-### 3.5 Exemplos de Uso
-
-```css
-/* Headline Principal */
-.display {
-  font-size: 4rem; /* 64px */
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--gray-900);
-}
-
-/* Body Text */
-.body {
-  font-size: 1rem; /* 16px */
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--gray-700);
-}
-
-/* Button */
-.button {
-  font-size: 1rem; /* 16px */
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
+// Botões: tracking levemente positivo
+<Button className="tracking-wide">
 ```
 
 ---
 
-## 4. Espaçamento
+## 4. Espaçamento & Layout
 
-### 4.1 Escala de Espaçamento
+**⚠️ Use as classes Tailwind ao invés de valores customizados**
 
-Baseada em múltiplos de 4px (sistema de 8pt grid).
+### Grid de 4px
+Baseado em múltiplos de 4px (sistema 8pt grid do Tailwind).
 
-| Token | Valor | Uso |
-|-------|-------|-----|
-| `space-1` | 4px | Micro espaçamentos (ícone + texto) |
-| `space-2` | 8px | Padding interno pequeno |
-| `space-3` | 12px | Padding interno médio |
-| `space-4` | 16px | Padding padrão, gaps |
-| `space-5` | 20px | Espaçamento entre elementos |
-| `space-6` | 24px | Padding de cards |
-| `space-8` | 32px | Espaçamento entre seções (pequeno) |
-| `space-10` | 40px | Espaçamento entre seções |
-| `space-12` | 48px | Espaçamento entre seções (médio) |
-| `space-16` | 64px | Espaçamento entre seções (grande) |
-| `space-20` | 80px | Espaçamento entre seções (hero) |
-| `space-24` | 96px | Espaçamento entre seções (muito grande) |
+```jsx
+// ✅ CORRETO
+<div className="p-4 gap-6 mb-8">  {/* 16px, 24px, 32px */}
 
----
-
-### 4.2 Padding de Componentes
-
-| Componente | Padding |
-|------------|---------|
-| Button (small) | 8px 16px |
-| Button (medium) | 12px 24px |
-| Button (large) | 16px 32px |
-| Input | 12px 16px |
-| Card | 24px |
-| Modal | 32px |
-| Page container | 24px (mobile), 48px (desktop) |
-
----
-
-### 4.3 Margins e Gaps
-
-```css
-/* Gap entre elementos em um grupo */
-.stack-sm { gap: 8px; }
-.stack-md { gap: 16px; }
-.stack-lg { gap: 24px; }
-
-/* Margin bottom entre seções */
-.section-sm { margin-bottom: 48px; }
-.section-md { margin-bottom: 64px; }
-.section-lg { margin-bottom: 96px; }
+// ❌ EVITE valores arbitrários
+<div className="p-[13px] gap-[27px]">
 ```
 
----
+### Espaçamento Comum
 
+| Uso | Classe Tailwind | Valor |
+|-----|-----------------|-------|
+| Micro (ícone + texto) | `gap-1` | 4px |
+| Pequeno | `p-2`, `gap-2` | 8px |
+| Médio | `p-4`, `gap-4` | 16px |
+| Padrão (cards) | `p-6` | 24px |
+| Seções | `py-8`, `py-12` | 32px, 48px |
+| Hero sections | `py-16`, `py-20` | 64px, 80px |
+
+### Container Responsivo
+
+```jsx
+// Container centralizado com max-width
+<div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+  {/* Conteúdo */}
+</div>
+```
 ## 5. Border Radius
 
-### 5.1 Escala
+### 5.1 Sistema de Arredondamento
 
-| Token | Valor | Uso |
-|-------|-------|-----|
-| `rounded-none` | 0px | Sem arredondamento |
-| `rounded-sm` | 4px | Borders sutis (badges) |
-| `rounded` | 8px | Padrão (buttons, inputs, cards) |
-| `rounded-lg` | 12px | Cards maiores, modals |
-| `rounded-xl` | 16px | Hero sections, imagens |
-| `rounded-full` | 9999px | Avatares, pills, badges circulares |
+O projeto usa um sistema de border radius generoso e escalonado baseado em `--radius` (0.75rem = 12px).
+
+#### Escala de Radius
+
+```css
+--radius-sm: calc(var(--radius) - 4px)    /* 8px  - Elementos pequenos */
+--radius-md: calc(var(--radius) - 2px)    /* 10px - Inputs, badges */
+--radius-lg: var(--radius)                /* 12px - Padrão (cards, buttons) */
+--radius-xl: calc(var(--radius) + 6px)    /* 18px - Cards maiores */
+--radius-2xl: calc(var(--radius) + 12px)  /* 24px - Modals, sections */
+--radius-3xl: calc(var(--radius) + 20px)  /* 32px - Containers grandes */
+```
+
+#### Valores em Tailwind
+
+| Classe Tailwind | Valor Calculado | Uso |
+|-----------------|-----------------|-----|
+| `rounded-sm` | 8px | Badges pequenos, bordas internas |
+| `rounded-md` | 10px | Inputs, selects |
+| `rounded-lg` | 12px | **Padrão** - Buttons, Cards |
+| `rounded-xl` | 18px | Cards de destaque |
+| `rounded-2xl` | 24px | Modals, Sections |
+| `rounded-3xl` | 32px | Containers hero, grandes blocos |
+| `rounded-full` | 9999px | Avatares, Pills, Badges circulares |
 
 ---
+## 6. Sombras e Bordas
+
+### 6.1 Filosofia de Elevação
+
+O design privilegia **separação por cor e contorno** sobre sombras pesadas. Cards e componentes se destacam através de:
+- Backgrounds contrastantes (ex: card branco sobre fundo beige)
+- Bordas sutis
+- Sombras muito leves e difusas
+
+### 6.2 Sistema de Bordas
+
+Todas as bordas usam a variável `--color-border` que se adapta ao tema:
+
+```css
+/* Light Mode */
+--color-border: oklch(0.92 0.01 40)  /* Cinza muito claro */
+
+/* Dark Mode */
+--color-border: oklch(0.25 0.02 255 / 0.5)  /* Azul escuro com transparência */
+```
+
+**Uso em componentes:**
+```css
+.card {
+  border: 1px solid var(--color-border);
+}
+```
+
+### 6.3 Sombras (Minimalistas)
+
+O projeto usa sombras muito sutis para não competir com as cores vibrantes:
+
+```css
+/* Sombra padrão (cards, dropdowns) */
+.shadow-subtle {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+              0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Sombra média (modals, popovers) */
+.shadow-medium {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+              0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Sombra para hover */
+.shadow-hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05),
+              0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+```
+
+**Equivalentes em Tailwind:**
+- `shadow-subtle` = `shadow-sm`
+- `shadow-medium` = `shadow-md`
+- `shadow-hover` = `shadow-lg`
+
+### 6.4 Focus Ring
+
+O focus ring usa a cor primária (laranja) para consistência:
+
+```css
+*:focus-visible {
+  outline: 2px solid var(--color-ring);  /* Brand Orange */
+  outline-offset: 2px;
+}
+```
+
+**Em Tailwind:**
+```jsx
+<Button className="focus-visible:outline-ring">...</Button>
+```
 ## 5. Border Radius
 
 ### 5.1 Escala (Super Rounded)
@@ -394,49 +310,122 @@ Para CTAs ou elementos especiais:
 
 ```css
 /* Sombra com tint azul */
---shadow-primary: 0 4px 16px 0 rgba(59, 130, 246, 0.25);
-```
+### 8.2 Customizações de shadcn/ui
 
-**Uso:** Buttons primários em hover, cards de destaque.
+shadcn/ui permite customização via CSS variables. O projeto usa **OKLCH** ao invés de HSL.
 
----
+**Arquivo: `src/app/globals.css`**
 
-## 7. Ícones
+As variáveis CSS estão configuradas através do theme inline do Tailwind:
 
-### 7.1 Biblioteca de Ícones
+```css
+@theme inline {
+  /* Cores do Sistema (mapeamento para shadcn/ui) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Cores de Marca */
+  --color-brand-orange: oklch(0.75 0.18 50);
+  --color-brand-beige: oklch(0.96 0.03 85);
+  --color-brand-green: oklch(0.92 0.06 140);
+  
+  /* Fontes */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+### 8.3 Diretrizes de Uso
 
-**Recomendado:** Lucide Icons (moderna, open-source, otimizada)
+#### Button
 
-- Site: https://lucide.dev
-- Estilo: Linha (outline), consistente
-- Peso: 2px stroke
-
-**Instalação (React):**
-```bash
-npm install lucide-react
-```
-
-**Alternativas:**
-- Heroicons (by Tailwind)
-- Feather Icons
-- Phosphor Icons
-
----
-
-### 7.2 Tamanhos de Ícones
-
-| Contexto | Tamanho |
-|----------|---------|
-| Small (badges, inline) | 16px |
-| Medium (buttons, inputs) | 20px |
-| Large (cards, headers) | 24px |
-| XLarge (hero, empty states) | 32-48px |
-
----
-
-### 7.3 Uso de Ícones
+Os botões usam `rounded-lg` (12px) por padrão. Variantes disponíveis:
 
 ```jsx
+// Primário (Brand Orange - Padrão)
+<Button variant="default">Criar Hábito</Button>
+
+// Secundário (Outline)
+<Button variant="outline">Cancelar</Button>
+
+// Ghost (sem fundo)
+<Button variant="ghost">Mais opções</Button>
+
+// Destrutivo
+<Button variant="destructive">Excluir</Button>
+
+// Com ícone
+<Button>
+  <PlusIcon className="mr-2 h-4 w-4" />
+  Novo Hábito
+</Button>
+
+// Tamanhos
+<Button size="sm">Pequeno</Button>
+<Button size="default">Padrão</Button>
+<Button size="lg">Grande</Button>
+```
+
+**Customizações:**
+```jsx
+// Pill shape (arredondamento total)
+<Button className="rounded-full">Get Started</Button>
+
+// Usando cor de marca diretamente
+<Button className="bg-brand-orange hover:bg-brand-orange/90">
+  Ação Especial
+</Button>
+```
+
+#### Card
+
+Cards usam `rounded-lg` (12px) com sombra sutil:
+
+```jsx
+// Card padrão
+<Card>
+  <CardHeader>
+    <CardTitle>Título do Card</CardTitle>
+    <CardDescription>Descrição opcional</CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Conteúdo */}
+  </CardContent>
+  <CardFooter>
+    {/* Ações */}
+  </CardFooter>
+</Card>
+
+// Card de destaque (mais arredondado)
+<Card className="rounded-2xl bg-brand-beige border-none">
+  <CardContent className="p-8">
+    {/* Conteúdo especial */}
+  </CardContent>
+</Card>
+```
+
+#### Dialog (Modal)
+
+```jsx
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Abrir Modal</Button>
+  </DialogTrigger>
 import { CheckCircle, AlertTriangle, Info } from 'lucide-react';
 
 // Ícone com texto
@@ -584,368 +573,105 @@ Cards devem ter bastante padding (espaço interno) e bordas bem arredondadas.
 </Dialog>
 ```
 
-#### Toast (Notificação)
-```jsx
-import { toast } from '@/components/ui/use-toast';
-
-toast({
-  title: "Sucesso!",
-  description: "Hábito criado com sucesso.",
-});
-
-// Error
-toast({
-  title: "Erro",
-  description: "Algo deu errado.",
-  variant: "destructive",
-});
-```
-
 ---
 
-## 9. Animações e Transições
+## 8. Ícones
 
-### 9.1 Princípios
+**Use Lucide React** (já instalado com shadcn/ui)
 
-- **Sutis**: Animações devem ser notadas, mas não distrair
-- **Rápidas**: Duração curta (150-300ms)
-- **Naturais**: Easing suave (ease-out, ease-in-out)
-- **Com Propósito**: Toda animação deve ter razão (feedback, atenção, deleite)
-
----
-
-### 9.2 Durações Padrão
-
-```css
---duration-fast: 150ms;
---duration-normal: 250ms;
---duration-slow: 350ms;
+```bash
+pnpm add lucide-react
 ```
-
-**Uso:**
-- Fast: Hover em botões, checkbox
-- Normal: Modals, dropdowns, tooltips
-- Slow: Page transitions, slides
-
----
-
-### 9.3 Easing Functions
-
-```css
---ease-out: cubic-bezier(0.33, 1, 0.68, 1); /* Elementos aparecendo */
---ease-in: cubic-bezier(0.32, 0, 0.67, 0); /* Elementos desaparecendo */
---ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* Movimentos */
-```
-
----
-
-### 9.4 Animações Comuns
-
-#### Hover em Button
-```css
-.button {
-  transition: all 150ms var(--ease-out);
-}
-
-.button:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-```
-
-#### Fade In (Modal, Toast)
-```css
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.modal {
-  animation: fade-in 250ms var(--ease-out);
-}
-```
-
-#### Slide Up (Toast, Dropdown)
-```css
-@keyframes slide-up {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.toast {
-  animation: slide-up 250ms var(--ease-out);
-}
-```
-
-#### Checkbox Check
-```css
-.checkbox:checked {
-  animation: scale-in 150ms var(--ease-out);
-}
-
-@keyframes scale-in {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-```
-
----
-
-### 9.5 Uso com Framer Motion (Opcional)
-
-Para animações mais complexas (page transitions, lists):
 
 ```jsx
-import { motion } from 'framer-motion';
+import { Plus, Check, X, AlertCircle } from 'lucide-react';
 
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.3, ease: 'easeOut' }}
->
-  {/* Conteúdo */}
-</motion.div>
+<Button>
+  <Plus className="mr-2 h-4 w-4" />
+  Novo Hábito
+</Button>
 ```
+
+**Tamanhos:** `h-4 w-4` (16px) ou `h-5 w-5` (20px)
 
 ---
 
-## 10. Responsividade
+## 9. Responsividade
 
-### 10.1 Breakpoints
-
-```css
-/* Tailwind padrão */
---breakpoint-sm: 640px;   /* Mobile landscape, small tablets */
---breakpoint-md: 768px;   /* Tablets */
---breakpoint-lg: 1024px;  /* Small desktops */
---breakpoint-xl: 1280px;  /* Desktops */
---breakpoint-2xl: 1536px; /* Large desktops */
-```
-
----
-
-### 10.2 Abordagem Mobile-First
-
-Design e desenvolva para mobile primeiro, depois adicione complexidade para telas maiores.
+**Mobile-First:** Sempre desenhe para mobile primeiro, depois adicione complexidade.
 
 ```jsx
-// Mobile: stack vertical
-// Desktop: grid horizontal
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-  <Card />
-  <Card />
-  <Card />
-</div>
-```
+// ✅ Mobile-first
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
----
-
-### 10.3 Container
-
-```jsx
-// Container responsivo com max-width e padding
+// Container responsivo
 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-  {/* Conteúdo */}
-</div>
 ```
 
-**Tamanhos:**
-- Mobile: 100% width, 16px padding
-- Tablet: 100% width, 24px padding
-- Desktop: max 1280px (7xl), 32px padding
+**Breakpoints Tailwind:**
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- `xl`: 1280px
 
 ---
 
-## 11. Acessibilidade
+## 10. Acessibilidade
 
-### 11.1 Contraste
-
-Já coberto em seção de cores. Sempre validar com ferramenta:
-- WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
-
----
-
-### 11.2 Focus States
-
-Todos os elementos interativos devem ter focus visível.
-
-```css
-/* Focus ring padrão (shadcn/ui cuida) */
-*:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
-```
-
----
-
-### 11.3 ARIA Labels
+- ✅ Focus ring automático (shadcn/ui usa `--ring`)
+- ✅ Contraste WCAG AA validado
+- ✅ ARIA labels em ícones sem texto
+- ✅ Navegação por teclado (Tab, Esc, Enter)
 
 ```jsx
 // Botão apenas com ícone
-<button aria-label="Fechar modal">
-  <XIcon size={20} />
-</button>
-
-// Input com label oculto visualmente
-<label htmlFor="email" className="sr-only">
-  Email
-</label>
-<input id="email" type="email" placeholder="seu@email.com" />
+<Button aria-label="Fechar">
+  <X className="h-4 w-4" />
+</Button>
 ```
 
 ---
 
-### 11.4 Navegação por Teclado
+## 11. Performance
 
-- Tab order lógico
-- Esc fecha modals
-- Enter/Space ativa buttons
-- Setas navegam em dropdowns
-
-shadcn/ui implementa isso por padrão.
-
----
-
-## 12. Performance
-
-### 12.1 Otimização de Fontes
-
-```jsx
-// app/layout.tsx (Next.js 16)
-import { Inter } from 'next/font/google';
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap', // Evita FOUT
-  variable: '--font-inter',
-});
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="pt-BR" className={inter.variable}>
-      <body>{children}</body>
-    </html>
-  );
-}
-```
-
----
-
-### 12.2 Otimização de Imagens
-
+### Imagens
 ```jsx
 import Image from 'next/image';
 
 <Image
-  src="/hero-screenshot.png"
-  alt="Dashboard do Habit Coach AI"
+  src="/hero.png"
+  alt="Dashboard"
   width={1200}
   height={800}
-  priority // Para hero images
-  quality={90}
+  priority  // Apenas para hero
+  className="rounded-2xl"
 />
 ```
 
----
-
-### 12.3 Lazy Loading
-
-Componentes pesados (gráficos, calendários) devem ser lazy loaded:
-
+### Lazy Loading
 ```jsx
 import dynamic from 'next/dynamic';
 
-const Calendar = dynamic(() => import('@/components/Calendar'), {
-  loading: () => <Skeleton />,
-});
+const Calendar = dynamic(() => import('@/components/Calendar'));
 ```
 
 ---
 
-## 13. Checklist de Implementação
+## 12. Referências Rápidas
 
-### ✅ Setup Inicial
-- [ ] Instalar shadcn/ui
-- [ ] Configurar Tailwind CSS
-- [ ] Adicionar fonte Inter (Google Fonts ou Next.js 16)
-- [ ] Criar CSS variables para cores
-- [ ] Instalar Lucide Icons
+**Ferramentas:**
+- shadcn/ui: https://ui.shadcn.com
+- Tailwind CSS v4: https://tailwindcss.com
+- Lucide Icons: https://lucide.dev
+- OKLCH Color Picker: https://oklch.com
+- Contrast Checker: https://webaim.org/resources/contrastchecker/
 
-### ✅ Componentes Base
-- [ ] Button (todos os variants)
-- [ ] Input, Textarea
-- [ ] Card
-- [ ] Dialog
-- [ ] Toast
-- [ ] Badge
-- [ ] Avatar
-
-### ✅ Tokens de Design
-- [ ] Paleta de cores aplicada
-- [ ] Escala de espaçamento definida
-- [ ] Border radius padrão configurado
-- [ ] Sombras configuradas
-
-### ✅ Acessibilidade
-- [ ] Focus states visíveis
-- [ ] ARIA labels em ícones/botões
-- [ ] Contraste validado
-- [ ] Navegação por teclado testada
-
-### ✅ Responsividade
-- [ ] Mobile-first approach
-- [ ] Breakpoints testados
-- [ ] Componentes adaptam layout
-
-### ✅ Performance
-- [ ] Fontes otimizadas (font-display: swap)
-- [ ] Imagens otimizadas (Next.js 16 Image)
-- [ ] Componentes pesados lazy loaded
-
----
-
-## 14. Referências e Recursos
-
-### Design
+**Inspirações:**
 - Linear: https://linear.app
-- Resend: https://resend.com
 - Vercel: https://vercel.com
 
-### Ferramentas
-- shadcn/ui: https://ui.shadcn.com
-- Tailwind CSS: https://tailwindcss.com
-- Lucide Icons: https://lucide.dev
-- Coolors (paletas): https://coolors.co
-- WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
-
-### Tipografia
-- Google Fonts: https://fonts.google.com
-- Type Scale Calculator: https://typescale.com
-
-### Animações
-- Framer Motion: https://www.framer.com/motion/
-- Cubic Bezier Generator: https://cubic-bezier.com
-
 ---
 
-**Versão**: 1.0  
+**Versão**: 3.0 (Refinada)  
 **Data**: Janeiro 2026  
-**Status**: Pronto para Implementação
+**Foco**: Uso de variáveis CSS do globals.css + shadcn/ui + Tailwind

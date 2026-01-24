@@ -2992,23 +2992,23 @@
   "variables": {
     "color-accent": {
       "type": "color",
-      "value": "#D4644E"
+      "value": "#F2804B"
     },
     "color-accent-border": {
       "type": "color",
-      "value": "#E8C4B8"
+      "value": "#F5A57D"
     },
     "color-accent-light": {
       "type": "color",
-      "value": "#FEF0E8"
+      "value": "#FEF4EF"
     },
     "color-bg-gradient-light": {
       "type": "color",
-      "value": "#FFF5ED"
+      "value": "#FEFAF7"
     },
     "color-bg-primary": {
       "type": "color",
-      "value": "#FFFBF7"
+      "value": "#FFFFFF"
     },
     "color-bg-secondary": {
       "type": "color",
@@ -3020,7 +3020,7 @@
     },
     "color-border": {
       "type": "color",
-      "value": "#E8DDD8"
+      "value": "#EBE8E6"
     },
     "color-dark-bg": {
       "type": "color",
@@ -3032,11 +3032,15 @@
     },
     "color-text-secondary": {
       "type": "color",
-      "value": "#6B5E5E"
+      "value": "#716865"
     },
     "color-text-tertiary": {
       "type": "color",
-      "value": "#A89890"
+      "value": "#A39C99"
+    },
+    "color-green-accent": {
+      "type": "color",
+      "value": "#E8F5E9"
     },
     "content-max": {
       "type": "number",
@@ -3044,19 +3048,19 @@
     },
     "radius-lg": {
       "type": "number",
-      "value": 24
+      "value": 12
     },
     "radius-md": {
       "type": "number",
-      "value": 16
+      "value": 10
     },
     "radius-pill": {
       "type": "number",
-      "value": 28
+      "value": 24
     },
     "radius-sm": {
       "type": "number",
-      "value": 10
+      "value": 8
     },
     "space-container": {
       "type": "number",

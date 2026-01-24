@@ -55,30 +55,22 @@
 :root {
   /* Arredondamento generoso característico do design (cards e botões) */
   --radius: 0.75rem; 
-  
   --background: oklch(1 0 0);
   --foreground: oklch(0.18 0.02 30); /* Marrom quase preto para suavizar o contraste */
-  
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.02 30);
-  
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.02 30);
-  
   /* Laranja Vibrante - Botão "Get Started" e ícones */
   --primary: oklch(0.75 0.18 50); 
   --primary-foreground: oklch(1 0 0);
-  
   /* Bege Suave - Background das seções e cards secundários */
   --secondary: oklch(0.96 0.03 85); 
   --secondary-foreground: oklch(0.25 0.04 50);
-  
   --muted: oklch(0.97 0.01 60);
   --muted-foreground: oklch(0.45 0.02 30);
-  
   --accent: oklch(0.92 0.06 140); /* Verde Menta dos cards de destaque */
   --accent-foreground: oklch(0.25 0.04 140);
-  
   --destructive: oklch(0.60 0.20 25);
   --border: oklch(0.92 0.01 40);
   --input: oklch(0.92 0.01 40);
