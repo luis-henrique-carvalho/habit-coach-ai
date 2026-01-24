@@ -17,7 +17,7 @@ const testimonials = [
     quote: "The automated goal breakdown feature saved me hours. I went from overwhelmed to taking action in minutes.",
     author: "Marcus Johnson",
     role: "Entrepreneur",
-    avatar: "/avatar-friend.png",
+    avatar: "/avatar-robot.png",
     rating: 5
   },
   {

@@ -6,45 +6,45 @@ import { Zap, Target, BarChart3, Bell, BrainCircuit, Split } from "lucide-react"
 const features = [
   {
     icon: BrainCircuit,
-    title: "AI-Powered Insights",
-    description: "Our AI analyzes your patterns to predict when you'll slip up and helps you prevent it before it happens.",
-    accent: "from-purple-400 to-violet-500",
-    glow: "shadow-purple-500/20",
+    title: "Insights Impulsionados por IA",
+    description: "Nossa IA analisa seus padrões para prever quando você vai fracassar e ajuda você a prevenir antes que aconteça.",
+    colorBg: "bg-primary/8",
+    colorIcon: "bg-primary/15",
   },
   {
     icon: Split,
-    title: "Smart Goal Breaking",
-    description: "Overwhelmed by big goals? Our AI automatically breaks them down into tiny, manageable daily tasks.",
-    accent: "from-indigo-400 to-blue-500",
-    glow: "shadow-indigo-500/20",
+    title: "Divisão Inteligente de Metas",
+    description: "Sobrecarregado com grandes metas? Nossa IA as divide automaticamente em pequenas tarefas diárias gerenciáveis.",
+    colorBg: "bg-accent/8",
+    colorIcon: "bg-accent/15",
   },
   {
     icon: BarChart3,
-    title: "Predictive Analytics",
-    description: "Don't just see where you've been. See where you're going with success probability forecasts.",
-    accent: "from-cyan-400 to-blue-500",
-    glow: "shadow-cyan-500/20",
+    title: "Análise Preditiva",
+    description: "Não apenas veja onde você esteve. Veja para onde você está indo com previsões de probabilidade de sucesso.",
+    colorBg: "bg-primary/5",
+    colorIcon: "bg-primary/12",
   },
   {
     icon: Target,
-    title: "Custom Habit Stacks",
-    description: "Build powerful routines by chaining habits together. The AI suggests optimal times for each stack.",
-    accent: "from-emerald-400 to-green-500",
-    glow: "shadow-emerald-500/20",
+    title: "Pilhas de Hábitos Personalizadas",
+    description: "Construa rotinas poderosas encadeando hábitos. A IA sugere horários ideais para cada pilha.",
+    colorBg: "bg-secondary/8",
+    colorIcon: "bg-secondary/15",
   },
   {
     icon: Bell,
-    title: "Contextual Nudges",
-    description: "Get reminders that actually matter, based on your location, time, and current energy levels.",
-    accent: "from-amber-400 to-yellow-500",
-    glow: "shadow-amber-500/20",
+    title: "Incentivos Contextuais",
+    description: "Receba lembretes que realmente importam, baseados em sua localização, hora e nível de energia atual.",
+    colorBg: "bg-accent/6",
+    colorIcon: "bg-accent/12",
   },
   {
     icon: Zap,
-    title: "Gamified Streaks",
-    description: "Earn XP and level up your character. Unlock new skins for your AI coach as you progress.",
-    accent: "from-orange-400 to-red-500",
-    glow: "shadow-orange-500/20",
+    title: "Streaks Gamificados",
+    description: "Ganhe XP e suba de nível seu personagem. Desbloqueie novas aparências para seu técnico de IA conforme progride.",
+    colorBg: "bg-primary/6",
+    colorIcon: "bg-primary/14",
   },
 ];
 
@@ -53,19 +53,19 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.08,
       delayChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   },
@@ -73,22 +73,11 @@ const itemVariants = {
 
 export function Features() {
   return (
-    <section id="features" className="py-24 md:py-32 bg-linear-to-b from-background via-primary/5 to-background relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 -right-60 w-96 h-96 bg-primary/8 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 -left-60 w-96 h-96 bg-accent/8 rounded-full blur-3xl"
-        />
-      </div>
+    <section id="features" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-linear-to-b from-primary/3 via-transparent to-accent/3 pointer-events-none" />
 
-      <div className="container px-4 mx-auto relative">
+      <div className="container px-4 mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,18 +85,18 @@ export function Features() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6 backdrop-blur-sm border border-primary/20">
-            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-            Powerful Features
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-semibold mb-6 border border-primary/20">
+            <span className="size-1.5 rounded-full bg-primary animate-glow-pulse" />
+            Recursos Poderosos
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            More Than Just{" "}
-            <span className="bg-linear-to-r from-primary via-purple-500 to-blue-500 bg-clip-text text-transparent">
-              Checkboxes
+            Mais que apenas{" "}
+            <span className="text-primary">
+              caixas de seleção
             </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            A complete system designed to rewire your brain for success, powered by advanced behavioral science and AI.
+            Um sistema completo projetado para reformular seu cérebro para o sucesso, alimentado por ciência comportamental avançada e IA.
           </p>
         </motion.div>
 
@@ -126,46 +115,31 @@ export function Features() {
                 variants={itemVariants}
                 className="group relative h-full"
               >
-                <div className="relative p-8 rounded-2xl h-full bg-card border border-border hover:border-primary/30 transition-all duration-300 overflow-hidden">
-                  {/* Animated gradient background */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 0.05 }}
-                    className={`absolute inset-0 bg-linear-to-br ${feature.accent} pointer-events-none`}
-                    suppressHydrationWarning
-                  />
+                <div className="relative p-8 rounded-xl h-full bg-card border border-border/50 hover:border-primary/20 transition-all duration-300 overflow-hidden">
+                  {/* Subtle background */}
+                  <div className={`absolute inset-0 ${feature.colorBg} pointer-events-none`} />
 
-                  {/* Icon Container with gradient */}
+                  {/* Icon Container */}
                   <motion.div
-                    whileHover={{ scale: 1.15, rotate: -5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className={`relative z-10 size-16 rounded-2xl bg-linear-to-br ${feature.accent} p-0.5 shadow-lg ${feature.glow} mb-6`}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className={`relative z-10 size-14 rounded-lg ${feature.colorIcon} flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300`}
                   >
-                    <div className="size-full rounded-2xl bg-card flex items-center justify-center relative overflow-hidden group-hover:bg-transparent transition-colors duration-300">
-                      <Icon className="size-8 text-foreground group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-
-                      {/* Shimmer effect */}
-                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
-                    </div>
+                    <Icon className="size-7 text-foreground" strokeWidth={1.5} />
                   </motion.div>
 
                   {/* Content */}
                   <div className="relative z-10">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed text-base">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
                       {feature.description}
                     </p>
                   </div>
 
-                  {/* Top accent border on hover */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${feature.accent} origin-left`}
-                  />
+                  {/* Subtle accent line on top */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.div>
             );

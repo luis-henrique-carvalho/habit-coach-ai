@@ -7,36 +7,36 @@ import Image from "next/image";
 const steps = [
   {
     number: 1,
-    title: "Register for Free",
-    description: "Sign up with email. No credit card required. Get instant access.",
+    title: "Registre-se Gratuitamente",
+    description: "Inscreva-se com email. Sem cartão de crédito. Acesso instantâneo.",
     icon: UserPlus,
-    accent: "from-orange-400 to-amber-500",
-    glow: "shadow-orange-500/20",
+    colorBg: "bg-primary/8",
+    colorIcon: "bg-primary/15",
   },
   {
     number: 2,
-    title: "Choose Your Coach",
-    description: "Pick from Yoda's wisdom, the General's discipline, or a supportive Friend.",
+    title: "Escolha Seu Técnico",
+    description: "Escolha entre a sabedoria de Yoda, a disciplina do General, ou um Amigo atencioso.",
     icon: Users,
-    accent: "from-emerald-400 to-green-500",
-    glow: "shadow-emerald-500/20",
+    colorBg: "bg-accent/8",
+    colorIcon: "bg-accent/15",
     showAvatars: true,
   },
   {
     number: 3,
-    title: "Create Habits & Goals",
-    description: "Define what you want to achieve. Daily, weekly, or custom schedules.",
+    title: "Crie Hábitos e Metas",
+    description: "Defina o que você quer alcançar. Agendas diárias, semanais ou personalizadas.",
     icon: Target,
-    accent: "from-blue-400 to-indigo-500",
-    glow: "shadow-blue-500/20",
+    colorBg: "bg-secondary/8",
+    colorIcon: "bg-secondary/15",
   },
   {
     number: 4,
-    title: "Get Personalized Coaching",
-    description: "Receive tailored AI feedback that adapts to your progress and style.",
+    title: "Receba Coaching Personalizado",
+    description: "Receba feedback de IA personalizado que se adapta ao seu progresso e estilo.",
     icon: Sparkles,
-    accent: "from-violet-400 to-purple-500",
-    glow: "shadow-violet-500/20",
+    colorBg: "bg-primary/6",
+    colorIcon: "bg-primary/12",
   },
 ];
 
@@ -77,14 +77,11 @@ const lineVariants = {
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-linear-to-b from-background via-secondary/20 to-background relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-      </div>
+    <section id="how-it-works" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-linear-to-b from-secondary/3 via-transparent to-primary/3 pointer-events-none" />
 
-      <div className="container px-4 mx-auto relative">
+      <div className="container px-4 mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,18 +89,18 @@ export function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
-            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-            Simple Setup
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 text-primary text-sm font-semibold mb-6 border border-primary/20">
+            <span className="size-1.5 rounded-full bg-primary animate-glow-pulse" />
+            Configuração Simples
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            Your Journey to{" "}
-            <span className="bg-linear-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent">
-              Better Habits
+            Sua Jornada para{" "}
+            <span className="text-primary">
+              Melhores Hábitos
             </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            From signup to your first personalized coaching message in under 5 minutes.
+            Do registro até sua primeira mensagem de coaching personalizado em menos de 5 minutos.
           </p>
         </motion.div>
 
@@ -117,16 +114,10 @@ export function HowItWorks() {
           {/* Desktop Layout */}
           <div className="hidden lg:block relative">
             {/* Connecting Path */}
-            <div className="absolute top-24 left-[12.5%] right-[12.5%] h-1 z-0">
+            <div className="absolute top-24 left-[12.5%] right-[12.5%] h-0.5 z-0">
               <motion.div
                 variants={lineVariants}
-                className="h-full bg-linear-to-r from-primary/40 via-accent/40 to-primary/40 rounded-full origin-left"
-              />
-              {/* Animated dots on the line */}
-              <motion.div
-                animate={{ x: ["0%", "100%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 -translate-y-1/2 size-2 rounded-full bg-primary shadow-lg shadow-primary/50"
+                className="h-full bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30 rounded-full origin-left"
               />
             </div>
 
@@ -143,28 +134,23 @@ export function HowItWorks() {
                     <div className="flex flex-col items-center text-center">
                       {/* Icon Container */}
                       <motion.div
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className={`relative z-10 mb-8 size-20 rounded-2xl bg-linear-to-br ${step.accent} p-0.5 shadow-xl ${step.glow}`}
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                        className={`relative z-10 mb-8 size-16 rounded-lg ${step.colorIcon} flex items-center justify-center`}
                       >
-                        <div className="size-full rounded-2xl bg-background flex items-center justify-center relative overflow-hidden group-hover:bg-transparent transition-colors duration-300">
-                          <Icon className={`size-8 text-foreground group-hover:text-white transition-colors duration-300`} strokeWidth={1.5} />
-
-                          {/* Shimmer effect */}
-                          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
-                        </div>
+                        <Icon className="size-7 text-foreground" strokeWidth={1.5} />
 
                         {/* Step number badge */}
-                        <div className="absolute -top-2 -right-2 size-7 rounded-full bg-foreground text-background text-sm font-bold flex items-center justify-center shadow-lg">
+                        <div className="absolute -top-2 -right-2 size-6 rounded-full bg-foreground text-background text-xs font-bold flex items-center justify-center shadow-md">
                           {step.number}
                         </div>
                       </motion.div>
 
                       {/* Content */}
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
                         {step.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed max-w-50">
+                      <p className="text-muted-foreground text-sm leading-relaxed max-w-48">
                         {step.description}
                       </p>
 
@@ -180,15 +166,15 @@ export function HowItWorks() {
                           {["/avatar-wise.png", "/avatar-general.png", "/avatar-robot.png"].map((src) => (
                             <motion.div
                               key={src}
-                              whileHover={{ scale: 1.2, zIndex: 10 }}
+                              whileHover={{ scale: 1.15, zIndex: 10 }}
                               className="relative"
                             >
                               <Image
                                 src={src}
-                                alt="Coach avatar"
+                                alt="Avatar do técnico"
                                 width={40}
                                 height={40}
-                                className="size-10 rounded-full border-2 border-background shadow-lg object-cover bg-secondary"
+                                className="size-10 rounded-full border-2 border-background shadow-md object-cover bg-secondary"
                               />
                             </motion.div>
                           ))}
@@ -217,11 +203,9 @@ export function HowItWorks() {
                   <div className="flex flex-col items-center">
                     <motion.div
                       whileHover={{ scale: 1.1 }}
-                      className={`relative z-10 size-14 rounded-xl bg-linear-to-br ${step.accent} p-0.5 shadow-lg ${step.glow}`}
+                      className={`relative z-10 size-12 rounded-lg ${step.colorIcon} flex items-center justify-center`}
                     >
-                      <div className="size-full rounded-xl bg-background flex items-center justify-center">
-                        <Icon className="size-6" strokeWidth={1.5} />
-                      </div>
+                      <Icon className="size-5" strokeWidth={1.5} />
                       <div className="absolute -top-1 -right-1 size-5 rounded-full bg-foreground text-background text-xs font-bold flex items-center justify-center">
                         {step.number}
                       </div>
@@ -233,14 +217,14 @@ export function HowItWorks() {
                         whileInView={{ scaleY: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="w-0.5 flex-1 min-h-16 bg-linear-to-b from-border to-transparent origin-top"
+                        className="w-0.5 flex-1 min-h-12 bg-gradient-to-b from-border/50 to-transparent origin-top"
                       />
                     )}
                   </div>
 
                   {/* Content */}
-                  <div className={`pb-12 ${isLast ? "pb-0" : ""}`}>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                  <div className={`pb-10 ${isLast ? "pb-0" : ""}`}>
+                    <h3 className="text-base font-bold mb-1 group-hover:text-primary transition-colors">
                       {step.title}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
@@ -248,12 +232,12 @@ export function HowItWorks() {
                     </p>
 
                     {step.showAvatars && (
-                      <div className="flex -space-x-2 mt-4">
+                      <div className="flex -space-x-2 mt-3">
                         {["/avatar-wise.png", "/avatar-general.png", "/avatar-robot.png"].map((src) => (
                           <Image
                             key={src}
                             src={src}
-                            alt="Coach avatar"
+                            alt="Avatar do técnico"
                             width={32}
                             height={32}
                             className="size-8 rounded-full border-2 border-background shadow-md object-cover bg-secondary"
