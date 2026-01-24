@@ -39,6 +39,29 @@ const faqs = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
 export function FAQ() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
@@ -47,53 +70,108 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 bg-background">
-      <div className="container px-4 mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h2>
-          <p className="text-lg text-muted-foreground">
-            Got questions? We&apos;ve got answers. Can&apos;t find what you&apos;re looking for? Contact us.
-          </p>
-        </div>
+    <section id="faq" className="py-24 md:py-32 bg-linear-to-b from-background via-secondary/10 to-background relative overflow-hidden">
+      {/* Animated background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+          suppressHydrationWarning
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-1/3 -left-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl"
+          suppressHydrationWarning
+        />
+      </div>
 
-        <div className="max-w-3xl mx-auto">
+      <div className="container px-4 mx-auto relative">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6 backdrop-blur-sm border border-primary/20">
+            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+            Got Questions?
+          </div>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+            Frequently Asked{" "}
+            <span className="bg-linear-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent">
+              Questions
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Can&apos;t find what you&apos;re looking for? Reach out to our support team.
+          </p>
+        </motion.div>
+
+        {/* FAQ Items */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="max-w-3xl mx-auto"
+        >
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="border border-border rounded-xl overflow-hidden bg-card hover:border-primary/30 transition-colors"
+                variants={itemVariants}
+                className="group relative"
               >
-                <button
-                  onClick={() => toggleExpand(index)}
-                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-secondary/30 transition-colors text-left"
-                >
-                  <h3 className="font-semibold text-base pr-4">{faq.question}</h3>
-                  <ChevronDown
-                    className={`size-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
-                      expandedIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {expandedIndex === index && (
+                <div className="border border-border rounded-2xl overflow-hidden bg-card hover:border-primary/30 transition-all duration-300">
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="w-full px-6 py-5 flex items-center justify-between hover:bg-secondary/30 transition-colors text-left"
+                  >
+                    <h3 className="font-semibold text-base pr-4 group-hover:text-primary transition-colors">
+                      {faq.question}
+                    </h3>
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
+                      animate={{ rotate: expandedIndex === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="px-6 py-4 border-t border-border bg-secondary/20"
+                      suppressHydrationWarning
                     >
-                      <p className="text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </p>
+                      <ChevronDown className="size-5 shrink-0 text-muted-foreground" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {expandedIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="px-6 py-5 border-t border-border bg-secondary/20"
+                      >
+                        <p className="text-muted-foreground leading-relaxed text-base">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Top accent line on hover */}
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-orange-500 origin-left"
+                    suppressHydrationWarning
+                  />
+                </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
