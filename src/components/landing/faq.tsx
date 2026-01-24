@@ -102,7 +102,7 @@ export function FAQ() {
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             Frequently Asked{" "}
-            <span className="bg-linear-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
@@ -164,7 +164,7 @@ export function FAQ() {
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.4 }}
-                    className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-orange-500 origin-left"
+                    className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-chart-2 origin-left"
                     suppressHydrationWarning
                   />
                 </div>

@@ -12,7 +12,7 @@ const personalities = [
     name: "Master Yoda",
     role: "The Wise Mentor",
     avatar: "/avatar-wise.png",
-    color: "bg-green-100 text-green-700",
+    color: "bg-chart-5/15 text-chart-5 hover:bg-chart-5/25",
     quote: "Patience you must have, my young padawan. Greatness takes time.",
     style: "Inverts sentences, focuses on patience and deep wisdom.",
     sample: "Distracted you were? Hmm. To the path, return. A failure, this is not. A lesson, it is."
@@ -22,7 +22,7 @@ const personalities = [
     name: "General Strike",
     role: "The Drill Sergeant",
     avatar: "/avatar-general.png",
-    color: "bg-red-100 text-red-700",
+    color: "bg-destructive/10 text-destructive hover:bg-destructive/20",
     quote: "Excuses don&apos;t burn calories, soldier! Drop and give me 20 minutes of focus!",
     style: "Direct, loud, high-energy, no-nonsense accountability.",
     sample: "I don&apos;t care about your feelings, I care about your RESULTS! You missed yesterday! TODAY WE DOUBLE EFFORT!"
@@ -32,7 +32,7 @@ const personalities = [
     name: "Buddy Bot",
     role: "The Best Friend",
     avatar: "/avatar-robot.png",
-    color: "bg-blue-100 text-blue-700",
+    color: "bg-chart-3/15 text-chart-3 hover:bg-chart-3/25",
     quote: "You&apos;re doing amazing! Even small steps count. Let&apos;s do this together!",
     style: "Empathetic, cheerful, uses emojis, focuses on positive reinforcement.",
     sample: "Hey! 👋 I noticed you missed your reading habit. No worries at all! Life happens. 🌟 Want to try just 5 minutes today?"
@@ -99,7 +99,7 @@ export function PersonalityShowcase() {
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             Choose Your{" "}
-            <span className="bg-linear-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
               Perfect Coach
             </span>
           </h2>
@@ -124,11 +124,10 @@ export function PersonalityShowcase() {
                 onClick={() => setActiveId(persona.id)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`flex items-center gap-4 p-5 rounded-2xl text-left transition-all duration-300 border ${
-                  activeId === persona.id
+                className={`flex items-center gap-4 p-5 rounded-2xl text-left transition-all duration-300 border ${activeId === persona.id
                     ? "bg-card shadow-lg border-primary/20 ring-2 ring-primary/20"
                     : "border-border hover:border-primary/20 hover:bg-card/50 opacity-70 hover:opacity-100"
-                }`}
+                  }`}
               >
                 <Image src={persona.avatar} alt={persona.name} width={64} height={64} className="size-16 rounded-2xl bg-secondary object-cover flex-shrink-0" />
                 <div>
@@ -154,7 +153,7 @@ export function PersonalityShowcase() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.03 }}
-                  className="absolute inset-0 bg-linear-to-br from-primary to-orange-500 pointer-events-none"
+                  className="absolute inset-0 bg-linear-to-br from-primary to-chart-2 pointer-events-none"
                   suppressHydrationWarning
                 />
 
@@ -195,7 +194,7 @@ export function PersonalityShowcase() {
                     className="flex justify-end pt-4"
                   >
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button size="lg" className="rounded-full bg-linear-to-r from-primary to-orange-500 hover:from-primary hover:to-orange-600 font-semibold shadow-lg">
+                      <Button size="lg" className="rounded-full bg-linear-to-r from-primary to-chart-2 hover:from-primary hover:to-chart-1 font-semibold shadow-lg text-white">
                         Chat with {activePersona.name} <MessageCircle className="ml-2 size-4" />
                       </Button>
                     </motion.div>

@@ -96,7 +96,7 @@ export function SocialProof() {
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             Join Hundreds Building{" "}
-            <span className="bg-linear-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
               Unstoppable Habits
             </span>
           </h2>
@@ -124,7 +124,7 @@ export function SocialProof() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 0.05 }}
-                  className="absolute inset-0 bg-linear-to-br from-amber-400 to-orange-500 pointer-events-none"
+                  className="absolute inset-0 bg-linear-to-br from-chart-4 to-chart-2 pointer-events-none"
                   suppressHydrationWarning
                 />
 
@@ -144,7 +144,7 @@ export function SocialProof() {
                         whileInView={{ scale: 1 }}
                         transition={{ delay: i * 0.1 + j * 0.05 }}
                       >
-                        <Star className="size-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-4 fill-chart-4 text-chart-4" />
                       </motion.div>
                     ))}
                 </motion.div>
@@ -174,7 +174,7 @@ export function SocialProof() {
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.4 }}
-                  className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-amber-400 to-orange-500 origin-left"
+                  className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-chart-4 to-chart-2 origin-left"
                   suppressHydrationWarning
                 />
               </div>
@@ -197,7 +197,7 @@ export function SocialProof() {
               <motion.div
                 animate={{ opacity: [0.03, 0.08, 0.03] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="absolute inset-0 bg-linear-to-br from-amber-400 to-orange-500 pointer-events-none"
+                className="absolute inset-0 bg-linear-to-br from-chart-4 to-chart-2 pointer-events-none"
                 suppressHydrationWarning
               />
 
@@ -208,7 +208,7 @@ export function SocialProof() {
                   .map((_, j) => (
                     <Star
                       key={j}
-                      className="size-4 fill-yellow-400 text-yellow-400"
+                      className="size-4 fill-chart-4 text-chart-4"
                     />
                   ))}
               </div>
@@ -253,11 +253,10 @@ export function SocialProof() {
                     key={i}
                     onClick={() => setCurrentIndex(i)}
                     whileHover={{ scale: 1.2 }}
-                    className={`rounded-full transition-all ${
-                      i === currentIndex
+                    className={`rounded-full transition-all ${i === currentIndex
                         ? "bg-primary w-6 h-2"
                         : "bg-border w-2 h-2 hover:bg-primary/50"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
