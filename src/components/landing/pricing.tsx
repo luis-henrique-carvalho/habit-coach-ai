@@ -52,7 +52,7 @@ export function Pricing() {
           </div>
           <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
             Preço de <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-600">
               Compromisso.
             </span>
           </h2>
@@ -121,7 +121,7 @@ export function Pricing() {
 
             <div className="relative p-10 rounded-[2.5rem] bg-primary text-primary-foreground shadow-2xl shadow-primary/30 overflow-hidden transform hover:-translate-y-2 transition-transform duration-500">
               {/* Texture */}
-              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
               <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
 
               <div className="relative z-10 mb-8">
@@ -152,7 +152,7 @@ export function Pricing() {
                     key={i}
                     className="flex items-center gap-3"
                   >
-                    <div className="bg-white text-primary rounded-full p-1 flex-shrink-0">
+                    <div className="bg-white text-primary rounded-full p-1 shrink-0">
                       <Check size={14} strokeWidth={4} />
                     </div>
                     <span className="text-sm font-bold">{feature}</span>

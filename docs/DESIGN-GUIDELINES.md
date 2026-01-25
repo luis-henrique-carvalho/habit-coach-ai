@@ -84,7 +84,7 @@ Baseado em múltiplos de 4px (sistema 8pt grid do Tailwind).
 <div className="p-4 gap-6 mb-8">  {/* 16px, 24px, 32px */}
 
 // ❌ EVITE valores arbitrários
-<div className="p-[13px] gap-[27px]">
+<div className="p-3.25 gap-6.75">
 ```
 
 ### Espaçamento Comum

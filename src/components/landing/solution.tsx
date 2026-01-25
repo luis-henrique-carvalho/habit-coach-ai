@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Brain, Target, Shield, Trophy } from "lucide-react";
+import { Zap, Brain, Target, Shield } from "lucide-react";
 import Image from "next/image";
 
 const benefits = [
@@ -65,7 +65,7 @@ export function Solution() {
           <span className="text-primary font-black tracking-widest uppercase text-sm mb-4 block">
             A Solução Definitiva
           </span>
-          <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-foreground uppercase tracking-tighter leading-[0.85]">
+          <h2 className="text-4xl md:text-8xl lg:text-9xl font-black text-foreground uppercase tracking-tighter leading-[0.85]">
             PERSONALIDADE <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               VENCE HÁBITO.
@@ -77,7 +77,7 @@ export function Solution() {
         <div className="grid lg:grid-cols-12 gap-12 items-center">
 
           {/* Left: Fragments Stack */}
-          <div className="lg:col-span-7 relative h-[600px] flex items-center justify-center">
+          <div className="lg:col-span-7 relative h-150 flex items-center justify-center">
 
             {/* Base Image */}
             <motion.div
@@ -145,7 +145,7 @@ export function Solution() {
                     className="flex gap-6 group"
                   >
                     <div className="shrink-0 p-4 bg-primary/10 rounded-none group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      <Icon className="size-6 stroke-[3]" />
+                      <Icon className="size-6 stroke-3" />
                     </div>
                     <div>
                       <h3 className="text-xl font-black uppercase mb-1">{benefit.title}</h3>

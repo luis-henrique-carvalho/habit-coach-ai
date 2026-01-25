@@ -8,7 +8,7 @@ export function FinalCTA() {
   return (
     <section id="final-cta" className="relative py-32 md:py-48 overflow-hidden bg-foreground text-background">
       {/* Texture Background */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-neutral-500 to-transparent" />
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-white via-neutral-500 to-transparent" />
       <div className="absolute inset-0 bg-black/20" /> {/* Darken slightly for contrast */}
 
       <div className="container px-4 mx-auto relative z-10 flex flex-col items-center">
@@ -50,7 +50,7 @@ export function FinalCTA() {
           className="relative group"
         >
           {/* Button Glow */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary via-orange-500 to-primary rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500 animate-tilt"></div>
+          <div className="absolute -inset-1 bg-linear-to-r from-primary via-orange-500 to-primary rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500 animate-tilt"></div>
 
           <Button
             size="lg"
