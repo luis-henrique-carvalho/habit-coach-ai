@@ -1,0 +1,3074 @@
+{
+  "version": "2.6",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "EOvmS",
+      "x": 0,
+      "y": 0,
+      "name": "Landing Page",
+      "width": 1440,
+      "fill": "$color-bg-primary",
+      "stroke": {
+        "align": "inside",
+        "thickness": 1
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "n5QKX",
+          "name": "Hero Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            100,
+            120
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cq6vU",
+              "name": "heroBadge",
+              "fill": "$color-accent-light",
+              "cornerRadius": "$radius-pill",
+              "gap": 8,
+              "padding": [
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "2CPD3",
+                  "name": "badgeIcon",
+                  "content": "✨",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "tmU4s",
+                  "name": "badgeText",
+                  "fill": "$color-accent",
+                  "content": "Transforme seus hábitos com IA",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "B6Ann",
+              "name": "heroHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "Seu Coach de Hábitos Pessoal Alimentado por IA",
+              "lineHeight": 1.2,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 56,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "kRwzF",
+              "name": "heroSubheadline",
+              "fill": "$color-text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Motivação personalizada de personalidades famosas. Acompanhamento inteligente de metas. Tudo em um lugar.",
+              "lineHeight": 1.6,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "aUpAn",
+              "name": "ctaContainer",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CeVfX",
+                  "name": "primaryCta",
+                  "fill": "$color-accent",
+                  "cornerRadius": "$radius-pill",
+                  "gap": 8,
+                  "padding": [
+                    16,
+                    32
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "S3gYQ",
+                      "name": "primaryCtaText",
+                      "fill": "#FFFFFF",
+                      "content": "Começar Grátis",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AngIW",
+                  "name": "secondaryCta",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": "$radius-pill",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    16,
+                    32
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Elt1C",
+                      "name": "secondaryCtaText",
+                      "fill": "$color-text-primary",
+                      "content": "Ver Demo",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AbNWz",
+              "name": "Hero Screenshot Placeholder",
+              "width": 800,
+              "height": 420,
+              "fill": "$color-bg-secondary",
+              "cornerRadius": "$radius-lg",
+              "stroke": {
+                "thickness": 1,
+                "fill": "$color-border"
+              },
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1MwGD",
+                  "name": "placeholderText",
+                  "fill": "$color-text-tertiary",
+                  "content": "Screenshot Placeholder",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f4C2p",
+          "name": "Problem Section",
+          "width": "fill_container",
+          "fill": "$color-bg-primary",
+          "layout": "vertical",
+          "gap": 60,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "WwRBK",
+              "name": "problemLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "mbjfE",
+                  "name": "problemLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "UyEJA",
+                  "name": "problemLabelText",
+                  "fill": "$color-accent",
+                  "content": "O DESAFIO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "1qilt",
+              "name": "problemHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "Construir Hábitos é Difícil Sem Motivação Consistente",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "tQmYx",
+              "name": "problemGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Tn5Uf",
+                  "name": "problemCard1",
+                  "width": 280,
+                  "fill": "$color-bg-secondary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7LAJy",
+                      "name": "problemIcon1",
+                      "content": "😔",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ltt6N",
+                      "name": "problemTitle1",
+                      "fill": "$color-text-primary",
+                      "content": "Falta de Motivação",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "iBLJb",
+                      "name": "problemDesc1",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 250,
+                      "content": "Apps genéricos não entendem seu estilo pessoal de motivação.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FyPxU",
+                  "name": "problemCard2",
+                  "width": 280,
+                  "fill": "$color-bg-secondary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xBLDc",
+                      "name": "problemIcon2",
+                      "content": "📊",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "su0oK",
+                      "name": "problemTitle2",
+                      "fill": "$color-text-primary",
+                      "content": "Sem Insights",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0Zcvz",
+                      "name": "problemDesc2",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 250,
+                      "content": "Você não vê padrões nos seus hábitos nem recebe sugestões inteligentes.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "we7Le",
+                  "name": "problemCard3",
+                  "width": 280,
+                  "fill": "$color-bg-secondary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wS3AZ",
+                      "name": "problemIcon3",
+                      "content": "⏰",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tWbTL",
+                      "name": "problemTitle3",
+                      "fill": "$color-text-primary",
+                      "content": "Falta de Acompanhamento",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "y3PTo",
+                      "name": "problemDesc3",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 250,
+                      "content": "Difícil manter consistência sem alguém checando seu progresso.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BGM01",
+          "name": "Solution Section",
+          "width": "fill_container",
+          "fill": "$color-bg-secondary",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "BEi5r",
+              "name": "solutionContent",
+              "width": "fill_container",
+              "gap": 60,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZAzVi",
+                  "name": "solutionText",
+                  "width": 500,
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "DHM8U",
+                      "name": "solutionLabel",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "SHso7",
+                          "name": "solutionLine",
+                          "fill": "$color-accent",
+                          "width": 40,
+                          "height": 2
+                        },
+                        {
+                          "type": "text",
+                          "id": "IPPvS",
+                          "name": "solutionLabelText",
+                          "fill": "$color-accent",
+                          "content": "A SOLUÇÃO",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "e96Ed",
+                      "name": "solutionHeadline",
+                      "fill": "$color-text-primary",
+                      "textGrowth": "fixed-width-height",
+                      "width": 446,
+                      "height": 98,
+                      "content": "Seu Coach de IA que Realmente te Entende",
+                      "lineHeight": 1.2,
+                      "fontFamily": "Inter",
+                      "fontSize": 42,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FP5RO",
+                      "name": "solutionDescription",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 480,
+                      "content": "Habit Coach AI combina rastreamento inteligente de hábitos com coaching personalizado de IA. Escolha entre personalidades únicas (Mestre Yoda, General Motivador, Mentor Empático) que motivam você do jeito que funciona.",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "irfm0",
+                      "name": "solutionBenefits",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "iHz7s",
+                          "name": "benefit1",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "PpGjx",
+                              "name": "checkIcon1",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "RClZW",
+                              "name": "benefitText1",
+                              "fill": "$color-text-primary",
+                              "content": "Motivação Personalizada que se Adapta a Você",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BYNHY",
+                          "name": "benefit2",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "TztPM",
+                              "name": "checkIcon2",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "NuDeS",
+                              "name": "benefitText2",
+                              "fill": "$color-text-primary",
+                              "content": "Metas Inteligentes Decompostas Automaticamente",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nPwad",
+                          "name": "benefit3",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "FlssL",
+                              "name": "checkIcon3",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "oSZJN",
+                              "name": "benefitText3",
+                              "fill": "$color-text-primary",
+                              "content": "Análises Semanais e Sugestões para Melhorar",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WqdrS",
+                  "name": "Solution Screenshot",
+                  "width": 600,
+                  "height": 400,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fgAOp",
+                      "name": "solutionPlaceholder",
+                      "fill": "$color-text-tertiary",
+                      "content": "Dashboard Mockup",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aCsI8",
+          "name": "Features Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "bUK1g",
+              "name": "featuresLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "pp1kn",
+                  "name": "featuresLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "fyHWm",
+                  "name": "featuresLabelText",
+                  "fill": "$color-accent",
+                  "content": "RECURSOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Mjq7X",
+              "name": "featuresHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Tudo que Você Precisa para Vencer",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "KBQSR",
+              "name": "featuresGrid",
+              "width": 1200,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "KddAQ",
+                  "name": "featuresRow1",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "15dLq",
+                      "name": "feature1",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bfMMQ",
+                          "name": "feature1Icon",
+                          "content": "🤖",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "vZ2SD",
+                          "name": "feature1Title",
+                          "fill": "$color-text-primary",
+                          "content": "IA com Personalidades",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fc7X8",
+                          "name": "feature1Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "Escolha seu coach pessoal entre Mestre Yoda, General Motivador e Mentor Empático.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "8bb1G",
+                      "name": "feature2",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E9L4Q",
+                          "name": "feature2Icon",
+                          "content": "📝",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kGkHH",
+                          "name": "feature2Title",
+                          "fill": "$color-text-primary",
+                          "content": "Rastreamento Fácil",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lAxrj",
+                          "name": "feature2Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "Registre seu progresso com um clique. Visualize tendências em tempo real.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xXJZf",
+                      "name": "feature3",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "xv5sJ",
+                          "name": "feature3Icon",
+                          "content": "🎯",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cd5Ik",
+                          "name": "feature3Title",
+                          "fill": "$color-text-primary",
+                          "content": "Metas Inteligentes",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HUDd7",
+                          "name": "feature3Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "IA decompõe suas metas em passos alcançáveis. Automático e inteligente.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SrgOh",
+                  "name": "featuresRow2",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QUFWC",
+                      "name": "feature4",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Wtiak",
+                          "name": "feature4Icon",
+                          "content": "📊",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "MxudB",
+                          "name": "feature4Title",
+                          "fill": "$color-text-primary",
+                          "content": "Dashboards Visuais",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "vSnQY",
+                          "name": "feature4Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "Veja seu progresso em gráficos claros e inspiradores. Dados que fazem sentido.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xa2b1",
+                      "name": "feature5",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "SdCas",
+                          "name": "feature5Icon",
+                          "content": "🔔",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "l9vOX",
+                          "name": "feature5Title",
+                          "fill": "$color-text-primary",
+                          "content": "Notificações Inteligentes",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "huxwX",
+                          "name": "feature5Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "Lembretes no momento certo com motivação personalizada. Nunca más esquecido.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M7Tsm",
+                      "name": "feature6",
+                      "width": "fill_container",
+                      "height": 240,
+                      "fill": "$color-bg-secondary",
+                      "cornerRadius": "$radius-lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "2LGyE",
+                          "name": "feature6Icon",
+                          "content": "📈",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "N3moR",
+                          "name": "feature6Title",
+                          "fill": "$color-text-primary",
+                          "content": "Análise Semanal",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "onRPh",
+                          "name": "feature6Desc",
+                          "fill": "$color-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "Relatório detalhado com insights e sugestões para o próxima semana.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fPZNr",
+          "name": "Personalities Section",
+          "width": "fill_container",
+          "fill": "$color-bg-secondary",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "KBVdM",
+              "name": "personalitiesLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "14jsc",
+                  "name": "personalitiesLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "MgjB9",
+                  "name": "personalitiesLabelText",
+                  "fill": "$color-accent",
+                  "content": "SEU COACH PESSOAL",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "SHMMW",
+              "name": "personalitiesHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Escolha Seu Estilo de Motivação",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "tlQMu",
+              "name": "personalitiesGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "96Ask",
+                  "name": "personality1",
+                  "width": 300,
+                  "height": 380,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 40,
+                      "id": "t1fxJ",
+                      "name": "personality1Avatar",
+                      "fill": "$color-accent-light",
+                      "width": 80,
+                      "height": 80
+                    },
+                    {
+                      "type": "text",
+                      "id": "u1G0M",
+                      "name": "personality1Name",
+                      "fill": "$color-text-primary",
+                      "content": "Mestre Yoda",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Q9bDC",
+                      "name": "personality1Style",
+                      "fill": "$color-accent",
+                      "content": "Sábio e Encorajador",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "imh6R",
+                      "name": "personality1Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"Possível é aquilo que você acredita ser.\"",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gAX2C",
+                      "name": "personality1Badge",
+                      "fill": "$color-accent",
+                      "cornerRadius": "$radius-pill",
+                      "padding": [
+                        6,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "l639Q",
+                          "name": "personality1BadgeText",
+                          "fill": "#FFFFFF",
+                          "content": "Mais Popular",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zSXp6",
+                  "name": "personality2",
+                  "width": 300,
+                  "height": 380,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 40,
+                      "id": "5x7i7",
+                      "name": "personality2Avatar",
+                      "fill": "$color-accent-light",
+                      "width": 80,
+                      "height": 80
+                    },
+                    {
+                      "type": "text",
+                      "id": "qZJpH",
+                      "name": "personality2Name",
+                      "fill": "$color-text-primary",
+                      "content": "General Motivador",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "r0eY6",
+                      "name": "personality2Style",
+                      "fill": "$color-text-secondary",
+                      "content": "Direto e Intenso",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "82pxC",
+                      "name": "personality2Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"Vamos lá! Você é mais forte do que pensa!\"",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "546Xt",
+                  "name": "personality3",
+                  "width": 300,
+                  "height": 380,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 40,
+                      "id": "uWwkO",
+                      "name": "personality3Avatar",
+                      "fill": "$color-accent-light",
+                      "width": 80,
+                      "height": 80
+                    },
+                    {
+                      "type": "text",
+                      "id": "Nd7TX",
+                      "name": "personality3Name",
+                      "fill": "$color-text-primary",
+                      "content": "Mentor Empático",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cSFe9",
+                      "name": "personality3Style",
+                      "fill": "$color-text-secondary",
+                      "content": "Gentil e Compreensivo",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mInrb",
+                      "name": "personality3Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"Um passo por vez. Eu estou aqui para ajudar.\"",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Xnkay",
+          "name": "How It Works Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ZlBK7",
+              "name": "howLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "aKMJT",
+                  "name": "howLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "70mwK",
+                  "name": "howLabelText",
+                  "fill": "$color-accent",
+                  "content": "COMEÇANDO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "HCak8",
+              "name": "howHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Simples de Começar em 3 Passos",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "dfLRr",
+              "name": "howGrid",
+              "width": "fill_container",
+              "gap": 40,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "98grN",
+                  "name": "step1",
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "x7Kdg",
+                      "name": "step1Number",
+                      "width": 64,
+                      "height": 64,
+                      "fill": "$color-accent",
+                      "cornerRadius": 32,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yX87T",
+                          "name": "step1NumberText",
+                          "fill": "#FFFFFF",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "0wJZv",
+                      "name": "step1Title",
+                      "fill": "$color-text-primary",
+                      "content": "Cadastre-se Grátis",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oKqkw",
+                      "name": "step1Desc",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 240,
+                      "content": "Sem cartão de crédito. Instantâneo.",
+                      "lineHeight": 1.5,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Yalrs",
+                  "name": "step2",
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "IVUzI",
+                      "name": "step2Number",
+                      "width": 64,
+                      "height": 64,
+                      "fill": "$color-accent",
+                      "cornerRadius": 32,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "44qmd",
+                          "name": "step2NumberText",
+                          "fill": "#FFFFFF",
+                          "content": "2",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "hir7u",
+                      "name": "step2Title",
+                      "fill": "$color-text-primary",
+                      "content": "Escolha seu Coach",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bXYmR",
+                      "name": "step2Desc",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 240,
+                      "content": "Yoda, General ou Mentor. Você decide.",
+                      "lineHeight": 1.5,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OF9QP",
+                  "name": "step3",
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BTP2U",
+                      "name": "step3Number",
+                      "width": 64,
+                      "height": 64,
+                      "fill": "$color-accent",
+                      "cornerRadius": 32,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pvcB0",
+                          "name": "step3NumberText",
+                          "fill": "#FFFFFF",
+                          "content": "3",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "70jUq",
+                      "name": "step3Title",
+                      "fill": "$color-text-primary",
+                      "content": "Crie seus Hábitos",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "59uZC",
+                      "name": "step3Desc",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 240,
+                      "content": "Defina metas. IA faz o resto.",
+                      "lineHeight": 1.5,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ECF7t",
+          "name": "Social Proof Section",
+          "width": "fill_container",
+          "fill": "$color-bg-secondary",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "5R8CJ",
+              "name": "socialLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "Hr90k",
+                  "name": "socialLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "EFBZe",
+                  "name": "socialLabelText",
+                  "fill": "$color-accent",
+                  "content": "COMUNIDADE",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "317cV",
+              "name": "socialHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "Amado por Usuários que Transformaram Suas Vidas",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "Sotly",
+              "name": "testimonialGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ko3zs",
+                  "name": "testimonial1",
+                  "width": 300,
+                  "height": 280,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "8EIPV",
+                      "name": "testimonial1Stars",
+                      "fill": "$color-accent",
+                      "content": "★★★★★",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yh7Gy",
+                      "name": "testimonial1Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"Finalmente tenho motivação consistente. O Mestre Yoda realmente me entende!\"",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CDNBg",
+                      "name": "testimonial1Author",
+                      "fill": "$color-text-primary",
+                      "content": "Maria S.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tzkVv",
+                      "name": "testimonial1Role",
+                      "fill": "$color-text-tertiary",
+                      "content": "Usuária Premium",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iJ1z6",
+                  "name": "testimonial2",
+                  "width": 300,
+                  "height": 280,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KkHX3",
+                      "name": "testimonial2Stars",
+                      "fill": "$color-accent",
+                      "content": "★★★★★",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "roh1h",
+                      "name": "testimonial2Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"As metas decompostas pela IA tornaram tudo possível. Meu progresso nunca foi tão claro.\"",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "snsqj",
+                      "name": "testimonial2Author",
+                      "fill": "$color-text-primary",
+                      "content": "João P.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LFH1Q",
+                      "name": "testimonial2Role",
+                      "fill": "$color-text-tertiary",
+                      "content": "Usuário Premium",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8KnR9",
+                  "name": "testimonial3",
+                  "width": 300,
+                  "height": 280,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EnYjI",
+                      "name": "testimonial3Stars",
+                      "fill": "$color-accent",
+                      "content": "★★★★★",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "1CdbZ",
+                      "name": "testimonial3Quote",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 260,
+                      "content": "\"Aplicativo incrível! A decomposição automática de metas com IA é revolucionária.\"",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Tj53l",
+                      "name": "testimonial3Author",
+                      "fill": "$color-text-primary",
+                      "content": "Ana T.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qyjVK",
+                      "name": "testimonial3Role",
+                      "fill": "$color-text-tertiary",
+                      "content": "Usuária Premium",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tG7rp",
+          "name": "Pricing Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Gpngg",
+              "name": "pricingLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "nlt3g",
+                  "name": "pricingLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "pUz8U",
+                  "name": "pricingLabelText",
+                  "fill": "$color-accent",
+                  "content": "PREÇOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t1BOz",
+              "name": "pricingHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Planos Simples e Transparentes",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "RNaVE",
+              "name": "pricingGrid",
+              "width": "fill_container",
+              "gap": 32,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hB9l4",
+                  "name": "freePlan",
+                  "width": 380,
+                  "fill": "$color-bg-secondary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$color-border"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 40,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UOWyZ",
+                      "name": "freeTitle",
+                      "fill": "$color-text-primary",
+                      "content": "Plano Gratuito",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "woEll",
+                      "name": "freePrice",
+                      "fill": "$color-accent",
+                      "content": "Sempre Grátis",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "q3zzC",
+                      "name": "freeDescription",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "Comece sua jornada sem compromisso",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kEGgn",
+                      "name": "freeFeatures",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "XPrvi",
+                          "name": "freeFeature1",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "QrN1e",
+                              "name": "freeCheck1",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "WPIba",
+                              "name": "freeFeatureText1",
+                              "fill": "$color-text-primary",
+                              "content": "Até 3 hábitos simultâneos",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "t7fLH",
+                          "name": "freeFeature2",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "P9oCT",
+                              "name": "freeCheck2",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "U9pLH",
+                              "name": "freeFeatureText2",
+                              "fill": "$color-text-primary",
+                              "content": "1 Personalidade de IA",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o9YgB",
+                          "name": "freeFeature3",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "EuQTs",
+                              "name": "freeCheck3",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "TpU3H",
+                              "name": "freeFeatureText3",
+                              "fill": "$color-text-primary",
+                              "content": "Rastreamento Básico",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Vg5Ub",
+                          "name": "freeFeature4",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "g3sFJ",
+                              "name": "freeX4",
+                              "fill": "$color-text-tertiary",
+                              "content": "✗",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "A7gTr",
+                              "name": "freeFeatureText4",
+                              "fill": "$color-text-tertiary",
+                              "content": "Decomposição de Metas com IA",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Dz4KQ",
+                          "name": "freeFeature5",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "54hky",
+                              "name": "freeX5",
+                              "fill": "$color-text-tertiary",
+                              "content": "✗",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bE1Ki",
+                              "name": "freeFeatureText5",
+                              "fill": "$color-text-tertiary",
+                              "content": "Análises Avançadas",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1we3x",
+                      "name": "freeCta",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": "$radius-pill",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$color-border"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        16,
+                        32
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uKUk7",
+                          "name": "freeCtaText",
+                          "fill": "$color-text-primary",
+                          "content": "Começar Grátis",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Jc234",
+                  "name": "proPlan",
+                  "width": 380,
+                  "fill": "$color-bg-primary",
+                  "cornerRadius": "$radius-lg",
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": "$color-accent"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 40,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FsMWV",
+                      "name": "proBadge",
+                      "fill": "$color-accent",
+                      "cornerRadius": "$radius-pill",
+                      "padding": [
+                        6,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "R747Y",
+                          "name": "proBadgeText",
+                          "fill": "#FFFFFF",
+                          "content": "Mais Popular",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "qWQgO",
+                      "name": "proTitle",
+                      "fill": "$color-text-primary",
+                      "content": "Plano Pro",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XT68P",
+                      "name": "proPrice",
+                      "fill": "$color-accent",
+                      "content": "R$ 29,90/mês",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yTCLN",
+                      "name": "proDescription",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "Desbloqueia todo o potencial",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vkRaU",
+                      "name": "proFeatures",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "LW3Mw",
+                          "name": "proFeature1",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "intEf",
+                              "name": "proCheck1",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "nP4eX",
+                              "name": "proFeatureText1",
+                              "fill": "$color-text-primary",
+                              "content": "Hábitos ilimitados",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "8oXhG",
+                          "name": "proFeature2",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "QRTyV",
+                              "name": "proCheck2",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "xQQoA",
+                              "name": "proFeatureText2",
+                              "fill": "$color-text-primary",
+                              "content": "Todas as 3 Personalidades",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sq64c",
+                          "name": "proFeature3",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wAf2L",
+                              "name": "proCheck3",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "dDqDl",
+                              "name": "proFeatureText3",
+                              "fill": "$color-text-primary",
+                              "content": "Decomposição de Metas com IA",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "rqlJz",
+                          "name": "proFeature4",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "86tA8",
+                              "name": "proCheck4",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "gvpMi",
+                              "name": "proFeatureText4",
+                              "fill": "$color-text-primary",
+                              "content": "Análises Avançadas",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "FZ5uQ",
+                          "name": "proFeature5",
+                          "gap": 10,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "46tWC",
+                              "name": "proCheck5",
+                              "fill": "$color-accent",
+                              "content": "✓",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "CVk8F",
+                              "name": "proFeatureText5",
+                              "fill": "$color-text-primary",
+                              "content": "Suporte Prioritário",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b0RO6",
+                      "name": "proCta",
+                      "fill": "$color-accent",
+                      "cornerRadius": "$radius-pill",
+                      "gap": 8,
+                      "padding": [
+                        16,
+                        32
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CMpgk",
+                          "name": "proCtaText",
+                          "fill": "#FFFFFF",
+                          "content": "Assinar Pro",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ReVqZ",
+          "name": "FAQ Section",
+          "width": "fill_container",
+          "fill": "$color-bg-secondary",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "1xAAe",
+              "name": "faqLabel",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "PkqLJ",
+                  "name": "faqLine",
+                  "fill": "$color-accent",
+                  "width": 40,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "T6unF",
+                  "name": "faqLabelText",
+                  "fill": "$color-accent",
+                  "content": "DÚVIDAS?",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "6qHSH",
+              "name": "faqHeadline",
+              "fill": "$color-text-primary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Perguntas Frequentes",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 44,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "7SkPQ",
+              "name": "faqGrid",
+              "width": 800,
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "W649y",
+                  "name": "faqItem1",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bToaC",
+                      "name": "faqQuestion1",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rMJ31",
+                          "name": "faqQuestionText1",
+                          "fill": "$color-text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": 650,
+                          "content": "Como funciona o plano gratuito?",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xcsON",
+                          "name": "faqArrow1",
+                          "fill": "$color-accent",
+                          "content": "▼",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "C5U8z",
+                      "name": "faqAnswer1",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 700,
+                      "content": "O plano gratuito permite rastrear até 3 hábitos com 1 personalidade de IA. É perfeito para começar!",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "alsBd",
+                  "name": "faqItem2",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "clegm",
+                      "name": "faqQuestion2",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4SoPI",
+                          "name": "faqQuestionText2",
+                          "fill": "$color-text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": 650,
+                          "content": "Posso cancelar a qualquer momento?",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Uuj56",
+                          "name": "faqArrow2",
+                          "fill": "$color-accent",
+                          "content": "▼",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "MQLgv",
+                      "name": "faqAnswer2",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 700,
+                      "content": "Sim! Não há contratos. Cancele sua assinatura Pro quando quiser, sem penalidades.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dPu3t",
+                  "name": "faqItem3",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Hhowo",
+                      "name": "faqQuestion3",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CNzYC",
+                          "name": "faqQuestionText3",
+                          "fill": "$color-text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": 650,
+                          "content": "Meus dados são seguros?",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7Zh17",
+                          "name": "faqArrow3",
+                          "fill": "$color-accent",
+                          "content": "▼",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "V3mYm",
+                      "name": "faqAnswer3",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 700,
+                      "content": "Absolutamente. Usamos encriptação de nível empresarial e somos LGPD compliant.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PCE7u",
+                  "name": "faqItem4",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yyebG",
+                      "name": "faqQuestion4",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ChTkG",
+                          "name": "faqQuestionText4",
+                          "fill": "$color-text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": 650,
+                          "content": "Há um app mobile?",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7lV3t",
+                          "name": "faqArrow4",
+                          "fill": "$color-accent",
+                          "content": "▼",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "aw5Vx",
+                      "name": "faqAnswer4",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 700,
+                      "content": "Sim! Disponível para iOS e Android. Acesse seu coaching de qualquer lugar.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WwsYl",
+          "name": "Final CTA Section",
+          "width": "fill_container",
+          "fill": "$color-dark-bg",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "dlUS4",
+              "name": "finalCtaHeadline",
+              "fill": "#FFFFFF",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "Pronto para Transformar Seus Hábitos?",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 48,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "vzdVw",
+              "name": "finalCtaSubheadline",
+              "fill": "#E8DDD8",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "Comece gratuitamente hoje. Sem cartão de crédito necessário.",
+              "lineHeight": 1.6,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "2VEKV",
+              "name": "finalCtaButton",
+              "fill": "$color-accent",
+              "cornerRadius": "$radius-pill",
+              "gap": 10,
+              "padding": [
+                16,
+                40
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZIpww",
+                  "name": "finalCtaButtonText",
+                  "fill": "#FFFFFF",
+                  "content": "Começar Minha Jornada Grátis",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "OcDCw",
+                  "name": "finalCtaArrow",
+                  "fill": "#FFFFFF",
+                  "content": "→",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xnPG0",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$color-bg-secondary",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            60,
+            120
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "SxeXf",
+              "name": "footerContent",
+              "width": "fill_container",
+              "gap": 80,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "50UzS",
+                  "name": "footerBrand",
+                  "width": 300,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EthO5",
+                      "name": "footerLogo",
+                      "fill": "$color-text-primary",
+                      "content": "Habit Coach AI",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ULcx0",
+                      "name": "footerTagline",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": 280,
+                      "content": "Seu coach de hábitos personalizados com IA",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "um4FQ",
+                  "name": "footerLinksContainer",
+                  "gap": 60,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LwFl8",
+                      "name": "footerLinksGroup1",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zYiDt",
+                          "name": "footerGroup1Title",
+                          "fill": "$color-text-primary",
+                          "content": "Produto",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "7K1PU",
+                          "name": "footerLink1",
+                          "fill": "$color-text-secondary",
+                          "content": "Features",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "vZyK3",
+                          "name": "footerLink2",
+                          "fill": "$color-text-secondary",
+                          "content": "Preços",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lqerH",
+                          "name": "footerLink3",
+                          "fill": "$color-text-secondary",
+                          "content": "Blog",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "03tUB",
+                      "name": "footerLinksGroup2",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "An9t0",
+                          "name": "footerGroup2Title",
+                          "fill": "$color-text-primary",
+                          "content": "Suporte",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "0oiZ7",
+                          "name": "footerLink4",
+                          "fill": "$color-text-secondary",
+                          "content": "FAQ",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SDITF",
+                          "name": "footerLink5",
+                          "fill": "$color-text-secondary",
+                          "content": "Contato",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "8ShMv",
+                          "name": "footerLink6",
+                          "fill": "$color-text-secondary",
+                          "content": "Comunidade",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GWrPK",
+                      "name": "footerLinksGroup3",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jBhCL",
+                          "name": "footerGroup3Title",
+                          "fill": "$color-text-primary",
+                          "content": "Legal",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "gqnvx",
+                          "name": "footerLink7",
+                          "fill": "$color-text-secondary",
+                          "content": "Privacidade",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uBTyG",
+                          "name": "footerLink8",
+                          "fill": "$color-text-secondary",
+                          "content": "Termos",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lHsLN",
+                          "name": "footerLink9",
+                          "fill": "$color-text-secondary",
+                          "content": "LGPD",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C8KRG",
+              "name": "footerBottom",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kcFrb",
+                  "name": "footerCopyright",
+                  "fill": "$color-text-tertiary",
+                  "content": "© 2026 Habit Coach AI. Todos os direitos reservados.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "T7toT",
+                  "name": "footerSocial",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vpyvc",
+                      "name": "socialLink1",
+                      "fill": "$color-text-secondary",
+                      "content": "Twitter",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hNYMB",
+                      "name": "socialLink2",
+                      "fill": "$color-text-secondary",
+                      "content": "LinkedIn",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "aH43M",
+                      "name": "socialLink3",
+                      "fill": "$color-text-secondary",
+                      "content": "Instagram",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "color-accent": {
+      "type": "color",
+      "value": "#F2804B"
+    },
+    "color-accent-border": {
+      "type": "color",
+      "value": "#F5A57D"
+    },
+    "color-accent-light": {
+      "type": "color",
+      "value": "#FEF4EF"
+    },
+    "color-bg-gradient-light": {
+      "type": "color",
+      "value": "#FEFAF7"
+    },
+    "color-bg-primary": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "color-bg-secondary": {
+      "type": "color",
+      "value": "#FAF6F3"
+    },
+    "color-bg-surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "color-border": {
+      "type": "color",
+      "value": "#EBE8E6"
+    },
+    "color-dark-bg": {
+      "type": "color",
+      "value": "#2D2522"
+    },
+    "color-text-primary": {
+      "type": "color",
+      "value": "#2D2522"
+    },
+    "color-text-secondary": {
+      "type": "color",
+      "value": "#716865"
+    },
+    "color-text-tertiary": {
+      "type": "color",
+      "value": "#A39C99"
+    },
+    "color-green-accent": {
+      "type": "color",
+      "value": "#E8F5E9"
+    },
+    "content-max": {
+      "type": "number",
+      "value": 1200
+    },
+    "radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "radius-md": {
+      "type": "number",
+      "value": 10
+    },
+    "radius-pill": {
+      "type": "number",
+      "value": 24
+    },
+    "radius-sm": {
+      "type": "number",
+      "value": 8
+    },
+    "space-container": {
+      "type": "number",
+      "value": 120
+    },
+    "space-section": {
+      "type": "number",
+      "value": 80
+    }
+  }
+}
