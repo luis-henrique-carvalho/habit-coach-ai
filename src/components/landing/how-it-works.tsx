@@ -63,7 +63,7 @@ export function HowItWorks() {
           </div>
           <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
             A Máquina de <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-600">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               Hábitos
             </span>
           </h2>

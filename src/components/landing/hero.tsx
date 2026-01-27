@@ -36,11 +36,11 @@ export function Hero() {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <motion.div
           style={{ y: y1, rotate: rotate }}
-          className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl"
+          className="absolute -top-20 -right-20 w-150 h-150 bg-primary/10 rounded-full blur-3xl"
         />
         <motion.div
           style={{ y: y2 }}
-          className="absolute top-1/2 -left-40 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]"
+          className="absolute top-1/2 -left-40 w-125 h-125 bg-accent/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -80,7 +80,7 @@ export function Hero() {
               initial="hidden"
               animate="visible"
               variants={staggeredFade}
-              className="lg:translate-x-1/4 mt-[-1rem]"
+              className="mt-4"
             >
               <p className="text-2xl md:text-3xl font-bold text-foreground bg-primary px-4 py-1 inline-block -rotate-1">
                 TENHA UM COACH QUE SE IMPORTA.
@@ -151,7 +151,7 @@ export function Hero() {
                   </div>
                 </div>
                 <p className="text-base font-bold text-muted-foreground leading-tight italic">
-                  "Seu streak, impressionante é. Mas a força nos dados, ainda flutuante está."
+                  &quot;Seu streak, impressionante é. Mas a força nos dados, ainda flutuante está.&quot;
                 </p>
               </div>
             </motion.div>
@@ -174,7 +174,7 @@ export function Hero() {
                   </div>
                 </div>
                 <p className="text-base font-black leading-tight uppercase tracking-tighter">
-                  "QUER DESCANSO? O CEMITÉRIO ESTÁ CHEIO DE PESSOAS QUE DESCANSARAM!"
+                  &quot;QUER DESCANSO? O CEMITÉRIO ESTÁ CHEIO DE PESSOAS QUE DESCANSARAM!&quot;
                 </p>
               </div>
             </motion.div>

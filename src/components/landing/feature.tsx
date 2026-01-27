@@ -85,7 +85,7 @@ export function Features() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-20"
         >
-          <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
             Sistema <span className="text-transparent bg-clip-text bg-linear-to-b from-primary to-primary/60">Operacional</span>
           </h2>
           <p className="text-xl md:text-2xl font-medium text-muted-foreground max-w-2xl mx-auto">

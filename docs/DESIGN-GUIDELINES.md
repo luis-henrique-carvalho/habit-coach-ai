@@ -123,7 +123,7 @@ O projeto usa um sistema de border radius generoso e escalonado baseado em `--ra
 --radius-3xl: calc(var(--radius) + 20px)  /* 32px - Containers grandes */
 ```
 
-## 4. Layout & Geometria: "Grid Betrayal"
+## 6. Layout & Geometria: "Grid Betrayal"
 
 ### Bordas "Sharp & Technical"
 Substituímos o arredondado suave por algo mais agressivo e técnico:
@@ -174,5 +174,96 @@ Toda página deve "montar" na tela com delays incrementais:
 
 ---
 
-**Versão**: 4.0 (Signal Orange Edition)
-**Foco**: Tipografia Bold, Assimetria e Personalidade Gamificada.
+## 8. Regras de Código: "Precisão & Consistência"
+
+### 8.1 Cores - SEMPRE Use Variáveis do Tema
+
+❌ **NUNCA use cores hardcoded ou classes de cores padrão do Tailwind**
+```jsx
+// ❌ ERRADO - Cores hardcoded (violam tema)
+<div className="bg-red-500 text-green-600 border-blue-400">
+  <span className="text-yellow-300">Texto</span>
+</div>
+```
+
+✅ **SEMPRE use variáveis CSS do tema (OKLCH)**
+```jsx
+// ✅ CORRETO - Usa variáveis do tema
+<div className="bg-primary text-secondary border-accent">
+  <span className="text-muted-foreground">Texto</span>
+</div>
+```
+
+### 8.2 Tailwind Classes - Use Nomes Semânticos
+
+❌ **NUNCA use valores arbitrários ou hardcoded**
+```jsx
+// ❌ ERRADO - Valores arbitrários
+<div className="h-[600px] w-[400px] rounded-[2rem] gap-[13px]">
+  <div className="bg-gradient-to-r from-red-500 to-blue-400">
+```
+
+✅ **SEMPRE use escala Tailwind padronizada**
+```jsx
+// ✅ CORRETO - Escala Tailwind
+<div className="h-150 w-100 rounded-4xl gap-4">
+  <div className="bg-linear-to-r from-primary to-accent">
+```
+
+### 8.3 Mapeamento de Classes Tailwind
+
+| Classe Arbitrária | Escala Tailwind | Uso |
+|-------------------|-----------------|-----|
+| `h-[600px]` | `h-150` (600px) | Alturas fixas |
+| `w-[400px]` | `w-100` (400px) | Larguras fixas |
+| `rounded-[2rem]` | `rounded-4xl` | Border radius (32px) |
+| `gap-[13px]` | `gap-3` ou `gap-4` | Espaçamento (12px ou 16px) |
+| `bg-gradient-to-r` | `bg-linear-to-r` | Gradientes horizontais |
+| `bg-gradient-to-b` | `bg-linear-to-b` | Gradientes verticais |
+| `text-[1.5rem]` | `text-2xl` | Tipografia |
+| `p-[18px]` | `p-4` ou `p-5` | Padding |
+
+### 8.4 Strings com Aspas - Use HTML Entities
+
+❌ **NUNCA copie/cole aspas literais em JSX**
+```jsx
+// ❌ ERRADO - Causa escape issues
+<p>"Seu streak, impressionante é."</p>
+<p>'Melhor amigo para te cobrar 24/7.'</p>
+```
+
+✅ **SEMPRE use HTML entities**
+```jsx
+// ✅ CORRETO - Usa entidades HTML
+<p>&quot;Seu streak, impressionante é.&quot;</p>
+<p>&lsquo;Melhor amigo para te cobrar 24/7.&rsquo;</p>
+<p>&ldquo;Força nos dados, ainda flutuante está.&rdquo;</p>
+<p>&apos;Sem desculpas.&apos;</p>
+```
+
+### 8.5 Referência Rápida de Entidades
+
+| Aspas | Opções | Exemplo |
+|-------|--------|---------|
+| `"` (duplas) | `&quot;` `&ldquo;` `&#34;` `&rdquo;` | `&quot;Texto&quot;` |
+| `'` (simples) | `&apos;` `&lsquo;` `&#39;` `&rsquo;` | `&apos;Texto&apos;` |
+
+---
+
+## 9. Checklist de Qualidade
+
+Antes de commitar código, valide:
+
+- [ ] **Cores**: Apenas variáveis do tema (`primary`, `secondary`, `accent`, `muted-foreground`, `destructive`)?
+- [ ] **Tailwind**: Nenhuma classe arbitrária (`[...]`) ou valores fora da escala?
+- [ ] **Aspas**: HTML entities (`&quot;`, `&apos;`, etc) em strings JSX?
+- [ ] **Ícones**: Lucide icons com tamanho apropriado e cor do tema?
+- [ ] **Imagens**: `next/image` com loading, alt text e classe `rounded-2xl`?
+- [ ] **Acessibilidade**: Focus rings visíveis, contraste WCAG AA?
+- [ ] **Responsive**: Classes `sm:`, `md:`, `lg:` para breakpoints?
+- [ ] **Motion**: Framer Motion com `ease: [0.22, 1, 0.36, 1]`?
+
+---
+
+**Versão**: 5.0 (Precisão & Consistência)
+**Foco**: Tipografia Bold, Asimetria, Personalidade Gamificada + Regras de Código Rigorosas

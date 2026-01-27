@@ -50,9 +50,9 @@ export function Pricing() {
             <span className="size-2 rounded-full bg-white animate-pulse" />
             Investimento Estratégico
           </div>
-          <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
             Preço de <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-orange-600">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               Compromisso.
             </span>
           </h2>

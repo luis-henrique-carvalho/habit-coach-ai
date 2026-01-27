@@ -59,7 +59,7 @@ export function SocialProof() {
 
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8">
             Real People. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               Unstoppable Habits.
             </span>
           </h2>
@@ -75,7 +75,7 @@ export function SocialProof() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               className={`relative group ${i === 1 ? 'md:mt-24' : ''}`}
             >
-              <div className="relative p-8 md:p-10 rounded-[2rem] bg-secondary/30 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/5">
+              <div className="relative p-8 md:p-10 rounded-4xl bg-secondary/30 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/5">
                 {/* Quote Icon Background */}
                 <Quote className="absolute top-8 right-8 size-12 text-primary/10 fill-primary/10" />
 

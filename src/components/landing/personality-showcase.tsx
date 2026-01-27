@@ -20,7 +20,7 @@ const personalities = [
     quote: "Patience you must have. Greatness, time it takes.",
     style: "Inverts sentences • Deep Wisdom • Calm Authority",
     sample: "Distracted you were? Hmm. A failure, this is not. A lesson, it is. To the path, return.",
-    accent: "text-emerald-500" // Subtle deviation for character code primarily
+    accent: "text-accent" // Use tema accent
   },
   {
     id: "general",
@@ -34,7 +34,7 @@ const personalities = [
     quote: "EXCUSES DON'T BURN CALORIES! DROP AND GIVE ME FOCUS!",
     style: "LOUD • DIRECT • HIGH ENERGY • NO NONSENSE",
     sample: "I don't care about your feelings! I care about RESULTS! You missed yesterday? TODAY WE DOUBLE EFFORT!",
-    accent: "text-yellow-400"
+    accent: "text-primary" // Use tema primary
   },
   {
     id: "friend",
@@ -43,12 +43,12 @@ const personalities = [
     icon: Heart,
     avatar: "/avatar-robot.png",
     // Friend Style: Soft, Bouncy, Friendly
-    containerClass: "bg-white text-zinc-900 border-2 border-zinc-100 rounded-3xl shadow-xl",
-    buttonClass: "rounded-2xl bg-blue-500 text-white hover:bg-blue-600 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1",
+    containerClass: "bg-secondary text-secondary-foreground border-2 border-secondary rounded-3xl shadow-xl",
+    buttonClass: "rounded-2xl bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1",
     quote: "You're doing amazing! Even small steps count! 🌟",
     style: "Empathetic • Cheerful • Supportive • Emojis",
     sample: "Hey! 👋 I noticed you missed your reading habit. No worries at all! Life happens. Want to try just 5 mins today?",
-    accent: "text-blue-500"
+    accent: "text-secondary" // Use tema secondary
   }
 ];
 
@@ -74,7 +74,7 @@ export function PersonalityShowcase() {
                 <span className="text-primary">Voice.</span>
               </h2>
               <p className="text-xl text-muted-foreground font-medium">
-                Motivation isn't generic. Select the psychological trigger that works for YOU.
+                Motivation isn&apos;t generic. Select the psychological trigger that works for YOU.
               </p>
             </motion.div>
 
@@ -113,7 +113,7 @@ export function PersonalityShowcase() {
           </div>
 
           {/* Visualization Side */}
-          <div className="lg:col-span-7 h-[600px] flex items-center justify-center relative perspective-1000">
+          <div className="lg:col-span-7 h-150 flex items-center justify-center relative perspective-1000">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeId}
