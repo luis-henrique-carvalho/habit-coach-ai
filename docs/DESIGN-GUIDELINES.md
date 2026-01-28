@@ -166,7 +166,81 @@ Toda página deve "montar" na tela com delays incrementais:
 
 ---
 
-## 7. Componentes & Acessibilidade
+## 7. Estratégia de Componentes
+
+### 7.1 Hierarquia de Prioridades
+
+**Ao implementar um componente, siga esta ordem:**
+
+1. ✅ **shadcn/ui PRIMEIRO** - Se existir componente pronto, use sempre
+   ```tsx
+   import { Button } from "@/components/ui/button";
+   import { Card } from "@/components/ui/card";
+   ```
+
+2. ❓ **Componentes Customizados (com aprovação)** - Se shadcn NÃO tiver:
+   - **SEMPRE pergunte antes** de criar componentes customizados
+   - Documente no PR o motivo da customização
+   - Mantenha o padrão de styling (Tailwind + variáveis do tema)
+   - Exemplo: Componentes muito específicos do domínio (coaching fragments, personality cards)
+
+3. ⚠️ **Nunca use UI libraries externas** sem discussão prévia
+   - Evita bloat de dependências
+   - Mantém estilo consistente
+   - Facilita manutenção
+
+### 7.2 Quando Customizar é Aceitável
+
+**Customização aprovada quando:**
+- Componente não existe em shadcn/ui
+- Requisito de design muito específico do projeto (ex: Coaching Fragments)
+- Melhora significativa de performance
+- Reduz código duplicado
+
+**Customização NÃO aprovada quando:**
+- Existe componente equivalente em shadcn/ui
+- É apenas uma variação de cor/tamanho (use className props)
+- Adiciona dependências externas
+
+### 7.3 Template para Componentes Customizados
+
+```tsx
+// ✅ PADRÃO CORRETO - Componentes customizados
+"use client";
+
+import { cn } from "@/lib/utils";
+
+interface CoachingFragmentProps {
+  name: string;
+  quote: string;
+  className?: string;
+}
+
+export function CoachingFragment({ name, quote, className }: CoachingFragmentProps) {
+  return (
+    <div className={cn(
+      "p-6 bg-card/80 backdrop-blur-md rounded-3xl border-2 border-primary/20",
+      "shadow-lg hover:shadow-xl transition-all",
+      className
+    )}>
+      <h3 className="font-black text-foreground mb-2">{name}</h3>
+      <p className="text-muted-foreground font-medium">&quot;{quote}&quot;</p>
+    </div>
+  );
+}
+```
+
+**Checklist para componentes customizados:**
+- [ ] Usa `cn()` para merge de classes
+- [ ] Todas cores do tema (sem hardcoded)
+- [ ] Tailwind classes padronizadas (sem `[...]`)
+- [ ] Suporta `className` prop para extensibilidade
+- [ ] Documentado por que não usa shadcn/ui
+- [ ] Aprovado no PR antes de merge
+
+---
+
+## 8. Componentes & Acessibilidade
 
 - **Lucide Icons**: Use com `stroke-width={2.5}` para casar com a tipografia bold.
 - **Acessibilidade**: Mantenha o focus ring (`--ring`) aparente. Contraste de `Signal Orange` no `Deep Dark` é validado para WCAG AA.
@@ -174,7 +248,7 @@ Toda página deve "montar" na tela com delays incrementais:
 
 ---
 
-## 8. Regras de Código: "Precisão & Consistência"
+## 9. Regras de Código: "Precisão & Consistência"
 
 ### 8.1 Cores - SEMPRE Use Variáveis do Tema
 
@@ -250,10 +324,11 @@ Toda página deve "montar" na tela com delays incrementais:
 
 ---
 
-## 9. Checklist de Qualidade
+## 10. Checklist de Qualidade
 
 Antes de commitar código, valide:
 
+- [ ] **Componentes**: Usa shadcn/ui quando possível? Se customizado, aprovado no PR?
 - [ ] **Cores**: Apenas variáveis do tema (`primary`, `secondary`, `accent`, `muted-foreground`, `destructive`)?
 - [ ] **Tailwind**: Nenhuma classe arbitrária (`[...]`) ou valores fora da escala?
 - [ ] **Aspas**: HTML entities (`&quot;`, `&apos;`, etc) em strings JSX?
@@ -265,5 +340,5 @@ Antes de commitar código, valide:
 
 ---
 
-**Versão**: 5.0 (Precisão & Consistência)
-**Foco**: Tipografia Bold, Asimetria, Personalidade Gamificada + Regras de Código Rigorosas
+**Versão**: 6.0 (Estratégia de Componentes + Aprovação)
+**Foco**: Tipografia Bold, Asimetria, Personalidade Gamificada + Regras de Código Rigorosas + Hierarquia shadcn → Customizado com Aprovação

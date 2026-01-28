@@ -43,7 +43,6 @@ next-env.d.ts
 # agents
 .agents/*
 .claude
-openspec
 AGENTS.md
 CLAUDE.md
 .opencode
