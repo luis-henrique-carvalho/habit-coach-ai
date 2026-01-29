@@ -56,7 +56,7 @@ export function Footer() {
               </h3>
 
               <p className="text-white/60 text-lg max-w-sm font-medium">
-                The only habit tracker that yells at you when you're lazy and hugs you when you try.
+                The only habit tracker that yells at you when you&apos;re lazy and hugs you when you try.
               </p>
             </motion.div>
 
@@ -130,7 +130,7 @@ export function Footer() {
 
           {/* Giant Wordmark */}
           <div className="w-full md:w-auto overflow-hidden">
-            <span className="text-[12vw] md:text-[8rem] font-black leading-[0.8] tracking-tighter text-white/5 select-none block md:absolute md:bottom-[-2rem] md:right-4 pointer-events-none">
+            <span className="text-[12vw] md:text-[8rem] font-black leading-[0.8] tracking-tighter text-white/5 select-none block md:absolute md:-bottom-8 md:right-4 pointer-events-none">
               HABIT
             </span>
           </div>
