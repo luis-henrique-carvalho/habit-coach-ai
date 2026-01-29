@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 
 export default function PrivateLayout({ children }: { children: ReactNode }) {
@@ -7,6 +7,7 @@ export default function PrivateLayout({ children }: { children: ReactNode }) {
     <SidebarProvider>
       <AppSidebar />
       <main className="flex-1 overflow-auto bg-background">
+        <SidebarTrigger />
         <div className="animate-fade-in">
           {children}
         </div>
