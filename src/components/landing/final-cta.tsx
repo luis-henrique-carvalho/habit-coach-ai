@@ -37,7 +37,7 @@ export function FinalCTA() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-3xl font-medium text-center max-w-2xl mx-auto mb-16 text-white/70"
         >
-          Seu "eu futuro" está implorando para você começar hoje. Não o deixe esperando.
+          Seu &quot;eu futuro&quot; está implorando para você começar hoje. Não o deixe esperando.
         </motion.p>
 
         <motion.div

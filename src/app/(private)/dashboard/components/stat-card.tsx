@@ -2,7 +2,6 @@ import { LucideIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { de } from "zod/v4/locales";
 
 interface StatCardProps {
   icon: LucideIcon;

@@ -107,7 +107,7 @@ export function Solution() {
                 <Image src="/avatar-general.png" alt="General" width={48} height={48} className="rounded-none border-2 border-black" />
                 <span className="font-black uppercase text-xl">GENERAL</span>
               </div>
-              <p className="font-bold text-lg leading-tight uppercase">"DOR É FRAQUEZA SAINDO DO CORPO! LEVANTA!"</p>
+              <p className="font-bold text-lg leading-tight uppercase">&quot;DOR É FRAQUEZA SAINDO DO CORPO! LEVANTA!&quot;</p>
             </motion.div>
 
             {/* Yoda Fragment */}
@@ -122,7 +122,7 @@ export function Solution() {
                 <Image src="/avatar-wise.png" alt="Yoda" width={48} height={48} className="rounded-full border border-primary" />
                 <span className="font-bold text-primary">Mestre Sábio</span>
               </div>
-              <p className="font-medium text-muted-foreground italic">"Paciência você deve ter. Um passo de cada vez, o caminho é."</p>
+              <p className="font-medium text-muted-foreground italic">&quot;Paciência você deve ter. Um passo de cada vez, o caminho é.&quot;</p>
             </motion.div>
 
           </div>
