@@ -9,6 +9,7 @@ import {
   unique,
   date,
   pgEnum,
+  time
 } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
@@ -16,8 +17,7 @@ import { user } from "./auth-schema";
 export const recurrenceTypeEnum = pgEnum("recurrence_type", [
   "daily",
   "weekly",
-  "monthly",
-  "annual",
+  "weekly_count",
 ]);
 
 // Habit table
@@ -31,10 +31,19 @@ export const habit = pgTable(
     name: text("name").notNull(),
     description: text("description"),
     isActive: boolean("is_active").default(true).notNull(),
+
     currentStreak: integer("current_streak").default(0).notNull(),
     longestStreak: integer("longest_streak").default(0).notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at")
+
+    recurrenceType: recurrenceTypeEnum("recurrence_type").notNull(),
+    recurrenceInterval: integer("recurrence_interval").default(1).notNull(),
+    recurrenceWeekdays: integer("recurrence_weekdays").array(),
+    recurrenceWeeklyCount: integer("recurrence_weekly_count"),
+
+    preferredTime: time("preferred_time"),
+
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .$onUpdate(() => new Date())
       .notNull(),
@@ -45,30 +54,6 @@ export const habit = pgTable(
   ]
 );
 
-// Habit recurrence table
-export const habitRecurrence = pgTable(
-  "habit_recurrence",
-  {
-    id: text("id").primaryKey(),
-    habitId: text("habit_id")
-      .notNull()
-      .references(() => habit.id, { onDelete: "cascade" })
-      .unique(),
-    type: recurrenceTypeEnum("type").notNull(),
-    // Type-specific fields (nullable, validated by application logic)
-    intervalDays: integer("interval_days"), // For daily recurrence
-    weekdays: integer("weekdays").array(), // For weekly recurrence (0=Sunday, 6=Saturday)
-    intervalMonths: integer("interval_months"), // For monthly recurrence
-    intervalYears: integer("interval_years"), // For annual recurrence
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at")
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("habitRecurrence_habitId_idx").on(table.habitId)]
-);
-
 // Habit execution table
 export const habitExecution = pgTable(
   "habit_execution",
@@ -77,9 +62,9 @@ export const habitExecution = pgTable(
     habitId: text("habit_id")
       .notNull()
       .references(() => habit.id, { onDelete: "cascade" }),
-    completedAt: timestamp("completed_at").notNull(),
+    completedAt: timestamp("completed_at", { withTimezone: true }).notNull(),
     completedDate: date("completed_date").notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   },
   (table) => [
     index("habitExecution_habitId_idx").on(table.habitId),
@@ -97,22 +82,8 @@ export const habitRelations = relations(habit, ({ one, many }) => ({
     fields: [habit.userId],
     references: [user.id],
   }),
-  recurrence: one(habitRecurrence, {
-    fields: [habit.id],
-    references: [habitRecurrence.habitId],
-  }),
   executions: many(habitExecution),
 }));
-
-export const habitRecurrenceRelations = relations(
-  habitRecurrence,
-  ({ one }) => ({
-    habit: one(habit, {
-      fields: [habitRecurrence.habitId],
-      references: [habit.id],
-    }),
-  })
-);
 
 export const habitExecutionRelations = relations(
   habitExecution,
