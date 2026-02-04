@@ -51,6 +51,11 @@ export const habit = pgTable(
   (table) => [
     index("habit_userId_idx").on(table.userId),
     index("habit_isActive_idx").on(table.isActive),
+    unique("habit_userId_name_active_unique").on(
+      table.userId,
+      table.name,
+      table.isActive
+    ),
   ]
 );
 

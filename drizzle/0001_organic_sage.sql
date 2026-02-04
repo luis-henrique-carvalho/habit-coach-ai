@@ -1,0 +1,1 @@
+ALTER TABLE "habit" ADD CONSTRAINT "habit_userId_name_active_unique" UNIQUE("user_id","name","is_active");

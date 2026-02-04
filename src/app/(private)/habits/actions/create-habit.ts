@@ -9,15 +9,12 @@ import { headers } from "next/headers";
 import { eq, and, isNull } from "drizzle-orm";
 
 export const createHabitAction = actionClient
-  .schema(createHabitSchema)
+  .inputSchema(createHabitSchema)
   .action(async ({ parsedInput }) => {
     try {
-      // Get authenticated user
       const session = await auth.api.getSession({
         headers: await headers(),
       });
-
-      console.log("Authenticated session:", session);
 
       if (!session || !session.user?.id) {
         return {
@@ -52,29 +49,6 @@ export const createHabitAction = actionClient
             code: "TIER_LIMIT_EXCEEDED" as const,
             message:
               "You have reached the maximum number of active habits for your plan. Upgrade to Pro for unlimited habits.",
-          },
-        };
-      }
-
-      // Check for name uniqueness per user
-      const existingHabit = await db
-        .select({ id: habit.id })
-        .from(habit)
-        .where(
-          and(
-            eq(habit.userId, userId),
-            eq(habit.name, parsedInput.name),
-            isNull(habit.isActive) // Only check against active habits
-          )
-        )
-        .limit(1);
-
-      if (existingHabit.length > 0) {
-        return {
-          success: false as const,
-          error: {
-            code: "ALREADY_EXISTS" as const,
-            message: "You already have an active habit with this name",
           },
         };
       }
