@@ -1,47 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Button, } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { CreateHabitForm } from "./create-habit-form";
 
-interface CreateHabitButtonProps {
-  onClick: () => void;
-  isDisabled?: boolean;
-  disabledReason?: string;
-}
+export function CreateHabitButton() {
+  const [isOpen, setIsOpen] = useState(false);
 
-export function CreateHabitButton({
-  onClick,
-  isDisabled = false,
-  disabledReason,
-}: CreateHabitButtonProps) {
-  const button = (
-    <Button
-      onClick={onClick}
-      disabled={isDisabled}
-      className="gap-2"
-      size="lg"
-    >
-      <Plus className="w-5 h-5" />
-      Create Habit
-    </Button>
-  );
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button variant="default">
+          <Plus className="size-4" />
+          Create Habit
+        </Button>
+      </DialogTrigger>
 
-  if (isDisabled && disabledReason) {
-    return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>{button}</TooltipTrigger>
-          <TooltipContent>{disabledReason}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  }
+      <CreateHabitForm
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+      />
 
-  return button;
+    </Dialog>
+  )
 }

@@ -30,11 +30,11 @@ export const createHabitSchema = z.object({
 
   description: z.string()
     .max(1000, "Description must be 1000 characters or less")
-    .optional()
-    .transform(val => val?.trim() || undefined),
+    .trim()
+    .optional(),
 
   recurrenceType: frequencyTypeSchema,
-  recurrenceInterval: z.number().int().min(1).default(1),
+  recurrenceInterval: z.number().int().min(1),
   recurrenceWeekdays: z.array(z.number().min(0).max(6)).optional(),
   recurrenceWeeklyCount: z.number().int().min(1).max(7).optional(),
 

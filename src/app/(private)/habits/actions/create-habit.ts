@@ -7,10 +7,26 @@ import { habit } from "@/db/schema/habit-schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { eq, and, isNull } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import { ActionResult } from "@/lib/types/action";
+
+interface PostgresError {
+  code?: string;
+  constraint_name?: string;
+  detail?: string;
+  message?: string;
+  severity?: string;
+  table_name?: string;
+  schema_name?: string;
+}
+
+interface DrizzleErrorWithCause extends Error {
+  cause?: PostgresError;
+}
 
 export const createHabitAction = actionClient
   .inputSchema(createHabitSchema)
-  .action(async ({ parsedInput }) => {
+  .action(async ({ parsedInput }): Promise<ActionResult<typeof habit.$inferSelect>> => {
     try {
       const session = await auth.api.getSession({
         headers: await headers(),
@@ -36,8 +52,8 @@ export const createHabitAction = actionClient
         .where(
           and(
             eq(habit.userId, userId),
-            isNull(habit.isActive) // Only count active habits - Note: schema has default true
-          )
+            isNull(habit.isActive), // Only count active habits - Note: schema has default true
+          ),
         );
 
       // For MVP, enforce free tier limit of 3 active habits
@@ -63,7 +79,10 @@ export const createHabitAction = actionClient
         isActive: true,
         currentStreak: 0,
         longestStreak: 0,
-        recurrenceType: parsedInput.recurrenceType as "daily" | "weekly" | "weekly_count",
+        recurrenceType: parsedInput.recurrenceType as
+          | "daily"
+          | "weekly"
+          | "weekly_count",
         recurrenceInterval: parsedInput.recurrenceInterval || 1,
         recurrenceWeekdays: parsedInput.recurrenceWeekdays || null,
         recurrenceWeeklyCount: parsedInput.recurrenceWeeklyCount || null,
@@ -74,19 +93,45 @@ export const createHabitAction = actionClient
 
       await db.insert(habit).values(newHabit);
 
+      await revalidatePath("/habits");
+      await revalidatePath("/dashboard");
+
       return {
         success: true as const,
         data: newHabit,
       };
-    } catch (error) {
-      console.error("Error creating habit:", error);
-      return {
-        success: false as const,
-        error: {
-          code: "DATABASE_ERROR" as const,
-          message:
-            "Failed to create habit. Please try again or contact support if the issue persists.",
+    } catch (error: unknown) {
+      const drizzleError = error as DrizzleErrorWithCause;
+      const pgError = drizzleError?.cause;
+      const constraintName = pgError?.constraint_name as string
+
+      const constraintMapping: Record<
+        string,
+        { field: string; message: string }
+      > = {
+        habit_userId_name_active_unique: {
+          field: "name",
+          message: `O nome '${parsedInput.name}' já está em uso.`,
         },
       };
+
+      const mappedError = constraintMapping[constraintName];
+
+      if (mappedError) {
+        return {
+          success: false,
+          error: {
+            code: "ALREADY_EXISTS" as const,
+            message: mappedError.message,
+          }
+        };
+      }
+
+      return { success: false,
+        error: {
+          code: "DATABASE_ERROR" as const,
+          message: error instanceof Error ? error.message : "An unexpected error occurred",
+        }
+      }
     }
   });

@@ -30,9 +30,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 
 import {
-  CreditCardIcon,
   LogOutIcon,
-  SettingsIcon,
   UserIcon,
 } from "lucide-react"
 
@@ -44,8 +42,8 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: "Habits",
+    url: "/habits",
     icon: Inbox,
   },
   {
