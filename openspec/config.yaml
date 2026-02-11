@@ -3,20 +3,6 @@ schema: spec-driven
 context: |
   # Habit Coach AI — Plataforma de Coaching de Hábitos com IA
 
-  ## Tech Stack
-  - **Language:** TypeScript (strict mode)
-  - **Framework:** Next.js 16 (App Router, React 19, Server Components)
-  - **Styling:** Tailwind CSS v4 + tw-animate-css
-  - **UI Components:** shadcn/ui (Radix UI primitives) + Lucide React icons
-  - **Forms:** React Hook Form + @hookform/resolvers + Zod v4 validation
-  - **Animations:** Framer Motion
-  - **Database:** PostgreSQL via Drizzle ORM
-  - **Auth:** Better Auth (email/password + Google/GitHub OAuth, session-based) with Drizzle adapter
-  - **Server Actions:** next-safe-action (actionClient pattern)
-  - **AI:** OpenAI GPT-4 (via Server Actions) — personalidades famosas como coaches
-  - **Toasts:** Sonner
-  - **Package Manager:** pnpm
-
   ## Domain
   Plataforma SaaS de coaching personalizado para construção de hábitos e alcance de metas,
   diferenciada pela integração de IA com personalidades de personagens famosos icônicos
@@ -31,84 +17,14 @@ context: |
   - Dashboards de visualização de progresso
   - Notificações no app
 
-  ## Project Structure & Conventions
-
-  ### Route Groups (Next.js App Router)
-  - `(private)/` — Páginas autenticadas (dashboard, habits, goals). Layout com `<SidebarProvider>` + `<AppSidebar>`.
-  - `(public)/` — Páginas não autenticadas (home/landing, login, register). Layout separado com navbar pública.
-  - `api/auth/[...all]/` — Better Auth catch-all API route.
-
-  ### Feature Module Pattern (dentro de cada rota)
-  Cada feature (e.g., `habits/`, futuramente `goals/`) segue:
-  ```
-  feature/
-    (pages)/
-      page.tsx              # Server Component async
-      loading.tsx           # Loading fallback
-      [id]/                 # Rotas dinâmicas
-    actions/
-      create-<entity>.ts   # Ações de criação
-      get-<entity>.ts      # Ações de busca
-      update-<entity>.ts   # Ações de atualização
-      delete-<entity>.ts   # Ações de remoção
-    components/
-      <entity>-button.tsx       # Botões de ação (dialog triggers)
-      <entity>-form.tsx         # Formulários (create/edit)
-      <entity>-content.tsx      # Componente principal de conteúdo
-    schemas/
-      <entity>-schema.ts       # Zod schema + tipo TypeScript inferido
-    types/
-      <entity>.ts              # Tipos/interfaces da feature
-  ```
-
-  ### Page Pattern
-  Páginas são Server Components assíncronos que:
-  1. Chamam server actions para buscar dados
-  2. Usam `PageContainer`, `PageHeader`, `PageTitle`, `PageDescription`, `PageActions`, `PageContent` como layout
-  3. Delegam para componentes de conteúdo
-  4. sempre que possivel usar server components para evitar carregamento desnecessário no cliente
-
-  ### Server Actions Pattern
-  - Sempre marcadas com `"use server"`
-  - Usam `actionClient.inputSchema(zodSchema).action(async ({ parsedInput }) => { ... })`
-  - Auth check via `auth.api.getSession({ headers: await headers() })`
-  - Retornam `ActionResult<T>` com `{ success, data?, error?: { code, message, fieldErrors? } }`, e `T` deve representar o tipo exato do resultado retornado
-  - Chamam `revalidatePath()` após mutations
-  - Tratam erros de constraint do DB com mapeamento de erros por campo
-
-  ### Validation Schemas
-  - Definidos com Zod em `schemas/` de cada feature
-  - Exportam o schema e o tipo TypeScript inferido (`z.infer<typeof schema>`)
-  - Nomeados como `create<Entity>Schema` / `update<Entity>Schema` + `Create<Entity>Input` / `Update<Entity>Input`
-
-  ### Database (Drizzle ORM)
-  - Schema em `src/db/schema/` com arquivos separados por domínio (`auth-schema.ts`, `habit-schema.ts`)
-  - Barrel file em `src/db/schema/index.ts`
-  - Migrations em `drizzle/`
-  - Tabelas usam `pgTable()`, enums usam `pgEnum()`
-  - Todas entidades do usuário têm `userId` FK com `onDelete: "cascade"`
-  - IDs como `text("id").primaryKey()`
-  - Timestamps: `createdAt` (defaultNow) e `updatedAt` (defaultNow + $onUpdate)
-
-  ### Layout Structure
-  - Root layout: fonts, providers globais
-  - Private layout: `<SidebarProvider>` + `<AppSidebar>` + `<SidebarTrigger>`
-  - Public layout: layout separado para páginas não autrenticadas (navbar pública)
-
-  ### UI / Styling
-  - Somente usar client components quando necessário (ex: forms, toasts, interatividade)
-  - Sempre usar compoenentes do shadcn/ui quando possível, caso contrário criar novos componentes seguindo o design system
-  - Todos componentes UI do shadcn/ui em `src/components/ui/`
-  - Componentes de layout em `src/components/layout/`
-  - Componentes de landing page em `src/components/landing/`
-  - Import alias: `@/*` mapeia para `./src/*`
-  - Idioma: i18n (priorizando pt-BR) para todos os textos voltados ao usuário
-
-  ### Auth
-  - Better Auth config em `src/lib/auth.ts` com Drizzle adapter (PostgreSQL)
-  - Auth client em `src/lib/auth-client.ts`
-  - Providers: email/password + Google OAuth + GitHub OAuth
-  - Schemas de auth em `src/app/(public)/(auth)/schemas/`
+  ## Reference
+  **Tech Stack, Project Structure, Patterns, and Conventions are documented in `docs/PATTERNS.md`.**
+  Always consult this file for:
+  - Route groups and feature module structure
+  - Page, Server Actions, and Form patterns
+  - Database (Drizzle ORM) conventions
+  - Auth utilities and flows
+  - UI/Component best practices
 
 rules:
   proposal:
