@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { user, session, habit, habitExecution } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { user, habit, habitExecution } from "@/db/schema";
+import { eq, inArray } from "drizzle-orm";
 
 export async function POST() {
   // STRICTLY for local testing/CI
@@ -9,51 +9,39 @@ export async function POST() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const testUserId = "cypress-test-user";
-  const testSessionToken = "cypress-session-token";
+  const testEmail = "cypress@example.com";
 
   try {
-    // Upsert test user
-    await db.insert(user).values({
-      id: testUserId,
-      name: "Cypress Tester",
-      email: "cypress@example.com",
-      emailVerified: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }).onConflictDoUpdate({
-      target: user.id,
-      set: { name: "Cypress Tester" }
+    // 1. Get the user if it exists
+    const existingUser = await db.query.user.findFirst({
+      where: eq(user.email, testEmail),
     });
 
-    // Create session
-    await db.insert(session).values({
-      id: "cypress-session-id",
-      userId: testUserId,
-      token: testSessionToken,
-      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24), // 24h
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }).onConflictDoUpdate({
-      target: session.id,
-      set: { expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24) }
-    });
+    if (existingUser) {
+      // Get habit IDs for this user
+      const userHabits = await db
+        .select({ id: habit.id })
+        .from(habit)
+        .where(eq(habit.userId, existingUser.id));
 
-    // Clear habits and executions for this user
-    // We fetch habits first because we might want to be more specific, 
-    // but a simple delete where userId matches is more efficient.
-    await db.delete(habitExecution).where(
-      eq(habitExecution.habitId, db.select({ id: habit.id }).from(habit).where(eq(habit.userId, testUserId)))
-    );
-    await db.delete(habit).where(eq(habit.userId, testUserId));
+      if (userHabits.length > 0) {
+        const habitIds = userHabits.map((h) => h.id);
+        // 2. Delete all habit executions for these habits
+        await db.delete(habitExecution).where(inArray(habitExecution.habitId, habitIds));
+        // 3. Delete all habits for this user
+        await db.delete(habit).where(inArray(habit.id, habitIds));
+      }
+
+      // 4. Delete the user
+      await db.delete(user).where(eq(user.id, existingUser.id));
+    }
 
     return NextResponse.json({ 
       success: true, 
-      userId: testUserId, 
-      sessionToken: testSessionToken 
+      message: "Database cleaned for test user"
     });
   } catch (error) {
-    console.error("Seeding failed:", error);
-    return NextResponse.json({ error: "Seeding failed" }, { status: 500 });
+    console.error("Seeding/Cleanup failed:", error);
+    return NextResponse.json({ error: "Seeding/Cleanup failed" }, { status: 500 });
   }
 }

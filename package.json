@@ -1,7 +1,6 @@
 {
   "name": "habit-coach-ai",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,10 +11,13 @@
     "db:studio": "drizzle-kit studio",
     "test": "vitest run --config ./vitest.config.ts",
     "test:watch": "vitest --config ./vitest.config.ts",
-    "test:e2e": "vitest run --config ./vitest.config.ts",
-    "test:e2e:watch": "vitest --config ./vitest.config.ts",
+    "db:test:up": "docker compose -f docker-compose.test.yml up -d",
+    "e2e": "pnpm db:test:up && dotenv -e .env.test -- start-server-and-test dev http://localhost:3000 cypress:run",
+    "e2e:ui": "pnpm db:test:up && dotenv -e .env.test -- start-server-and-test dev http://localhost:3000 cypress:open",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "test:cypress:ui": "start-server-and-test dev http://localhost:3000 cypress:open",
+    "test:cypress:headless": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -59,9 +61,11 @@
     "@types/supertest": "^7.2.0",
     "@vitest/ui": "^4.1.0",
     "cypress": "^15.12.0",
+    "dotenv-cli": "^11.0.0",
     "drizzle-kit": "^0.31.8",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
+    "start-server-and-test": "^2.1.5",
     "supertest": "^7.2.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
