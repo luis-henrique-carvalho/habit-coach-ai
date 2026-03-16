@@ -4,7 +4,7 @@ export const upsertHabitSchema = z
   .object({
     id: z.string().optional(),
     name: z
-      .string()
+      .string({ error: "Nome é obrigatório" })
       .min(1, "Nome é obrigatório")
       .max(100, "Nome deve ter no máximo 100 caracteres"),
     description: z
@@ -13,7 +13,10 @@ export const upsertHabitSchema = z
       .optional()
       .or(z.literal("")),
     recurrenceType: z.enum(["daily", "weekly", "weekly_count"], {
-      error: "Tipo de recorrência inválido",
+      error: (issue) =>
+        issue.input === undefined
+          ? "Tipo de recorrência é obrigatório"
+          : "Tipo de recorrência inválido",
     }),
     recurrenceWeekdays: z
       .array(z.number().int().min(0).max(6))

@@ -1,0 +1,36 @@
+name: CI - Testes de Integração
+
+# Define quando o pipeline vai rodar (pushes e PRs para a branch main)
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  test:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://test_user:test_password@localhost:5433/test_db
+      BETTER_AUTH_SECRET: "ci_test_secret"
+      BETTER_AUTH_URL: "http://localhost:3000"
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Iniciar Banco de Dados (Docker Compose)
+        run: docker compose -f docker-compose.test.yml up -d --wait
+
+      - name: Instalar dependências
+        run: pnpm install
+
+      - name: Executar todos os testes
+        run: pnpm run test

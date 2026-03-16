@@ -51,6 +51,8 @@ rules:
     - "2) [TDD-IMPL] Implementar o código mínimo para passar nos testes"
     - "3) [TDD-IMPL] Refatorar com segurança"
     - "4) [QUALITY] Rodar lint e typecheck"
+    - "5) [QUALITY] Rodar testes"
+    - "6) [QUALITY] Caso testes falhem, refatorar e repetir até que todos os testes passem, SEM FALSO POSITIVE OU ALTERAÇÃO DE LÓGICA PARA PASSAR OS TESTES"
     - "Tarefas de Teste DEVEM ser listadas ANTES das tarefas de Implementação"
     - "Zero falsos positivos: Testes devem possuir isolamento, não ter interdependências, mockar dependências externas apropriadamente e não depender de timing/race conditions"
     - "Cada tarefa de teste deve especificar os paths dos arquivos de teste e as descrições dos casos"

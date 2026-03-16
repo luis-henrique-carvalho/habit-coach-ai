@@ -4,10 +4,11 @@ We need to establish a comprehensive testing suite for the application, starting
 
 ## What Changes
 
-- Set up the overall testing infrastructure (unit, integration, and E2E) if not already fully configured.
+- Set up the overall testing infrastructure using Vitest and SWC in a Node environment.
 - Implement unit tests for habit validation schemas and local logic, colocated within the `src/app/(private)/habits` module.
-- Implement integration tests for habit database operations (Drizzle ORM) and Server Actions, colocated in `src/app/(private)/habits/actions`.
-- Implement End-to-End (E2E) tests covering the complete user journey for the Habits CRUD, placed inside `src/app/(private)/habits`.
+- Implement integration tests for habit database operations (Drizzle ORM) and Server Actions, colocated in `src/app/(private)/habits`.
+- Implement End-to-End (E2E) UI tests covering the complete user journey for the Habits CRUD via Cypress.
+- Utilize a dedicated PostgreSQL testing database spun up via `docker-compose.test.yml` to ensure state isolation.
 
 ## Capabilities
 
@@ -19,5 +20,5 @@ We need to establish a comprehensive testing suite for the application, starting
 ## Impact
 
 - `src/app/(private)/habits/` pages, components, actions, and schemas
-- Testing configuration files (`vitest.config.ts`, `playwright.config.ts`, etc.)
-- CI/CD pipelines (potentially adding test steps)
+- Testing configuration files (`vitest.config.ts`, `cypress.config.ts`, `docker-compose.test.yml`)
+- CI/CD pipelines (`.github/workflows/ci.yml`)

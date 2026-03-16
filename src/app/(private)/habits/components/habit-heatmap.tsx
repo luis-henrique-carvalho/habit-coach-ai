@@ -2,11 +2,7 @@
 
 import { useMemo } from "react";
 import {
-  subDays,
   format,
-  getDay,
-  startOfWeek,
-  addDays,
 } from "date-fns";
 import {
   Tooltip,
@@ -14,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { generateHeatmapCells, type CellStatus } from "../lib/habit-heatmap-utils";
 
 interface HabitHeatmapProps {
   executions: { completedDate: string }[];
@@ -21,8 +18,6 @@ interface HabitHeatmapProps {
   recurrenceWeekdays?: number[] | null;
   createdAt: Date;
 }
-
-type CellStatus = "completed" | "missed" | "not-expected" | "future";
 
 export function HabitHeatmap({
   executions,
@@ -32,40 +27,13 @@ export function HabitHeatmap({
 }: HabitHeatmapProps) {
   const { cells, weekdayLabels } = useMemo(() => {
     const today = new Date();
-    const completedSet = new Set(executions.map((e) => e.completedDate));
-
-    // Start from 90 days ago, aligned to the start of that week
-    const ninetyDaysAgo = subDays(today, 89);
-    const gridStart = startOfWeek(ninetyDaysAgo, { weekStartsOn: 1 });
-
-    const cells: {
-      date: Date;
-      dateStr: string;
-      status: CellStatus;
-      dayOfWeek: number;
-    }[] = [];
-
-    let current = gridStart;
-    while (current <= today) {
-      const dateStr = format(current, "yyyy-MM-dd");
-      const dayOfWeek = getDay(current); // 0=Sunday
-      const isBeforeCreation = current < new Date(format(createdAt, "yyyy-MM-dd"));
-      const isBeforeWindow = current < ninetyDaysAgo;
-
-      let status: CellStatus;
-      if (isBeforeCreation || isBeforeWindow) {
-        status = "not-expected";
-      } else if (completedSet.has(dateStr)) {
-        status = "completed";
-      } else if (isExpectedDay(dayOfWeek, recurrenceType, recurrenceWeekdays)) {
-        status = "missed";
-      } else {
-        status = "not-expected";
-      }
-
-      cells.push({ date: current, dateStr, status, dayOfWeek });
-      current = addDays(current, 1);
-    }
+    const cells = generateHeatmapCells(
+      executions,
+      recurrenceType,
+      recurrenceWeekdays,
+      createdAt,
+      today
+    );
 
     const weekdayLabels = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 
@@ -152,19 +120,6 @@ export function HabitHeatmap({
       </div>
     </div>
   );
-}
-
-function isExpectedDay(
-  dayOfWeek: number,
-  recurrenceType: string,
-  recurrenceWeekdays?: number[] | null
-): boolean {
-  if (recurrenceType === "daily") return true;
-  if (recurrenceType === "weekly") {
-    return recurrenceWeekdays?.includes(dayOfWeek) ?? false;
-  }
-  // weekly_count: any day could count
-  return true;
 }
 
 function cellColor(status: CellStatus): string {
