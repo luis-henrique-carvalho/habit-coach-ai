@@ -52,12 +52,12 @@ Cypress.Commands.add('createHabit', (name: string, options: CreateHabitOptions =
   // Wait for the dialog to appear
   cy.get('[role="dialog"]').should('be.visible');
 
-  // Fill the name field
-  cy.get('[role="dialog"]').find('#name').clear().type(name);
+  // Fill the name field with a delay for stability in headless mode
+  cy.get('[role="dialog"]').find('#name').focus().type('{selectall}{backspace}' + name, { delay: 50 });
 
   // Fill description if provided
   if (description) {
-    cy.get('[role="dialog"]').find('#description').clear().type(description);
+    cy.get('[role="dialog"]').find('#description').focus().type('{selectall}{backspace}' + description, { delay: 50 });
   }
 
   // Handle recurrence type selection
@@ -85,7 +85,7 @@ Cypress.Commands.add('createHabit', (name: string, options: CreateHabitOptions =
     cy.get('[role="dialog"]')
       .find('#recurrenceWeeklyCount')
       .clear()
-      .type(weeklyCount.toString());
+      .type(weeklyCount.toString(), { delay: 50 });
   }
 
   // Submit the form

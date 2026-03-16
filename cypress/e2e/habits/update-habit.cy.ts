@@ -23,8 +23,8 @@ describe('Habits - Edição de Hábitos', () => {
     cy.get('[role="dialog"]').find('#name').should('have.value', 'Meditar');
 
     // Clear the name and type a new one
-    // Use select-all then type to ensure full replacement
-    cy.get('[role="dialog"]').find('#name').focus().clear().type('Meditar 15min');
+    // Use select-all then type to ensure full replacement and avoid character loss in headless mode
+    cy.get('[role="dialog"]').find('#name').focus().type('{selectall}{backspace}Meditar 15min', { delay: 50 });
 
     // Click "Atualizar"
     cy.get('[role="dialog"]').contains('button', 'Atualizar').click();
@@ -53,8 +53,8 @@ describe('Habits - Edição de Hábitos', () => {
     cy.get('[role="dialog"]').find('button[role="combobox"]').click();
     cy.get('[role="option"]').contains('X vezes por semana').click();
 
-    // Fill weekly count
-    cy.get('[role="dialog"]').find('#recurrenceWeeklyCount').clear().type('3');
+    // Fill weekly count with a small delay for stability
+    cy.get('[role="dialog"]').find('#recurrenceWeeklyCount').clear().type('3', { delay: 50 });
 
     // Click "Atualizar"
     cy.get('[role="dialog"]').contains('button', 'Atualizar').click();
