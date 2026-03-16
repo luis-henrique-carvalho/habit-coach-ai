@@ -65,6 +65,8 @@ export async function HabitDetailContent({ id }: HabitDetailContentProps) {
               <PageTitle>{habit.name}</PageTitle>
               <PageDescription>
                 {habit.description && `${habit.description} · `}
+                {habit.recurrenceWeeklyCount && habit.recurrenceWeeklyCount}
+
                 {RECURRENCE_LABELS[habit.recurrenceType] || habit.recurrenceType}
                 {" · "}
                 Criado em{" "}
