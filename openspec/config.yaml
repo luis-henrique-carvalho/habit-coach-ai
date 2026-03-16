@@ -35,13 +35,36 @@ rules:
     - Todos os textos voltados ao usuário devem seguir as diretrizes de i18n com foco em pt-BR
     - Considerar os limites do plano Free vs Pro (ex: 3 hábitos, 1 meta, 1 personalidade de IA)
     - Mencionar se a feature envolve integração com IA (OpenAI/MCP)
+    - "Sempre incluir uma seção de 'Testing Strategy' descrevendo quais testes serão escritos para validar a feature"
+    - "Definir Critérios de Aceite claros que possam ser verificados através de testes"
+
+  design:
+    - "Incluir uma seção de 'Test Plan' com casos de teste detalhados"
+    - "Especificar os tipos de teste necessários (unitário, integração, e2e)"
+    - "Definir estratégias de mock para dependências externas, banco de dados e APIs (ex: OpenAI/MCP)"
+    - "Garantir que as escolhas de infraestrutura e arquitetura permitam e facilitem a testabilidade"
 
   tasks:
-    - Quebrar tarefas em chunks de no máximo 2 horas
-    - Cada tarefa deve especificar arquivos afetados e o pattern que seguem
+    - "Quebrar tarefas em chunks de no máximo 2 horas"
+    - "Sempre seguir o fluxo de TDD nesta exata ordem para cada funcionalidade:"
+    - "1) [TDD-TEST] Escrever testes falhando primeiro"
+    - "2) [TDD-IMPL] Implementar o código mínimo para passar nos testes"
+    - "3) [TDD-IMPL] Refatorar com segurança"
+    - "4) [QUALITY] Rodar lint e typecheck"
+    - "Tarefas de Teste DEVEM ser listadas ANTES das tarefas de Implementação"
+    - "Zero falsos positivos: Testes devem possuir isolamento, não ter interdependências, mockar dependências externas apropriadamente e não depender de timing/race conditions"
+    - "Cada tarefa de teste deve especificar os paths dos arquivos de teste e as descrições dos casos"
+    - Cada tarefa de implementação deve especificar arquivos afetados e o pattern que seguem
     - Server actions devem usar next-safe-action com validação Zod
     - Incluir criação de Zod schema como tarefa separada quando novos formulários estão envolvidos
     - Tarefas de migração de banco de dados devem ser separadas das tarefas de código da aplicação
     - Sempre incluir chamadas de revalidatePath após actions de mutação
-    - Incluir tipagem TypeScript (types/) como tarefa quando novos tipos são necessários
-    - Considerar criação de testes como tarefa separada quando aplicável
+    - Incluir tipagem TypeScript (types/) quando novos tipos são necessários
+    # --- Code Quality & Verification ---
+    - "Filosofia de Qualidade de Código: Type safety é mandatória, prefira tipagem explícita sobre inferência nas fronteiras"
+    - "Sem 'any' implícito, DTOs devem ser totalmente tipados, valores desconhecidos devem usar type guards/Zod"
+    - "ESLint (MANDATÓRIO): Nunca usar eslint-disable, ts-ignore ou 'as any'"
+    - "Deve seguir SEMPRE o eslint e verificar se não existe erro de eslint. Caso exista, DEVE corrigir imediatamente"
+    - "Sempre criar uma tarefa de validação/lint rodando: pnpm eslint ."
+    - "Sempre criar uma tarefa de typecheck rodando: tsc --noEmit"
+    - "O código só é válido se lint e typecheck passarem; caso contrário, crie tarefas adicionais de correção"
