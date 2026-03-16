@@ -20,6 +20,11 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,5 +37,14 @@ jobs:
       - name: Instalar dependências
         run: pnpm install
 
-      - name: Executar todos os testes
+      - name: Criar arquivo .env.test
+        run: |
+          echo "DATABASE_URL=postgresql://test_user:test_password@localhost:5433/test_db" >> .env.test
+          echo "BETTER_AUTH_SECRET=ci_test_secret" >> .env.test
+          echo "BETTER_AUTH_URL=http://localhost:3000" >> .env.test
+
+      - name: Executar testes unitários (Vitest)
         run: pnpm run test
+
+      - name: Executar testes E2E (Cypress)
+        run: pnpm run e2e
