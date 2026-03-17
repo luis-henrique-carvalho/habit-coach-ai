@@ -4,8 +4,9 @@ import { user, habit, habitExecution } from "@/db/schema";
 import { eq, inArray } from "drizzle-orm";
 
 export async function POST() {
-  // STRICTLY for local testing/CI
-  if (process.env.NODE_ENV === "production") {
+  // Permitir apenas se explicitamente em ambiente de teste
+  // Nota: Em builds de produção (next start), NODE_ENV é sempre "production"
+  if (process.env.NEXT_PUBLIC_APP_ENV !== "test" && process.env.NODE_ENV === "production") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -36,8 +37,8 @@ export async function POST() {
       await db.delete(user).where(eq(user.id, existingUser.id));
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       message: "Database cleaned for test user"
     });
   } catch (error) {

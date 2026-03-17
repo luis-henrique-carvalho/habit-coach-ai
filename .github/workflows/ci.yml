@@ -51,12 +51,17 @@ jobs:
           echo "DATABASE_URL=postgresql://test_user:test_password@localhost:5433/test_db" >> .env.test
           echo "BETTER_AUTH_SECRET=ci_test_secret" >> .env.test
           echo "BETTER_AUTH_URL=http://localhost:3000" >> .env.test
+          echo "NEXT_PUBLIC_APP_ENV=test" >> .env.test
+          echo "NODE_ENV=test" >> .env.test
 
       - name: Rodar migrations
         run: pnpm db:migrate
+
+      - name: Build da aplicação
+        run: pnpm build
 
       - name: Executar testes unitários (Vitest)
         run: pnpm run test
 
       - name: Executar testes E2E (Cypress)
-        run: pnpm run e2e
+        run: pnpm test:cypress:headless
