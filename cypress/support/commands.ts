@@ -4,13 +4,9 @@ Cypress.Commands.add('login', () => {
   // Limpar cookies e localStorage para evitar colisões de sessão do Better Auth
   cy.clearCookies();
   cy.clearLocalStorage();
-  
-  // 1. Clean the database for the test user
-  cy.request('POST', '/api/test/seed').then((seedResponse) => {
-    if (seedResponse.status !== 200) {
-      throw new Error(`Seed failed: ${JSON.stringify(seedResponse.body)}`);
-    }
 
+  // 1. Clean the database for the test user via task
+  cy.task('db:seed').then(() => {
     // 2. Try to sign up the user via Better Auth
     cy.request({
       method: 'POST',
@@ -22,24 +18,16 @@ Cypress.Commands.add('login', () => {
       },
       failOnStatusCode: false,
     }).then((signUpResponse) => {
-      if (signUpResponse.status === 200 || signUpResponse.status === 201) {
-        return;
+      if (signUpResponse.status !== 200) {
+        cy.request({
+          method: 'POST',
+          url: '/api/auth/sign-in/email',
+          body: {
+            email: 'cypress@example.com',
+            password: 'password123',
+          },
+        });
       }
-
-      // Se falhar o sign-up (ex: usuário já existe), tentar sign-in
-      cy.request({
-        method: 'POST',
-        url: '/api/auth/sign-in/email',
-        body: {
-          email: 'cypress@example.com',
-          password: 'password123',
-        },
-        failOnStatusCode: false
-      }).then((signInResponse) => {
-         if (signInResponse.status !== 200) {
-           throw new Error(`Auth failed: sign-up=${signUpResponse.status}, sign-in=${signInResponse.status}`);
-         }
-      });
     });
   });
 });
@@ -126,3 +114,4 @@ Cypress.Commands.add('openHabitMenu', (habitName: string) => {
   // Wait for the dropdown menu content to appear
   cy.get('[role="menuitem"]').should('be.visible');
 });
+
