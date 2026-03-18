@@ -15,6 +15,12 @@ jobs:
       DATABASE_URL: postgresql://test_user:test_password@localhost:5433/test_db
       BETTER_AUTH_SECRET: ci_test_secret
       BETTER_AUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_BETTER_AUTH_URL: http://localhost:3000
+      GOOGLE_CLIENT_ID: mock_id
+      GOOGLE_CLIENT_SECRET: mock_secret
+      GITHUB_CLIENT_ID: mock_id
+      GITHUB_CLIENT_SECRET: mock_secret
+      NEXT_PUBLIC_APP_ENV: test
 
     steps:
       - name: Checkout do código
@@ -52,16 +58,21 @@ jobs:
           DATABASE_URL=postgresql://test_user:test_password@localhost:5433/test_db
           BETTER_AUTH_SECRET=local_test_secret
           BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
           NODE_ENV=test
           NEXT_PUBLIC_APP_ENV=test
           APP_ENV=test
+          GOOGLE_CLIENT_ID=mock_id
+          GOOGLE_CLIENT_SECRET=mock_secret
+          GITHUB_CLIENT_ID=mock_id
+          GITHUB_CLIENT_SECRET=mock_secret
           EOF
 
       - name: Rodar migrations
         run: pnpm db:migrate
 
-      - name: Build da aplicação
-        run: pnpm build
+      - name: Build da aplicação (modo teste)
+        run: pnpm build:test
 
       - name: Executar testes unitários (Vitest)
         run: pnpm run test

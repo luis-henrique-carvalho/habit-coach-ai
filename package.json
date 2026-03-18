@@ -17,7 +17,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test:cypress:ui": "start-server-and-test dev http://localhost:3000 cypress:open",
-    "test:cypress:headless": "dotenv -e .env.test -- start-server-and-test start http://localhost:3000 cypress:run"
+    "test:cypress:headless": "dotenv -e .env.test -- start-server-and-test start http://localhost:3000 cypress:run",
+    "build:test": "dotenv -e .env.test -- next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
