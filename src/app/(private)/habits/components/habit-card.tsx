@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Flame, MoreVertical, Pencil, Archive, Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -101,79 +101,84 @@ export function HabitCard({ habit }: HabitCardProps) {
 
   return (
     <>
-      <Card className="group relative transition-colors hover:border-border">
-        <CardContent className="flex items-center gap-4 p-4">
-          {/* Completion toggle */}
-          <button
-            type="button"
-            onClick={handleToggle}
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-              optimisticCompleted
-                ? "border-emerald-500 bg-emerald-500 text-white"
-                : "border-border hover:border-primary"
-            }`}
-            aria-label={
-              optimisticCompleted ? "Desmarcar hábito" : "Marcar hábito como concluído"
-            }
-          >
-            {optimisticCompleted && <Check className="h-4 w-4" />}
-          </button>
-
-          {/* Habit info */}
-          <Link
-            href={`/habits/${habit.id}`}
-            className="flex min-w-0 flex-1 flex-col gap-1"
-          >
-            <span
-              className={`text-sm font-medium ${
+      <Card className="group relative transition-all hover:shadow-md border-border">
+        <CardContent className="flex items-center justify-between gap-4 p-6">
+          <div className="flex items-center gap-5 min-w-0">
+            {/* Completion toggle */}
+            <Button
+              type="button"
+              variant="default"
+              size="icon"
+              onClick={handleToggle}
+              className={cn(
+                "flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border-2 transition-colors p-0",
                 optimisticCompleted
-                  ? "text-muted-foreground line-through"
-                  : "text-foreground"
-              }`}
+                  ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "border-border hover:border-primary hover:bg-transparent"
+              )}
+              aria-label={
+                optimisticCompleted ? "Desmarcar hábito" : "Marcar hábito como concluído"
+              }
             >
-              {habit.name}
-            </span>
-            <span className="text-xs text-muted-foreground">
-              {getRecurrenceLabel(habit)}
-            </span>
-          </Link>
+              {optimisticCompleted && <Check className="h-4 w-4 stroke-[3px]" />}
+            </Button>
 
-          {/* Streak */}
-          {habit.currentStreak > 0 && (
-            <Badge
-              variant="outline"
-              className="shrink-0 gap-1 border-orange-200 bg-orange-50 text-orange-700"
-            >
-              <Flame className="h-3 w-3" />
-              {habit.currentStreak}
-            </Badge>
-          )}
+            {/* Habit info */}
+            <div className="flex flex-col gap-1 min-w-0">
+              <Link
+                href={`/habits/${habit.id}`}
+                className={cn(
+                  "text-xl font-black tracking-tight uppercase truncate hover:text-primary transition-colors",
+                  optimisticCompleted
+                    ? "text-muted-foreground line-through opacity-60"
+                    : "text-foreground"
+                )}
+              >
+                {habit.name}
+              </Link>
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                  {getRecurrenceLabel(habit)}
+                </span>
 
-          {/* Actions menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 shrink-0 opacity-0 group-hover:opacity-100"
-              >
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setIsEditOpen(true)}>
-                <Pencil className="mr-2 h-4 w-4" />
-                Editar
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => setIsArchiveOpen(true)}
-                className="text-destructive"
-              >
-                <Archive className="mr-2 h-4 w-4" />
-                Arquivar
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                {/* Streak */}
+                {habit.currentStreak > 0 && (
+                  <div className="flex items-center gap-1.5 text-orange-600 font-bold text-sm">
+                    <Flame className="h-4 w-4 fill-orange-600" />
+                    {habit.currentStreak}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {/* Actions menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="h-10 w-10  group-hover:opacity-100 transition-opacity"
+                >
+                  <MoreVertical className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setIsEditOpen(true)}>
+                  <Pencil className="mr-2 h-4 w-4" />
+                  Editar
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setIsArchiveOpen(true)}
+                  className="text-destructive"
+                >
+                  <Archive className="mr-2 h-4 w-4" />
+                  Arquivar
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </CardContent>
       </Card>
 

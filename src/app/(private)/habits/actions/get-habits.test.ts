@@ -170,4 +170,52 @@ describe('getHabitsAction', () => {
       expect(result.data.total).toBe(15);
     }
   });
+
+  describe('status filtering', () => {
+    beforeEach(async () => {
+      // Habit 1: Active
+      await db.insert(habit).values({
+        id: 'h-active',
+        userId: TEST_USER_ID,
+        name: 'Active Habit',
+        recurrenceType: 'daily',
+        isActive: true,
+      });
+
+      // Habit 2: Archived
+      await db.insert(habit).values({
+        id: 'h-archived',
+        userId: TEST_USER_ID,
+        name: 'Archived Habit',
+        recurrenceType: 'daily',
+        isActive: false,
+      });
+    });
+
+    it('should return all habits when status is "all"', async () => {
+      const result = await getHabitsAction({ status: 'all' });
+      expect(result.success).toBe(true);
+      if (result.success && result.data) {
+        expect(result.data.habits).toHaveLength(2);
+      }
+    });
+
+    it('should return only active habits when status is "active"', async () => {
+      const result = await getHabitsAction({ status: 'active' });
+      expect(result.success).toBe(true);
+      if (result.success && result.data) {
+        expect(result.data.habits).toHaveLength(1);
+        expect(result.data.habits[0].id).toBe('h-active');
+      }
+    });
+
+    it('should return only archived habits when status is "archived"', async () => {
+      const result = await getHabitsAction({ status: 'archived' });
+      expect(result.success).toBe(true);
+      if (result.success && result.data) {
+        expect(result.data.habits).toHaveLength(1);
+        expect(result.data.habits[0].id).toBe('h-archived');
+      }
+    });
+  });
 });

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -52,6 +53,7 @@ export function UpsertHabitForm({
   onOpenChange,
   habit: editHabit,
 }: UpsertHabitFormProps) {
+  const router = useRouter();
   const [formError, setFormError] = useState("");
   const isEdit = !!editHabit?.id;
 
@@ -79,6 +81,7 @@ export function UpsertHabitForm({
       toast.success(isEdit ? "Hábito atualizado com sucesso" : "Hábito criado com sucesso");
       form.reset();
       onOpenChange(false);
+      router.replace("/habits");
     },
     onError: () => {
       setFormError("Erro ao processar a requisição");

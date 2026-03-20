@@ -8,6 +8,8 @@ export type HabitWithStatus = Habit & {
   isDueToday: boolean;
 };
 
+export type HabitStatusFilter = "all" | "active" | "archived";
+
 export type HabitStats = {
   currentStreak: number;
   longestStreak: number;

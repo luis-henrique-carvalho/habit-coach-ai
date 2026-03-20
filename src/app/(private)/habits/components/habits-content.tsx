@@ -10,18 +10,21 @@ import {
 import { getHabitsAction } from "../actions/get-habits";
 import { AddHabitButton } from "./add-habit-button";
 import { HabitCard } from "./habit-card";
-import { HabitChecklist } from "./habit-checklist";
+import { HabitFilters } from "./habit-filters";
+import type { HabitStatusFilter } from "../types";
 
 interface HabitsContentProps {
   query?: string;
   page: string;
+  status?: HabitStatusFilter;
 }
 
-export async function HabitsContent({ query, page }: HabitsContentProps) {
+export async function HabitsContent({ query, page, status }: HabitsContentProps) {
   const result = await getHabitsAction({
     page: query ? "1" : page,
     limit: "20",
     query: query || "",
+    status,
   });
 
   if (!result.success || !result.data) {
@@ -53,51 +56,29 @@ export async function HabitsContent({ query, page }: HabitsContentProps) {
         </PageActions>
       </PageHeader>
 
-      <PageContent>
-        {/* Search */}
-        <SearchForm defaultValue={query} />
+      <PageContent className="pt-4 space-y-10">
+        {/* Filters and Search */}
+        <HabitFilters currentQuery={query} currentStatus={status} />
 
         {habits.length === 0 ? (
-          <EmptyState hasQuery={!!query} />
+          <EmptyState hasQuery={!!query || !!status} />
         ) : (
-          <>
-            {/* Today's checklist */}
-            <HabitChecklist habits={habits} />
-
-            {/* All habits grid */}
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">
-                Todos os hábitos
-              </h2>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {habits.map((habit) => (
-                  <HabitCard key={habit.id} habit={habit} />
-                ))}
-              </div>
+          <div className="space-y-10">
+            {/* Habit list */}
+            <div className="grid gap-4 w-full">
+              {habits.map((habit) => (
+                <HabitCard key={habit.id} habit={habit} />
+              ))}
             </div>
 
             {/* Pagination */}
             {totalPages > 1 && (
               <Pagination currentPage={currentPage} totalPages={totalPages} />
             )}
-          </>
+          </div>
         )}
       </PageContent>
     </PageContainer>
-  );
-}
-
-function SearchForm({ defaultValue }: { defaultValue?: string }) {
-  return (
-    <form method="get" className="max-w-sm">
-      <input
-        type="text"
-        name="query"
-        defaultValue={defaultValue}
-        placeholder="Buscar hábitos..."
-        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-      />
-    </form>
   );
 }
 

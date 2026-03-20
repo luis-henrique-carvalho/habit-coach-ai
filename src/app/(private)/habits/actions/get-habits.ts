@@ -1,12 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
-import { and, eq, ilike, sql, desc } from "drizzle-orm";
+import { and, eq, ilike, sql, desc, exists, SQL } from "drizzle-orm";
 import { db } from "@/db";
 import { habit, habitExecution } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import type { ActionResult } from "@/lib/types/action";
-import type { HabitWithStatus } from "../types";
+import type { HabitWithStatus, HabitStatusFilter } from "../types";
 import {
   format,
   getDay,
@@ -21,6 +21,28 @@ type GetHabitsResult = {
   total: number;
 };
 
+/**
+ * Builds the WHERE clause based on provided filters.
+ */
+function buildHabitFilters(userId: string, query?: string, status?: HabitStatusFilter): SQL | undefined {
+  const conditions = [eq(habit.userId, userId)];
+
+  if (status === "archived") {
+    conditions.push(eq(habit.isActive, false));
+  } else if (status === "active") {
+    conditions.push(eq(habit.isActive, true));
+  }
+
+  if (query) {
+    conditions.push(ilike(habit.name, `%${query}%`));
+  }
+
+  return and(...conditions);
+}
+
+/**
+ * Checks if a habit is due today based on its recurrence configuration.
+ */
 function isDueToday(
   recurrenceType: string,
   recurrenceWeekdays: number[] | null,
@@ -38,10 +60,12 @@ export async function getHabitsAction(params: {
   page?: string;
   limit?: string;
   query?: string;
+  status?: HabitStatusFilter;
 }): Promise<ActionResult<GetHabitsResult>> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   if (!session?.user?.id) {
     return {
       success: false,
@@ -53,17 +77,29 @@ export async function getHabitsAction(params: {
   const limit = Math.min(50, Math.max(1, parseInt(params.limit || "10", 10)));
   const offset = (page - 1) * limit;
   const userId = session.user.id;
+  const todayStr = format(new Date(), "yyyy-MM-dd");
 
-  const conditions = [eq(habit.userId, userId), eq(habit.isActive, true)];
-  if (params.query) {
-    conditions.push(ilike(habit.name, `%${params.query}%`));
-  }
+  const whereClause = buildHabitFilters(userId, params.query, params.status);
 
-  const whereClause = and(...conditions);
-
-  const [habits, countResult] = await Promise.all([
+  // Subquery to check today's completion
+  const completedTodaySubquery = exists(
     db
       .select()
+      .from(habitExecution)
+      .where(
+        and(
+          eq(habitExecution.habitId, habit.id),
+          eq(habitExecution.completedDate, todayStr)
+        )
+      )
+  );
+
+  const [habitsData, countResult] = await Promise.all([
+    db
+      .select({
+        habit: habit,
+        completedToday: completedTodaySubquery,
+      })
       .from(habit)
       .where(whereClause)
       .orderBy(desc(habit.createdAt))
@@ -76,38 +112,17 @@ export async function getHabitsAction(params: {
   ]);
 
   const total = countResult[0]?.count ?? 0;
-  const todayStr = format(new Date(), "yyyy-MM-dd");
 
-  // Check today's completions for all habits
-  const habitIds = habits.map((h) => h.id);
-  let todayExecutions: { habitId: string }[] = [];
-  if (habitIds.length > 0) {
-    todayExecutions = await db
-      .select({ habitId: habitExecution.habitId })
-      .from(habitExecution)
-      .where(
-        and(
-          sql`${habitExecution.habitId} IN (${sql.join(
-            habitIds.map((id) => sql`${id}`),
-            sql`, `
-          )})`,
-          eq(habitExecution.completedDate, todayStr)
-        )
-      );
-  }
-
-  const completedTodaySet = new Set(todayExecutions.map((e) => e.habitId));
-
-  // For weekly_count habits, check weekly completions
-  const weekStart = format(startOfWeek(new Date(), { weekStartsOn: 1 }), "yyyy-MM-dd");
-  const weekEnd = format(endOfWeek(new Date(), { weekStartsOn: 1 }), "yyyy-MM-dd");
-
+  // Process weekly_count aggregation if necessary
   const weeklyCountMap = new Map<string, number>();
-  const weeklyCountHabitIds = habits
-    .filter((h) => h.recurrenceType === "weekly_count")
-    .map((h) => h.id);
+  const weeklyCountHabitIds = habitsData
+    .filter((h) => h.habit.recurrenceType === "weekly_count")
+    .map((h) => h.habit.id);
 
   if (weeklyCountHabitIds.length > 0) {
+    const weekStart = format(startOfWeek(new Date(), { weekStartsOn: 1 }), "yyyy-MM-dd");
+    const weekEnd = format(endOfWeek(new Date(), { weekStartsOn: 1 }), "yyyy-MM-dd");
+
     const weeklyExecs = await db
       .select({
         habitId: habitExecution.habitId,
@@ -131,9 +146,9 @@ export async function getHabitsAction(params: {
     }
   }
 
-  const habitsWithStatus: HabitWithStatus[] = habits.map((h) => ({
+  const habitsWithStatus: HabitWithStatus[] = habitsData.map(({ habit: h, completedToday }) => ({
     ...h,
-    completedToday: completedTodaySet.has(h.id),
+    completedToday: !!completedToday,
     isDueToday: isDueToday(h.recurrenceType, h.recurrenceWeekdays),
   }));
 
