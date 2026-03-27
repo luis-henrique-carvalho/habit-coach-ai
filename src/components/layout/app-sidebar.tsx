@@ -29,10 +29,7 @@ import {
 } from "../ui/dropdown-menu";
 import { authClient } from "@/lib/auth-client";
 
-import {
-  LogOutIcon,
-  UserIcon,
-} from "lucide-react"
+import { LogOutIcon, UserIcon } from "lucide-react";
 
 // Menu items.
 const items = [
@@ -65,14 +62,16 @@ const items = [
 
 export function AppSidebar() {
   const handleSignOut = async () => {
-   await authClient.signOut({
-    fetchOptions: {
-      onSuccess: () => {
-        window.location.href = "/login";
-      }
-    }
-   });
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          window.location.href = "/login";
+        },
+      },
+    });
   };
+
+  const session = authClient.useSession();
 
   return (
     <Sidebar>
@@ -102,15 +101,11 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger className="w-full" asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> {session.data?.user?.email || "User"}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                align="start"
-                className="w-full"
-              >
+              <DropdownMenuContent side="top" align="start" className="w-full">
                 <DropdownMenuItem>
                   <UserIcon />
                   <span>Account</span>
