@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import { signUpSchema, type SignUpFormData } from "../schemas/sign-up-schema";
 import { authClient } from "@/lib/auth-client";
 
 export function SignUpForm() {
-  const router = useRouter();
   const [formError, setFormError] = useState<string>("");
 
   const form = useForm<SignUpFormData>({
@@ -42,7 +40,7 @@ export function SignUpForm() {
             // Loading state handled by form.formState.isSubmitting
           },
           onSuccess: () => {
-            router.push("/dashboard");
+            // No need for router.push, Better Auth handles callbackURL
           },
           onError: (ctx) => {
             setFormError(ctx.error.message || "Erro ao criar conta. Tente novamente.");

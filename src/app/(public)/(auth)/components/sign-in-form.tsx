@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,6 @@ import { signInSchema, type SignInFormData } from "../schemas/sign-in-schema";
 import { authClient } from "@/lib/auth-client";
 
 export function SignInForm() {
-  const router = useRouter();
   const [formError, setFormError] = useState<string>("");
 
   const form = useForm<SignInFormData>({
@@ -36,7 +34,7 @@ export function SignInForm() {
             // Loading state handled by form.formState.isSubmitting
           },
           onSuccess: () => {
-            router.push("/dashboard");
+            // No need for router.push, Better Auth handles callbackURL
           },
           onError: (ctx) => {
             setFormError(ctx.error.message || "Erro ao conectar. Tente novamente.");

@@ -1,0 +1,81 @@
+name: CI - Testes de Integração
+
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: postgresql://test_user:test_password@localhost:5433/test_db
+      BETTER_AUTH_SECRET: ci_test_secret
+      BETTER_AUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_BETTER_AUTH_URL: http://localhost:3000
+      GOOGLE_CLIENT_ID: mock_id
+      GOOGLE_CLIENT_SECRET: mock_secret
+      GITHUB_CLIENT_ID: mock_id
+      GITHUB_CLIENT_SECRET: mock_secret
+      NEXT_PUBLIC_APP_ENV: test
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Iniciar Banco de Dados (Docker Compose)
+        run: docker compose -f docker-compose.test.yml up -d --wait
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-
+
+      - name: Instalar dependências
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Instalar Cypress binary
+        run: pnpm exec cypress install
+
+      - name: Criar arquivo .env.test
+        run: |
+          cat <<EOF > .env.test
+          DATABASE_URL=postgresql://test_user:test_password@localhost:5433/test_db
+          BETTER_AUTH_SECRET=local_test_secret
+          BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
+          NODE_ENV=test
+          NEXT_PUBLIC_APP_ENV=test
+          APP_ENV=test
+          GOOGLE_CLIENT_ID=mock_id
+          GOOGLE_CLIENT_SECRET=mock_secret
+          GITHUB_CLIENT_ID=mock_id
+          GITHUB_CLIENT_SECRET=mock_secret
+          EOF
+
+      - name: Rodar migrations
+        run: pnpm db:migrate
+
+      - name: Build da aplicação (modo teste)
+        run: pnpm build:test
+
+      - name: Executar testes unitários (Vitest)
+        run: pnpm run test
+
+      - name: Executar testes E2E (Cypress)
+        run: pnpm test:cypress:headless
